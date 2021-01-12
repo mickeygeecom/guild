@@ -1,3 +1,54 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Teko&display=swap);
 :root {
-  color: red;
+  --expansion: 194, 112, 65;
+  --alliance: 0, 127, 255;
+  --horde: 200, 0, 0;
+  --text-secondary: rgb(150, 150, 150);
+}
+
+.color-horde {
+  color: rgb(var(--horde));
+}
+
+.color-alliance {
+  color: rgb(var(--alliance));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+body {
+  background-color: #fafafa;
+  color: #323232;
+  font-family: Roboto;
+}
+body.horde ::-moz-selection {
+  background-color: rgba(var(--horde), 0.15);
+  color: rgb(var(--horde));
+}
+body.horde ::selection {
+  background-color: rgba(var(--horde), 0.15);
+  color: rgb(var(--horde));
+}
+body.alliance ::-moz-selection {
+  background-color: rgba(var(--alliance), 0.15);
+  color: rgb(var(--alliance));
+}
+body.alliance ::selection {
+  background-color: rgba(var(--alliance), 0.15);
+  color: rgb(var(--alliance));
+}
+
+button {
+  cursor: pointer;
 }

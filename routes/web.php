@@ -1,5 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Guild;
 
-Route::view('/{path}', 'app')->where('path', '.*')->name('index');
+Route::get('/{path}', function() {
+    return view('app', ['guild' => Guild::all()]);
+})->where('path', '.*')->name('index');
