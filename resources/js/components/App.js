@@ -13,12 +13,12 @@ export default function App() {
     useEffect(() => {
         (async () => {
             const { data } = await Http.get('guild');
-            const findValue = name => data.find(object => object.name === name).value;
+            const getValue = name => data.find(object => object.name === name).value;
             setGuild({
-                faction: findValue('faction'),
-                region: findValue('region'),
-                realm: findValue('realm'),
-                name: findValue('name'),
+                faction: getValue('faction'),
+                region: getValue('region'),
+                realm: getValue('realm'),
+                name: getValue('name'),
             });
         })();
     }, []);

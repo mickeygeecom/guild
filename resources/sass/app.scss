@@ -52,3 +52,7 @@ body {
 button {
     cursor: pointer;
 }
+
+svg, img {
+    user-select: none;
+}

@@ -1,4 +1,5 @@
 import useOnclickOutside from "react-cool-onclickoutside";
+import { createUseStyles } from 'react-jss';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
@@ -24,12 +25,14 @@ const Usp = styled.div`
 `;
 
 const Button = styled.button`
-    box-shadow: 0 2px 4px 0 rgba(var(--${({ faction }) => faction ?? 'horde'}), 0.5);
-    background-color: rgb(var(--${({ faction }) => faction ?? 'horde'}));
+    box-shadow: 0 2px 4px 0 rgba(var(--${({ faction }) => faction ?? 'expansion'}), 0.5);
+    background-color: rgb(var(--${({ faction }) => faction ?? 'expansion'}));
+    font-size: ${({ size }) => (size ?? 1) + 'rem;'}
     text-transform: uppercase;
     letter-spacing: 2px;
     border-radius: 3px;
     user-select: none;
+    font-weight: bold;
     padding: 8px 12px;
     color: white;
     outline: 0;
@@ -88,7 +91,7 @@ const StyledInput = styled.input`
         border-color: rgb(var(--expansion));
     }
 `;
-const StyledLabel = styled.label`
+const Label = styled.label`
     font-family: Roboto Slab;
     margin-bottom: 5px;
     cursor: text;
@@ -96,7 +99,7 @@ const StyledLabel = styled.label`
 const Input = ({ containerClass = '', type = 'text', label = null, ...props }) => {
     return (
         <Col className={classnames(containerClass)}>
-            {label && <StyledLabel>{label}</StyledLabel>}
+            {label && <Label>{label}</Label>}
             <StyledInput id={label} {...props} />
         </Col>
     );
@@ -154,21 +157,91 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
     )
 }
 
-const Select = styled.select`
+const StyledSelect = styled.select`
     border: 1px solid black;
     padding: 5px;
     outline: 0;
 `;
+
+const Select = ({ containerClass = '', label = null, ...props }) => {
+    return (
+        <Col className={classnames(containerClass)}>
+            {label && <Label>{label}</Label>}
+            <StyledSelect id={label} {...props} />
+        </Col>
+    );
+}
+
+const FactionToggler = ({ label = null, active = 'horde', toggleActive, ...props }) => {
+    const styles = createUseStyles({
+        toggler: {
+            border: '1px solid rgb(100, 100, 100)',
+            backgroundColor: 'rgb(200, 200, 200)',
+            transition: 'all 0.1s linear',
+            position: 'relative',
+            margin: ['auto', 25],
+            cursor: 'pointer',
+            borderRadius: 25,
+            height: 25,
+            width: 50,
+            '&.horde': {
+                backgroundColor: 'rgb(var(--horde))',
+            },
+            '&.alliance': {
+                backgroundColor: 'rgb(var(--alliance))',
+            },
+        },
+        ball: {
+            border: '1px solid rgb(100, 100, 100)',
+            transition: 'all 0.1s linear',
+            transform: 'translateY(-50%)',
+            backgroundColor: 'white',
+            position: 'absolute',
+            borderRadius: '50%',
+            height: 20,
+            top: '50%',
+            width: 20,
+            '&.horde': {
+                left: 2,
+            },
+            '&.alliance': {
+                left: 26,
+            },
+        },
+        icon: {
+            transition: 'all 0.1s linear',
+            '&:not(.active)': {
+                filter: 'grayscale(1)',
+            },
+        },
+    });
+    const classes = styles();
+
+    return (
+        <Col {...props}>
+            {label && <Label>{label}</Label>}
+            <Row>
+                <img className={classnames(classes.icon, { active: active === 'horde' })} src="/storage/horde.svg" alt="Horde" />
+                <Row className={classnames(classes.toggler, active)} onClick={toggleActive}>
+                    <span className={classnames(classes.ball, active)} />
+                </Row>
+                <img className={classnames(classes.icon, { active: active === 'alliance' })} src="/storage/alliance.svg" alt="Horde" />
+            </Row>
+        </Col>
+    );
+}
 
 const TabPanel = styled.div`
     user-select: none;
 `;
 
 export {
+    FactionToggler,
     TabPanel,
     Loading,
     Select,
     Button,
+    Label,
     Input,
     Col,
     Row,

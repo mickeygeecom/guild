@@ -13122,7 +13122,7 @@ function App() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var _yield$Http$get, data, findValue;
+      var _yield$Http$get, data, getValue;
 
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
         while (1) {
@@ -13135,17 +13135,17 @@ function App() {
               _yield$Http$get = _context.sent;
               data = _yield$Http$get.data;
 
-              findValue = function findValue(name) {
+              getValue = function getValue(name) {
                 return data.find(function (object) {
                   return object.name === name;
                 }).value;
               };
 
               setGuild({
-                faction: findValue('faction'),
-                region: findValue('region'),
-                realm: findValue('realm'),
-                name: findValue('name')
+                faction: getValue('faction'),
+                region: getValue('region'),
+                realm: getValue('realm'),
+                name: getValue('name')
               });
 
             case 6:
@@ -13499,12 +13499,13 @@ function Popup(_ref) {
       transition: 'top 0.5s ease-in-out',
       justifyContent: 'center',
       alignItems: 'center',
+      fontSize: '1.25rem',
       userSelect: 'none',
       position: 'fixed',
       color: 'white',
+      height: '4rem',
       width: '100%',
-      height: 50,
-      top: -50,
+      top: '-4rem',
       left: 0,
       '&.show': {
         top: 0
@@ -13619,21 +13620,36 @@ function Settings(_ref) {
       margin: [0, 'auto'],
       marginTop: '25vh',
       borderRadius: 5,
-      padding: 30,
-      width: 400
+      width: 500
+    },
+    tabs: {
+      padding: 30
+    },
+    tab: {
+      flex: 1
     },
     marginTop: {
       marginTop: 25
     },
-    tabLink: {
+    tabPanel: {
       borderBottom: '2px solid transparent',
+      transition: 'all 0.1s linear',
       textTransform: 'uppercase',
       textAlign: 'center',
       userSelect: 'none',
       cursor: 'pointer',
       letterSpacing: 2,
-      padding: 10,
+      padding: 20,
       flex: 1,
+      '&:first-child': {
+        borderTopLeftRadius: 5
+      },
+      '&:last-child': {
+        borderTopRightRadius: 5
+      },
+      '&.active, &:hover': {
+        color: 'rgb(var(--expansion))'
+      },
       '&.active': {
         borderColor: 'rgb(var(--expansion))'
       }
@@ -13669,6 +13685,10 @@ function Settings(_ref) {
     setGuildInputs(function (p) {
       return _objectSpread(_objectSpread({}, p), {}, _defineProperty({}, input, value));
     });
+  }
+
+  function toggleFaction() {
+    handleGuildInput(guildInputs.faction === 'horde' ? 'alliance' : 'horde', 'faction');
   }
 
   function saveGuild(_x) {
@@ -13717,25 +13737,25 @@ function Settings(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
       className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.settings),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabs),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabLink, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanels),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel, {
             active: activeTab === 'guild'
           }),
           onClick: function onClick() {
             return setActiveTab('guild');
           },
           children: "Guild"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabLink, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel, {
             active: activeTab === 'recruitment'
           }),
           onClick: function onClick() {
             return setActiveTab('recruitment');
           },
           children: "Recruitment"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabLink, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel, {
             active: activeTab === 'usps'
           }),
           onClick: function onClick() {
@@ -13743,83 +13763,93 @@ function Settings(_ref) {
           },
           children: "USPs"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
-        active: activeTab === 'guild',
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-          onSubmit: saveGuild,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-            containerClass: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
-            autoFocus: true,
-            label: "Name",
-            autoComplete: "off",
-            value: guildInputs.name,
-            onChange: function onChange(e) {
-              return handleGuildInput(e.target.value, 'name');
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-            containerClass: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
-            label: "Realm",
-            autoComplete: "off",
-            value: guildInputs.realm,
-            onChange: function onChange(e) {
-              return handleGuildInput(e.target.value, 'realm');
-            }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
-            className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
-            value: guildInputs.region,
-            onChange: function onChange(e) {
-              return handleGuildInput(e.target.value, 'region');
-            },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "EU",
-              children: "Europe"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "NA",
-              children: "North America"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "CN",
-              children: "China"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "OCE",
-              children: "Oceanic"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "RU",
-              children: "Russia"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "DE",
-              children: "Germany"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "FR",
-              children: "France"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "ES",
-              children: "Spain"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "KR",
-              children: "Korean"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "SA",
-              children: "South America"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-              value: "TW",
-              children: "Taiwanese"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabs),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tab),
+          active: activeTab === 'guild',
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+            onSubmit: saveGuild,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+              autoFocus: true,
+              label: "Name",
+              autoComplete: "off",
+              value: guildInputs.name,
+              onChange: function onChange(e) {
+                return handleGuildInput(e.target.value, 'name');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+              containerClass: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              label: "Realm",
+              autoComplete: "off",
+              value: guildInputs.realm,
+              onChange: function onChange(e) {
+                return handleGuildInput(e.target.value, 'realm');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
+              containerClass: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              value: guildInputs.region,
+              label: "Region",
+              onChange: function onChange(e) {
+                return handleGuildInput(e.target.value, 'region');
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "EU",
+                children: "Europe"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "NA",
+                children: "North America"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "CN",
+                children: "China"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "OCE",
+                children: "Oceanic"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "RU",
+                children: "Russia"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "DE",
+                children: "Germany"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "FR",
+                children: "France"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "ES",
+                children: "Spain"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "KR",
+                children: "Korean"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "SA",
+                children: "South America"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+                value: "TW",
+                children: "Taiwanese"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.FactionToggler, {
+              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              active: guildInputs.faction,
+              toggleActive: toggleFaction
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                children: "Save"
+              })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-            className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-              faction: guild.faction,
-              children: "Save"
-            })
-          })]
-        })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
-        active: activeTab === 'recruitment',
-        children: "2"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
-        active: activeTab === 'usps',
-        children: "3"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tab),
+          active: activeTab === 'recruitment',
+          children: "2"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tab),
+          active: activeTab === 'usps',
+          children: "3"
+        })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
+      faction: guild.faction,
       loading: true
     })]
   });
@@ -13875,10 +13905,12 @@ function Tab(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FactionToggler": () => /* binding */ FactionToggler,
 /* harmony export */   "TabPanel": () => /* binding */ TabPanel,
 /* harmony export */   "Loading": () => /* binding */ Loading,
 /* harmony export */   "Select": () => /* binding */ Select,
 /* harmony export */   "Button": () => /* binding */ Button,
+/* harmony export */   "Label": () => /* binding */ Label,
 /* harmony export */   "Input": () => /* binding */ Input,
 /* harmony export */   "Col": () => /* binding */ Col,
 /* harmony export */   "Row": () => /* binding */ Row,
@@ -13892,10 +13924,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var react_cool_onclickoutside__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-cool-onclickoutside */ "./node_modules/react-cool-onclickoutside/dist/index.esm.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -14052,7 +14085,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 2px 4px 0 rgba(var(--", "), 0.5);\n    background-color: rgb(var(--", "));\n    text-transform: uppercase;\n    letter-spacing: 2px;\n    border-radius: 3px;\n    user-select: none;\n    padding: 8px 12px;\n    color: white;\n    outline: 0;\n    &[disabled] {\n        opacity: 0.5;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 2px 4px 0 rgba(var(--", "), 0.5);\n    background-color: rgb(var(--", "));\n    font-size: ", "\n    text-transform: uppercase;\n    letter-spacing: 2px;\n    border-radius: 3px;\n    user-select: none;\n    font-weight: bold;\n    padding: 8px 12px;\n    color: white;\n    outline: 0;\n    &[disabled] {\n        opacity: 0.5;\n    }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -14097,37 +14130,41 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-var Col = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject());
-var Row = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject2());
-var Usp = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject3());
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.button(_templateObject4(), function (_ref) {
+
+var Col = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject());
+var Row = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject2());
+var Usp = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject3());
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject4(), function (_ref) {
   var faction = _ref.faction;
-  return faction !== null && faction !== void 0 ? faction : 'horde';
+  return faction !== null && faction !== void 0 ? faction : 'expansion';
 }, function (_ref2) {
   var faction = _ref2.faction;
-  return faction !== null && faction !== void 0 ? faction : 'horde';
+  return faction !== null && faction !== void 0 ? faction : 'expansion';
+}, function (_ref3) {
+  var size = _ref3.size;
+  return (size !== null && size !== void 0 ? size : 1) + 'rem;';
 });
-var H1 = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.h1(_templateObject5());
-var H2 = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.h2(_templateObject6());
-var H3 = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.h3(_templateObject7());
-var H4 = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.h4(_templateObject8());
-var H5 = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.h5(_templateObject9());
-var H6 = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.h6(_templateObject10());
-var StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.input(_templateObject11());
-var StyledLabel = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.label(_templateObject12());
+var H1 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h1(_templateObject5());
+var H2 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h2(_templateObject6());
+var H3 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h3(_templateObject7());
+var H4 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h4(_templateObject8());
+var H5 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h5(_templateObject9());
+var H6 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h6(_templateObject10());
+var StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.input(_templateObject11());
+var Label = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.label(_templateObject12());
 
-var Input = function Input(_ref3) {
-  var _ref3$containerClass = _ref3.containerClass,
-      containerClass = _ref3$containerClass === void 0 ? '' : _ref3$containerClass,
-      _ref3$type = _ref3.type,
-      type = _ref3$type === void 0 ? 'text' : _ref3$type,
-      _ref3$label = _ref3.label,
-      label = _ref3$label === void 0 ? null : _ref3$label,
-      props = _objectWithoutProperties(_ref3, ["containerClass", "type", "label"]);
+var Input = function Input(_ref4) {
+  var _ref4$containerClass = _ref4.containerClass,
+      containerClass = _ref4$containerClass === void 0 ? '' : _ref4$containerClass,
+      _ref4$type = _ref4.type,
+      type = _ref4$type === void 0 ? 'text' : _ref4$type,
+      _ref4$label = _ref4.label,
+      label = _ref4$label === void 0 ? null : _ref4$label,
+      props = _objectWithoutProperties(_ref4, ["containerClass", "type", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
-    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(containerClass),
-    children: [label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledLabel, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(containerClass),
+    children: [label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, {
       children: label
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledInput, _objectSpread({
       id: label
@@ -14135,17 +14172,17 @@ var Input = function Input(_ref3) {
   });
 };
 
-var StyledLoadingBackground = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject13());
-var StyledLoadingSpinnerBackground = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject14());
-var StyledLoadingSpinner = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.img(_templateObject15());
+var StyledLoadingBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject13());
+var StyledLoadingSpinnerBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject14());
+var StyledLoadingSpinner = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject15());
 
-var Loading = function Loading(_ref4) {
-  var _ref4$loading = _ref4.loading,
-      loading = _ref4$loading === void 0 ? false : _ref4$loading,
-      _ref4$faction = _ref4.faction,
-      faction = _ref4$faction === void 0 ? 'horde' : _ref4$faction;
+var Loading = function Loading(_ref5) {
+  var _ref5$loading = _ref5.loading,
+      loading = _ref5$loading === void 0 ? false : _ref5$loading,
+      _ref5$faction = _ref5.faction,
+      faction = _ref5$faction === void 0 ? 'horde' : _ref5$faction;
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(loading),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(loading),
       _useState2 = _slicedToArray(_useState, 2),
       open = _useState2[0],
       setOpen = _useState2[1];
@@ -14177,8 +14214,104 @@ var Loading = function Loading(_ref4) {
   });
 };
 
-var Select = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.select(_templateObject16());
-var TabPanel = styled_components__WEBPACK_IMPORTED_MODULE_4__.default.div(_templateObject17());
+var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.select(_templateObject16());
+
+var Select = function Select(_ref6) {
+  var _ref6$containerClass = _ref6.containerClass,
+      containerClass = _ref6$containerClass === void 0 ? '' : _ref6$containerClass,
+      _ref6$label = _ref6.label,
+      label = _ref6$label === void 0 ? null : _ref6$label,
+      props = _objectWithoutProperties(_ref6, ["containerClass", "label"]);
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(containerClass),
+    children: [label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, {
+      children: label
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledSelect, _objectSpread({
+      id: label
+    }, props))]
+  });
+};
+
+var FactionToggler = function FactionToggler(_ref7) {
+  var _ref7$label = _ref7.label,
+      label = _ref7$label === void 0 ? null : _ref7$label,
+      _ref7$active = _ref7.active,
+      active = _ref7$active === void 0 ? 'horde' : _ref7$active,
+      toggleActive = _ref7.toggleActive,
+      props = _objectWithoutProperties(_ref7, ["label", "active", "toggleActive"]);
+
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
+    toggler: {
+      border: '1px solid rgb(100, 100, 100)',
+      backgroundColor: 'rgb(200, 200, 200)',
+      transition: 'all 0.1s linear',
+      position: 'relative',
+      margin: ['auto', 25],
+      cursor: 'pointer',
+      borderRadius: 25,
+      height: 25,
+      width: 50,
+      '&.horde': {
+        backgroundColor: 'rgb(var(--horde))'
+      },
+      '&.alliance': {
+        backgroundColor: 'rgb(var(--alliance))'
+      }
+    },
+    ball: {
+      border: '1px solid rgb(100, 100, 100)',
+      transition: 'all 0.1s linear',
+      transform: 'translateY(-50%)',
+      backgroundColor: 'white',
+      position: 'absolute',
+      borderRadius: '50%',
+      height: 20,
+      top: '50%',
+      width: 20,
+      '&.horde': {
+        left: 2
+      },
+      '&.alliance': {
+        left: 26
+      }
+    },
+    icon: {
+      transition: 'all 0.1s linear',
+      '&:not(.active)': {
+        filter: 'grayscale(1)'
+      }
+    }
+  });
+  var classes = styles();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, _objectSpread(_objectSpread({}, props), {}, {
+    children: [label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, {
+      children: label
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Row, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.icon, {
+          active: active === 'horde'
+        }),
+        src: "/storage/horde.svg",
+        alt: "Horde"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Row, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.toggler, active),
+        onClick: toggleActive,
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("span", {
+          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.ball, active)
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.icon, {
+          active: active === 'alliance'
+        }),
+        src: "/storage/alliance.svg",
+        alt: "Horde"
+      })]
+    })]
+  }));
+};
+
+var TabPanel = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject17());
 
 
 /***/ }),
