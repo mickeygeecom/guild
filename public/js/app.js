@@ -13167,6 +13167,7 @@ function App() {
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    document.querySelector('body').classList = guild.faction;
     document.title = guild.name;
   }, [guild]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
