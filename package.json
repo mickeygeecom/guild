@@ -3,6 +3,7 @@
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
+        "deploy": "php artisan optimize:clear && npm run prod && npm run dev",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
@@ -29,7 +30,7 @@
         "@mdi/js": "^5.8.55",
         "@mdi/react": "^1.4.0",
         "classnames": "^2.2.6",
-        "node-sass": "^5.0.0",
+        "node-sass": "^4.14.1",
         "react-cool-onclickoutside": "^1.5.9",
         "react-jss": "^10.5.0",
         "react-router-dom": "^5.2.0",

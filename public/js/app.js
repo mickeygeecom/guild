@@ -13274,13 +13274,13 @@ function Home(_ref) {
     hero: {
       backgroundImage: 'url("/storage/hero.jpg")',
       backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
       justifyContent: 'center',
       backgroundSize: 'cover',
       alignItems: 'center',
       position: 'relative',
       height: 500,
       '@media (max-width: 768px)': {
-        backgroundPosition: 'center',
         height: '100vh'
       },
       '&::after': {
@@ -13620,7 +13620,7 @@ function Settings(_ref) {
       margin: [0, 'auto'],
       marginTop: '25vh',
       borderRadius: 5,
-      width: 500
+      width: 450
     },
     tabs: {
       padding: 30
@@ -13662,15 +13662,20 @@ function Settings(_ref) {
       activeTab = _useState2[0],
       setActiveTab = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      saving = _useState4[0],
+      setSaving = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
     faction: guild.faction,
     region: guild.region,
     realm: guild.realm,
     name: guild.name
   }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      guildInputs = _useState4[0],
-      setGuildInputs = _useState4[1];
+      _useState6 = _slicedToArray(_useState5, 2),
+      guildInputs = _useState6[0],
+      setGuildInputs = _useState6[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     setGuildInputs({
@@ -13706,14 +13711,16 @@ function Settings(_ref) {
               e.preventDefault();
               formData = new FormData();
               formData.append('guild', JSON.stringify(guildInputs));
-              _context.next = 5;
+              setSaving(true);
+              _context.next = 6;
               return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.post('guild', {
                 body: formData
               });
 
-            case 5:
+            case 6:
               _yield$Http$post = _context.sent;
               code = _yield$Http$post.code;
+              setSaving(false);
 
               if (code === 200) {
                 handlePopup('Successfully updated guild', 'success');
@@ -13722,7 +13729,7 @@ function Settings(_ref) {
                 handlePopup('Something went wrong', 'error');
               }
 
-            case 8:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -13832,8 +13839,11 @@ function Settings(_ref) {
               active: guildInputs.faction,
               toggleActive: toggleFaction
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+              justify: "center",
               className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                block: true,
+                disabled: saving,
                 children: "Save"
               })
             })]
@@ -13850,7 +13860,7 @@ function Settings(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
       faction: guild.faction,
-      loading: true
+      loading: saving
     })]
   });
 }
@@ -14085,7 +14095,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 2px 4px 0 rgba(var(--", "), 0.5);\n    background-color: rgb(var(--", "));\n    font-size: ", "\n    text-transform: uppercase;\n    letter-spacing: 2px;\n    border-radius: 3px;\n    user-select: none;\n    font-weight: bold;\n    padding: 8px 12px;\n    color: white;\n    outline: 0;\n    &[disabled] {\n        opacity: 0.5;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 2px 4px 0 rgba(var(--", "), 0.5);\n    background-color: rgb(var(--", "));\n    padding: ", ";\n    font-size: ", ";\n    ", "\n    text-transform: uppercase;\n    letter-spacing: 2px;\n    border-radius: 3px;\n    user-select: none;\n    font-weight: bold;\n    color: white;\n    outline: 0;\n    &:hover {\n        background-color: rgba(var(--", "), 0.95);\n    }\n    &[disabled] {\n        cursor: not-allowed;\n        opacity: 0.5;\n    }\n"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -14105,7 +14115,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    flex-direction: row;\n    display: flex;\n"]);
+  var data = _taggedTemplateLiteral(["\n    ", "\n    ", "\n    flex-direction: row;\n    display: flex;\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -14132,17 +14142,32 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Col = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject());
-var Row = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject2());
-var Usp = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject3());
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject4(), function (_ref) {
-  var faction = _ref.faction;
-  return faction !== null && faction !== void 0 ? faction : 'expansion';
+var Row = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject2(), function (_ref) {
+  var justify = _ref.justify;
+  return justify ? 'justify-content:' + justify + ';' : '';
 }, function (_ref2) {
-  var faction = _ref2.faction;
+  var align = _ref2.align;
+  return align ? 'align-items:' + align + ';' : '';
+});
+var Usp = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject3());
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.button(_templateObject4(), function (_ref3) {
+  var faction = _ref3.faction;
   return faction !== null && faction !== void 0 ? faction : 'expansion';
-}, function (_ref3) {
-  var size = _ref3.size;
-  return (size !== null && size !== void 0 ? size : 1) + 'rem;';
+}, function (_ref4) {
+  var faction = _ref4.faction;
+  return faction !== null && faction !== void 0 ? faction : 'expansion';
+}, function (_ref5) {
+  var block = _ref5.block;
+  return block ? '12px' : '8px 12px';
+}, function (_ref6) {
+  var size = _ref6.size;
+  return (size !== null && size !== void 0 ? size : 1) + 'rem';
+}, function (_ref7) {
+  var block = _ref7.block;
+  return block ? 'width: 100%;' : '';
+}, function (_ref8) {
+  var faction = _ref8.faction;
+  return faction !== null && faction !== void 0 ? faction : 'expansion';
 });
 var H1 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h1(_templateObject5());
 var H2 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h2(_templateObject6());
@@ -14153,14 +14178,14 @@ var H6 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h6(_templateObje
 var StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.input(_templateObject11());
 var Label = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.label(_templateObject12());
 
-var Input = function Input(_ref4) {
-  var _ref4$containerClass = _ref4.containerClass,
-      containerClass = _ref4$containerClass === void 0 ? '' : _ref4$containerClass,
-      _ref4$type = _ref4.type,
-      type = _ref4$type === void 0 ? 'text' : _ref4$type,
-      _ref4$label = _ref4.label,
-      label = _ref4$label === void 0 ? null : _ref4$label,
-      props = _objectWithoutProperties(_ref4, ["containerClass", "type", "label"]);
+var Input = function Input(_ref9) {
+  var _ref9$containerClass = _ref9.containerClass,
+      containerClass = _ref9$containerClass === void 0 ? '' : _ref9$containerClass,
+      _ref9$type = _ref9.type,
+      type = _ref9$type === void 0 ? 'text' : _ref9$type,
+      _ref9$label = _ref9.label,
+      label = _ref9$label === void 0 ? null : _ref9$label,
+      props = _objectWithoutProperties(_ref9, ["containerClass", "type", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(containerClass),
@@ -14176,11 +14201,11 @@ var StyledLoadingBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.def
 var StyledLoadingSpinnerBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject14());
 var StyledLoadingSpinner = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject15());
 
-var Loading = function Loading(_ref5) {
-  var _ref5$loading = _ref5.loading,
-      loading = _ref5$loading === void 0 ? false : _ref5$loading,
-      _ref5$faction = _ref5.faction,
-      faction = _ref5$faction === void 0 ? 'horde' : _ref5$faction;
+var Loading = function Loading(_ref10) {
+  var _ref10$loading = _ref10.loading,
+      loading = _ref10$loading === void 0 ? false : _ref10$loading,
+      _ref10$faction = _ref10.faction,
+      faction = _ref10$faction === void 0 ? 'horde' : _ref10$faction;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(loading),
       _useState2 = _slicedToArray(_useState, 2),
@@ -14216,12 +14241,12 @@ var Loading = function Loading(_ref5) {
 
 var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.select(_templateObject16());
 
-var Select = function Select(_ref6) {
-  var _ref6$containerClass = _ref6.containerClass,
-      containerClass = _ref6$containerClass === void 0 ? '' : _ref6$containerClass,
-      _ref6$label = _ref6.label,
-      label = _ref6$label === void 0 ? null : _ref6$label,
-      props = _objectWithoutProperties(_ref6, ["containerClass", "label"]);
+var Select = function Select(_ref11) {
+  var _ref11$containerClass = _ref11.containerClass,
+      containerClass = _ref11$containerClass === void 0 ? '' : _ref11$containerClass,
+      _ref11$label = _ref11.label,
+      label = _ref11$label === void 0 ? null : _ref11$label,
+      props = _objectWithoutProperties(_ref11, ["containerClass", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(containerClass),
@@ -14233,13 +14258,13 @@ var Select = function Select(_ref6) {
   });
 };
 
-var FactionToggler = function FactionToggler(_ref7) {
-  var _ref7$label = _ref7.label,
-      label = _ref7$label === void 0 ? null : _ref7$label,
-      _ref7$active = _ref7.active,
-      active = _ref7$active === void 0 ? 'horde' : _ref7$active,
-      toggleActive = _ref7.toggleActive,
-      props = _objectWithoutProperties(_ref7, ["label", "active", "toggleActive"]);
+var FactionToggler = function FactionToggler(_ref12) {
+  var _ref12$label = _ref12.label,
+      label = _ref12$label === void 0 ? null : _ref12$label,
+      _ref12$active = _ref12.active,
+      active = _ref12$active === void 0 ? 'horde' : _ref12$active,
+      toggleActive = _ref12.toggleActive,
+      props = _objectWithoutProperties(_ref12, ["label", "active", "toggleActive"]);
 
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     toggler: {
@@ -14278,6 +14303,8 @@ var FactionToggler = function FactionToggler(_ref7) {
     },
     icon: {
       transition: 'all 0.1s linear',
+      height: 100,
+      width: 100,
       '&:not(.active)': {
         filter: 'grayscale(1)'
       }
@@ -14288,12 +14315,14 @@ var FactionToggler = function FactionToggler(_ref7) {
     children: [label && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Label, {
       children: label
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Row, {
+      justify: "center",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
         className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.icon, {
           active: active === 'horde'
         }),
         src: "/storage/horde.svg",
-        alt: "Horde"
+        alt: "Horde",
+        title: "Horde"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(Row, {
         className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.toggler, active),
         onClick: toggleActive,
@@ -14305,7 +14334,8 @@ var FactionToggler = function FactionToggler(_ref7) {
           active: active === 'alliance'
         }),
         src: "/storage/alliance.svg",
-        alt: "Horde"
+        alt: "Alliance",
+        title: "Alliance"
       })]
     })]
   }));

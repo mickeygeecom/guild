@@ -10,11 +10,11 @@
 }
 
 .color-horde {
-  color: rgb(var(--horde));
+  color: RGB(var(--horde));
 }
 
 .color-alliance {
-  color: rgb(var(--alliance));
+  color: RGB(var(--alliance));
 }
 
 *,
@@ -32,21 +32,25 @@ body {
   color: #323232;
   font-family: Roboto;
 }
+
 body.horde ::-moz-selection {
-  background-color: rgba(var(--horde), 0.15);
-  color: rgb(var(--horde));
+  background-color: RGBA(var(--horde), 0.15);
+  color: RGB(var(--horde));
 }
+
 body.horde ::selection {
-  background-color: rgba(var(--horde), 0.15);
-  color: rgb(var(--horde));
+  background-color: RGBA(var(--horde), 0.15);
+  color: RGB(var(--horde));
 }
+
 body.alliance ::-moz-selection {
-  background-color: rgba(var(--alliance), 0.15);
-  color: rgb(var(--alliance));
+  background-color: RGBA(var(--alliance), 0.15);
+  color: RGB(var(--alliance));
 }
+
 body.alliance ::selection {
-  background-color: rgba(var(--alliance), 0.15);
-  color: rgb(var(--alliance));
+  background-color: RGBA(var(--alliance), 0.15);
+  color: RGB(var(--alliance));
 }
 
 button {
@@ -59,3 +63,4 @@ svg, img {
       -ms-user-select: none;
           user-select: none;
 }
+
