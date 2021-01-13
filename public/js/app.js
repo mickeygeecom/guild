@@ -13188,7 +13188,7 @@ function App() {
         exact: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Login__WEBPACK_IMPORTED_MODULE_5__.default, {})
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
-        path: "/settings",
+        path: "/settings/:tab?",
         exact: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Settings__WEBPACK_IMPORTED_MODULE_4__.default, {
           guild: guild,
@@ -13569,12 +13569,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
-/* harmony import */ var _Tab__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Tab */ "./resources/js/components/Tab.js");
 
 
 
@@ -13608,6 +13609,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Settings(_ref) {
+  var _useParams$tab, _useParams;
+
   var guild = _ref.guild,
       setGuild = _ref.setGuild,
       handlePopup = _ref.handlePopup;
@@ -13625,7 +13628,7 @@ function Settings(_ref) {
       borderRadius: 5,
       width: 450
     },
-    tabs: {
+    tabWrapper: {
       padding: 30
     },
     tab: {
@@ -13658,9 +13661,9 @@ function Settings(_ref) {
       }
     }
   });
-  var classes = styles();
+  var classes = styles(); // const tab = useParams();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)('guild'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)((_useParams$tab = (_useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)()) === null || _useParams === void 0 ? void 0 : _useParams.tab) !== null && _useParams$tab !== void 0 ? _useParams$tab : 'guild'),
       _useState2 = _slicedToArray(_useState, 2),
       activeTab = _useState2[0],
       setActiveTab = _useState2[1];
@@ -13749,35 +13752,26 @@ function Settings(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
         className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanels),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel, {
-            active: activeTab === 'guild'
-          }),
-          onClick: function onClick() {
-            return setActiveTab('guild');
-          },
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink,
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          to: "/settings/guild",
           children: "Guild"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel, {
-            active: activeTab === 'recruitment'
-          }),
-          onClick: function onClick() {
-            return setActiveTab('recruitment');
-          },
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink,
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          to: "/settings/recruitment",
           children: "Recruitment"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel, {
-            active: activeTab === 'usps'
-          }),
-          onClick: function onClick() {
-            return setActiveTab('usps');
-          },
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink,
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          to: "/settings/usps",
           children: "USPs"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabs),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tab),
-          active: activeTab === 'guild',
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabWrapper),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          path: "/settings/guild",
+          exact: true,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             onSubmit: saveGuild,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
@@ -13851,13 +13845,13 @@ function Settings(_ref) {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tab),
-          active: activeTab === 'recruitment',
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          path: "/settings/recruitment",
+          exact: true,
           children: "2"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Tab__WEBPACK_IMPORTED_MODULE_7__.default, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tab),
-          active: activeTab === 'usps',
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+          path: "/settings/usps",
+          exact: true,
           children: "3"
         })]
       })]
@@ -13866,45 +13860,6 @@ function Settings(_ref) {
       loading: saving
     })]
   });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/Tab.js":
-/*!****************************************!*\
-  !*** ./resources/js/components/Tab.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ Tab
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
-
-function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-
-
-function Tab(_ref) {
-  var children = _ref.children,
-      _ref$active = _ref.active,
-      active = _ref$active === void 0 ? false : _ref$active,
-      props = _objectWithoutProperties(_ref, ["children", "active"]);
-
-  return active ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", _objectSpread(_objectSpread({}, props), {}, {
-    children: children
-  })) : null;
 }
 
 /***/ }),
@@ -14026,7 +13981,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    font-size: 1rem;\n    line-height: 1;\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-decoration: none;\n    text-align: center;\n    font-size: 1rem;\n    line-height: 1;\n    &:visited {\n        color: inherit;\n    }\n"]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -14036,7 +13991,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    font-size: 1.25rem;\n    line-height: 1;\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-decoration: none;\n    text-align: center;\n    font-size: 1.25rem;\n    line-height: 1;\n    &:visited {\n        color: inherit;\n    }\n"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -14046,7 +14001,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    font-size: 1.5rem;\n    line-height: 1;\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-decoration: none;\n    text-align: center;\n    font-size: 1.5rem;\n    line-height: 1;\n    &:visited {\n        color: inherit;\n    }\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -14056,7 +14011,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    font-size: 2rem;\n    line-height: 1;\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-decoration: none;\n    text-align: center;\n    font-size: 2rem;\n    line-height: 1;\n    &:visited {\n        color: inherit;\n    }\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -14066,7 +14021,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    font-size: 2.5rem;\n    line-height: 1;\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-decoration: none;\n    text-align: center;\n    font-size: 2.5rem;\n    line-height: 1;\n    &:visited {\n        color: inherit;\n    }\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -14076,7 +14031,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n    text-align: center;\n    font-size: 5rem;\n    line-height: 1;\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-decoration: none;\n    text-align: center;\n    font-size: 5rem;\n    line-height: 1;\n    &:visited {\n        color: inherit;\n    }\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;

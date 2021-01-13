@@ -1,9 +1,9 @@
 import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler } from './styled-components';
+import { NavLink, Route, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { Http } from '../classes';
-import Tab from './Tab';
 
 export default function Settings({ guild, setGuild, handlePopup }) {
     const styles = createUseStyles({
@@ -20,7 +20,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             borderRadius: 5,
             width: 450,
         },
-        tabs: {
+        tabWrapper: {
             padding: 30,
         },
         tab: {
@@ -54,8 +54,10 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         },
     });
     const classes = styles();
+    
+    // const tab = useParams();
 
-    const [activeTab, setActiveTab] = useState('guild');
+    const [activeTab, setActiveTab] = useState(useParams()?.tab ?? 'guild');
 
     const [saving, setSaving] = useState(false);
 
@@ -102,18 +104,12 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         <Col className={classnames(classes.wrapper)}>
             <Col className={classnames(classes.settings)}>
                 <Row className={classnames(classes.tabPanels)}>
-                    <H6 className={classnames(classes.tabPanel, { active: activeTab === 'guild' })} onClick={() => setActiveTab('guild')}>
-                        Guild
-                    </H6>
-                    <H6 className={classnames(classes.tabPanel, { active: activeTab === 'recruitment' })} onClick={() => setActiveTab('recruitment')}>
-                        Recruitment
-                    </H6>
-                    <H6 className={classnames(classes.tabPanel, { active: activeTab === 'usps' })} onClick={() => setActiveTab('usps')}>
-                        USPs
-                    </H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment">Recruitment</H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps">USPs</H6>
                 </Row>
-                <Row className={classnames(classes.tabs)}>
-                    <Tab className={classnames(classes.tab)} active={activeTab === 'guild'}>
+                <Col className={classnames(classes.tabWrapper)}>
+                    <Route path="/settings/guild" exact>
                         <form onSubmit={saveGuild}>
                             <Input
                                 autoFocus label="Name" autoComplete="off" value={guildInputs.name}
@@ -144,14 +140,14 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                                 <Button block disabled={saving}>Save</Button>
                             </Row>
                         </form>
-                    </Tab>
-                    <Tab className={classnames(classes.tab)} active={activeTab === 'recruitment'}>
+                    </Route>
+                    <Route path="/settings/recruitment" exact>
                         2
-                    </Tab>
-                    <Tab className={classnames(classes.tab)} active={activeTab === 'usps'}>
+                    </Route>
+                    <Route path="/settings/usps" exact>
                         3
-                    </Tab>
-                </Row>
+                    </Route>
+                </Col>
             </Col>
             <Loading faction={guild.faction} loading={saving} />
         </Col>

@@ -42,7 +42,7 @@ export default function App() {
                 <Route path="/login" exact>
                     <Login />
                 </Route>
-                <Route path="/settings" exact>
+                <Route path="/settings/:tab?" exact>
                     <Settings guild={guild} setGuild={setGuild} handlePopup={handlePopup} />
                 </Route>
             </Switch>

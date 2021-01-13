@@ -49,39 +49,63 @@ const Button = styled.button`
 `;
 
 const H1 = styled.h1`
+    text-decoration: none;
     text-align: center;
     font-size: 5rem;
     line-height: 1;
+    &:visited {
+        color: inherit;
+    }
 `;
 
 const H2 = styled.h2`
+    text-decoration: none;
     text-align: center;
     font-size: 2.5rem;
     line-height: 1;
+    &:visited {
+        color: inherit;
+    }
 `;
 
 const H3 = styled.h3`
+    text-decoration: none;
     text-align: center;
     font-size: 2rem;
     line-height: 1;
+    &:visited {
+        color: inherit;
+    }
 `;
 
 const H4 = styled.h4`
+    text-decoration: none;
     text-align: center;
     font-size: 1.5rem;
     line-height: 1;
+    &:visited {
+        color: inherit;
+    }
 `;
 
 const H5 = styled.h5`
+    text-decoration: none;
     text-align: center;
     font-size: 1.25rem;
     line-height: 1;
+    &:visited {
+        color: inherit;
+    }
 `;
 
 const H6 = styled.h6`
+    text-decoration: none;
     text-align: center;
     font-size: 1rem;
     line-height: 1;
+    &:visited {
+        color: inherit;
+    }
 `;
 
 const StyledInput = styled.input`
