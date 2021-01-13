@@ -22,7 +22,7 @@ const Usp = styled.div`
     flex-direction: column;
     border-radius: 5px;
     text-align: center;
-    padding: 25px 40px;
+    padding: 30px;
     display: flex;
 `;
 
@@ -142,21 +142,15 @@ const StyledLoadingSpinner = styled.img`
     }
 `;
 const Loading = ({ loading = false, faction = 'horde' }) => {
-    const [open, setOpen] = useState(loading);
+    document.querySelector('body').style.overflowY = loading ? 'hidden' : 'auto';
 
-    const container = useOnclickOutside(() => {
-        setOpen(false);
-    });
-
-    document.querySelector('body').style.overflowY = open ? 'hidden' : 'auto';
-
-    if (!open || !loading) {
+    if (!loading) {
         return null;
     }
 
     return (
         <StyledLoadingBackground as={Col}>
-            <StyledLoadingSpinnerBackground as={Col} ref={container}>
+            <StyledLoadingSpinnerBackground as={Col}>
                 <StyledLoadingSpinner src={`/storage/${faction}.svg`} alt="Faction" />
                 <p style={{ marginTop: 25 }}>Loading, please wait</p>
             </StyledLoadingSpinnerBackground>

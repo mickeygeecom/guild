@@ -58,10 +58,12 @@ export default function Home({ guild, setGuild, handlePopup }) {
         },
         usps: {
             justifyContent: 'center',
-            margin: ['auto', 200],
             flexWrap: 'wrap',
             display: 'flex',
+            margin: 'auto',
+            width: '50%',
             '@media (max-width: 768px)': {
+                width: '100%',
                 margin: 0,
             },
         },
