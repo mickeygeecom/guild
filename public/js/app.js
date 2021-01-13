@@ -13569,9 +13569,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
@@ -13609,8 +13609,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Settings(_ref) {
-  var _useParams$tab, _useParams;
-
   var guild = _ref.guild,
       setGuild = _ref.setGuild,
       handlePopup = _ref.handlePopup;
@@ -13661,27 +13659,22 @@ function Settings(_ref) {
       }
     }
   });
-  var classes = styles(); // const tab = useParams();
+  var classes = styles();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)((_useParams$tab = (_useParams = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)()) === null || _useParams === void 0 ? void 0 : _useParams.tab) !== null && _useParams$tab !== void 0 ? _useParams$tab : 'guild'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
-      activeTab = _useState2[0],
-      setActiveTab = _useState2[1];
+      saving = _useState2[0],
+      setSaving = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
-      _useState4 = _slicedToArray(_useState3, 2),
-      saving = _useState4[0],
-      setSaving = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
     faction: guild.faction,
     region: guild.region,
     realm: guild.realm,
     name: guild.name
   }),
-      _useState6 = _slicedToArray(_useState5, 2),
-      guildInputs = _useState6[0],
-      setGuildInputs = _useState6[1];
+      _useState4 = _slicedToArray(_useState3, 2),
+      guildInputs = _useState4[0],
+      setGuildInputs = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     setGuildInputs({
@@ -13752,24 +13745,24 @@ function Settings(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
         className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanels),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
           to: "/settings/guild",
           children: "Guild"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
           to: "/settings/recruitment",
           children: "Recruitment"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_7__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
           to: "/settings/usps",
           children: "USPs"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
         className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabWrapper),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
           path: "/settings/guild",
           exact: true,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
@@ -13845,11 +13838,11 @@ function Settings(_ref) {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
           path: "/settings/recruitment",
           exact: true,
           children: "2"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
           path: "/settings/usps",
           exact: true,
           children: "3"
@@ -13911,7 +13904,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    padding: 5px;\n    outline: 0;\n"]);
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    font-size: 1rem;\n    padding: 5px;\n    outline: 0;\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -13971,7 +13964,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(200, 200, 200);\n    background-color: white;\n    font-family: Montserrat;\n    transition: all 0.05s;\n    border-radius: 2px;\n    font-size: 1rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(200, 200, 200);\n    background-color: white;\n    transition: all 0.05s;\n    border-radius: 2px;\n    font-size: 1rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;

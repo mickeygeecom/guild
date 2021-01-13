@@ -1,6 +1,6 @@
 import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler } from './styled-components';
-import { NavLink, Route, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { Http } from '../classes';
@@ -55,10 +55,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
     });
     const classes = styles();
     
-    // const tab = useParams();
-
-    const [activeTab, setActiveTab] = useState(useParams()?.tab ?? 'guild');
-
     const [saving, setSaving] = useState(false);
 
     const [guildInputs, setGuildInputs] = useState({

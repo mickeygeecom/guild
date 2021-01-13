@@ -111,7 +111,6 @@ const H6 = styled.h6`
 const StyledInput = styled.input`
     border: 1px solid rgb(200, 200, 200);
     background-color: white;
-    font-family: Montserrat;
     transition: all 0.05s;
     border-radius: 2px;
     font-size: 1rem;
@@ -184,6 +183,8 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
 
 const StyledSelect = styled.select`
     border: 1px solid black;
+    font-family: Roboto;
+    font-size: 1rem;
     padding: 5px;
     outline: 0;
 `;
