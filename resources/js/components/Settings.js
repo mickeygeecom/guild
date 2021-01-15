@@ -4,6 +4,7 @@ import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { Http } from '../classes';
+import CreateForm from './CreateForm';
 
 export default function Settings({ guild, setGuild, handlePopup }) {
     const styles = createUseStyles({
@@ -18,13 +19,9 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             margin: [0, 'auto'],
             marginTop: '25vh',
             borderRadius: 5,
-            width: 450,
         },
         tabWrapper: {
             padding: 30,
-        },
-        tab: {
-            flex: 1,
         },
         marginTop: {
             marginTop: 25,
@@ -51,6 +48,9 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             '&.active': {
                 borderColor: 'rgb(var(--expansion))',
             },
+        },
+        tabPanels: {
+            padding: [10, 30],
         },
     });
     const classes = styles();
@@ -103,6 +103,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                     <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
                     <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment">Recruitment</H6>
                     <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps">USPs</H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/form">Form</H6>
                 </Row>
                 <Col className={classnames(classes.tabWrapper)}>
                     <Route path="/settings/guild" exact>
@@ -122,7 +123,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                                 <option value="EU">Europe</option>
                                 <option value="NA">North America</option>
                                 <option value="CN">China</option>
-                                <option value="OCE">Oceanic</option>
+                                <option value="OC">Oceanic</option>
                                 <option value="RU">Russia</option>
                                 <option value="DE">Germany</option>
                                 <option value="FR">France</option>
@@ -142,6 +143,9 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                     </Route>
                     <Route path="/settings/usps" exact>
                         3
+                    </Route>
+                    <Route path="/settings/form" exact>
+                        <CreateForm />
                     </Route>
                 </Col>
             </Col>

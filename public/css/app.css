@@ -27,34 +27,30 @@
   border: 0;
 }
 
+::-moz-selection {
+  background-color: RGBA(var(--expansion), 0.15);
+  color: RGB(var(--expansion));
+}
+
+::selection {
+  background-color: RGBA(var(--expansion), 0.15);
+  color: RGB(var(--expansion));
+}
+
 body {
   background-color: #fafafa;
   color: #323232;
   font-family: Roboto;
 }
 
-body.horde ::-moz-selection {
-  background-color: RGBA(var(--horde), 0.15);
-  color: RGB(var(--horde));
-}
-
-body.horde ::selection {
-  background-color: RGBA(var(--horde), 0.15);
-  color: RGB(var(--horde));
-}
-
-body.alliance ::-moz-selection {
-  background-color: RGBA(var(--alliance), 0.15);
-  color: RGB(var(--alliance));
-}
-
-body.alliance ::selection {
-  background-color: RGBA(var(--alliance), 0.15);
-  color: RGB(var(--alliance));
-}
-
 button {
   cursor: pointer;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+  height: 1rem;
+  width: 1rem;
 }
 
 svg, img {

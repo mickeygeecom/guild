@@ -1,8 +1,10 @@
 import useOnclickOutside from "react-cool-onclickoutside";
+import { mdiPlus, mdiMinus } from '@mdi/js';
 import { createUseStyles } from 'react-jss';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
+import Icon from '@mdi/react';
 
 const Col = styled.div`
     flex-direction: column;
@@ -53,6 +55,7 @@ const H1 = styled.h1`
     text-align: center;
     font-size: 5rem;
     line-height: 1;
+    color: inherit;
     &:visited {
         color: inherit;
     }
@@ -63,6 +66,7 @@ const H2 = styled.h2`
     text-align: center;
     font-size: 2.5rem;
     line-height: 1;
+    color: inherit;
     &:visited {
         color: inherit;
     }
@@ -73,6 +77,7 @@ const H3 = styled.h3`
     text-align: center;
     font-size: 2rem;
     line-height: 1;
+    color: inherit;
     &:visited {
         color: inherit;
     }
@@ -83,6 +88,7 @@ const H4 = styled.h4`
     text-align: center;
     font-size: 1.5rem;
     line-height: 1;
+    color: inherit;
     &:visited {
         color: inherit;
     }
@@ -93,6 +99,7 @@ const H5 = styled.h5`
     text-align: center;
     font-size: 1.25rem;
     line-height: 1;
+    color: inherit;
     &:visited {
         color: inherit;
     }
@@ -103,6 +110,7 @@ const H6 = styled.h6`
     text-align: center;
     font-size: 1rem;
     line-height: 1;
+    color: inherit;
     &:visited {
         color: inherit;
     }
@@ -125,12 +133,17 @@ const Label = styled.label`
     font-family: Roboto Slab;
     margin-bottom: 5px;
     cursor: text;
+    &::after {
+        content: "${({ obligatory }) => obligatory ? '*' : ''}";
+        margin-left: 5px;
+        color: red;
+    }
 `;
-const Input = ({ containerClass = '', type = 'text', label = null, ...props }) => {
+const Input = ({ containerClass = '', obligatory = false, type = 'text', label = null, ...props }) => {
     return (
         <Col className={classnames(containerClass)}>
-            {label && <Label>{label}</Label>}
-            <StyledInput id={label} {...props} />
+            {label && <Label obligatory={obligatory}>{label}</Label>}
+            <StyledInput type={type} id={label} {...props} />
         </Col>
     );
 }
@@ -184,16 +197,59 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
 const StyledSelect = styled.select`
     border: 1px solid black;
     font-family: Roboto;
+    user-select: none;
     font-size: 1rem;
     padding: 5px;
     outline: 0;
 `;
 
-const Select = ({ containerClass = '', label = null, ...props }) => {
+const Select = ({ containerClass = '', obligatory = false, label = null, ...props }) => {
     return (
         <Col className={classnames(containerClass)}>
-            {label && <Label>{label}</Label>}
+            {label && <Label obligatory={obligatory}>{label}</Label>}
             <StyledSelect id={label} {...props} />
+        </Col>
+    );
+}
+
+const StyledAccordionLabel = styled.p`
+    font-weight: bold;
+`;
+const StyledAccordionContent = styled.div`
+    border: 1px solid rgb(var(--expansion));
+    transition: all 0.25s linear;
+    overflow: hidden;
+`;
+const StyledAccordionHead = styled.div`
+    background-color: rgb(var(--expansion));
+    user-select: none;
+    cursor: pointer;
+    padding: 15px;
+    color: white;
+`;
+const Accordion = ({ className = '', label = null, open = false, toggle, children }) => {
+    const [height, setHeight] = useState();
+    const wrapper = useRef();
+
+    useEffect(() => {
+        if (open) {
+            setHeight(wrapper.current.getBoundingClientRect().height || 0);
+        } else {
+            setHeight(0);
+        }
+    }, [open]);
+
+    return (
+        <Col className={classnames(className)}>
+            <StyledAccordionHead align="center" as={Row} onClick={toggle}>
+                {label && <StyledAccordionLabel>{label}</StyledAccordionLabel>}
+                <Icon style={{ marginLeft: 'auto' }} path={open ? mdiMinus : mdiPlus} size={1} />
+            </StyledAccordionHead>
+            <StyledAccordionContent as={Col} style={{ height: height }}>
+                <Col ref={wrapper} style={{ padding: 15 }}>
+                    {children}
+                </Col>
+            </StyledAccordionContent>
         </Col>
     );
 }
@@ -271,6 +327,7 @@ const TabPanel = styled.div`
 
 export {
     FactionToggler,
+    Accordion,
     TabPanel,
     Loading,
     Select,
