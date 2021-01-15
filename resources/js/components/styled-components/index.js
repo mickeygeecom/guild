@@ -153,6 +153,8 @@ const StyledLoadingBackground = styled.div`
     position: fixed;
     height: 100vh;
     width: 100vw;
+    left: 0;
+    top: 0;
 `;
 const StyledLoadingSpinnerBackground = styled.div`
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
@@ -199,6 +201,7 @@ const StyledSelect = styled.select`
     font-family: Roboto;
     user-select: none;
     font-size: 1rem;
+    cursor: pointer;
     padding: 5px;
     outline: 0;
 `;

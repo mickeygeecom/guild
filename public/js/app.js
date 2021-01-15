@@ -13212,14 +13212,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ CreateForm
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
 
 
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -13251,8 +13259,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function CreateForm() {
-  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_3__.createUseStyles)({
+
+function CreateForm(_ref) {
+  var _ref$faction = _ref.faction,
+      faction = _ref$faction === void 0 ? 'horde' : _ref$faction;
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_4__.createUseStyles)({
     marginTop: {
       marginTop: 15,
       '&:first-child': {
@@ -13263,7 +13274,6 @@ function CreateForm() {
       textDecoration: 'underline',
       fontWeight: 'bold',
       cursor: 'pointer',
-      marginTop: 30,
       color: 'red'
     },
     add: {
@@ -13272,7 +13282,7 @@ function CreateForm() {
   });
   var classes = styles();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([{
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([{
     id: 1,
     label: 'A question',
     type: 'radio',
@@ -13287,10 +13297,15 @@ function CreateForm() {
       questions = _useState2[0],
       setQuestions = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
       openAccordion = _useState4[0],
       setOpenAccordion = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      saving = _useState6[0],
+      setSaving = _useState6[1];
 
   function onChangeHandler(e, input, id) {
     e.persist();
@@ -13341,16 +13356,49 @@ function CreateForm() {
     });
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+  function saveQuestions(_x) {
+    return _saveQuestions.apply(this, arguments);
+  }
+
+  function _saveQuestions() {
+    _saveQuestions = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
+      var _yield$Http$post, code;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              e.preventDefault();
+              setSaving(true);
+              _context.next = 4;
+              return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.post('questions');
+
+            case 4:
+              _yield$Http$post = _context.sent;
+              code = _yield$Http$post.code;
+              setSaving(false);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+    return _saveQuestions.apply(this, arguments);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+    onSubmit: saveQuestions,
     children: [questions.map(function (question) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Accordion, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Accordion, {
         toggle: function toggle() {
           return toggleAccordion(question.id);
         },
-        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.marginTop),
+        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
         open: openAccordion === question.id,
         label: question.label,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
           value: question.label,
           onChange: function onChange(e) {
             return onChangeHandler(e, 'label', question.id);
@@ -13359,59 +13407,69 @@ function CreateForm() {
           autoFocus: true,
           autoComplete: "off",
           containerClass: classes.marginTop
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Select, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
           onChange: function onChange(e) {
             return onChangeHandler(e, 'type', question.id);
           },
           containerClass: classes.marginTop,
           value: question.type,
           label: "Input type",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "text",
             children: "Text"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "number",
             children: "Number"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "textarea",
             children: "Textarea"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "select",
             children: "Select"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "radio",
             children: "Radio"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
             value: "check",
             children: "Check"
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.marginTop),
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
           align: "center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Label, {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Label, {
             style: {
               margin: 0
             },
             children: "Obligatory"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("input", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
             type: "checkbox",
             onChange: function onChange(e) {
               return onChangeHandler(e, 'obligatory', question.id);
             },
             checked: questions.obligatory
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.remove),
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.remove),
           onClick: function onClick() {
             return removeQuestion(question.id);
           },
           children: "Remove"
         })]
       }, question.id);
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.remove, classes.add),
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.remove, classes.add, classes.marginTop),
       onClick: addQuestion,
       children: "Add question"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+      block: true,
+      style: {
+        marginTop: 30
+      },
+      disabled: saving,
+      children: "Save"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
+      faction: faction,
+      loading: saving
     })]
   });
 }
@@ -14071,7 +14129,9 @@ function Settings(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
           path: "/settings/form",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_7__.default, {})
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_7__.default, {
+            faction: guild.faction
+          })
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
@@ -14176,7 +14236,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    user-select: none;\n    font-size: 1rem;\n    padding: 5px;\n    outline: 0;\n"]);
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    user-select: none;\n    font-size: 1rem;\n    cursor: pointer;\n    padding: 5px;\n    outline: 0;\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -14206,7 +14266,7 @@ function _templateObject14() {
 }
 
 function _templateObject13() {
-  var data = _taggedTemplateLiteral(["\n    background-color: rgba(0, 0, 0, 0.5);\n    position: fixed;\n    height: 100vh;\n    width: 100vw;\n"]);
+  var data = _taggedTemplateLiteral(["\n    background-color: rgba(0, 0, 0, 0.5);\n    position: fixed;\n    height: 100vh;\n    width: 100vw;\n    left: 0;\n    top: 0;\n"]);
 
   _templateObject13 = function _templateObject13() {
     return data;

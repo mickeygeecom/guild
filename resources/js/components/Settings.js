@@ -145,7 +145,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                         3
                     </Route>
                     <Route path="/settings/form" exact>
-                        <CreateForm />
+                        <CreateForm faction={guild.faction} />
                     </Route>
                 </Col>
             </Col>

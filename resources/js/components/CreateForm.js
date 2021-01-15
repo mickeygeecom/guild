@@ -1,9 +1,10 @@
-import { Select, Accordion, Input, Row, Label } from './styled-components';
-import React, { useState, useEffect } from 'react';
+import { Select, Accordion, Input, Row, Label, Button, Loading } from './styled-components';
+import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
+import { Http } from '../classes';
 
-export default function CreateForm() {
+export default function CreateForm({ faction = 'horde' }) {
     const styles = createUseStyles({
         marginTop: {
             marginTop: 15,
@@ -15,7 +16,6 @@ export default function CreateForm() {
             textDecoration: 'underline',
             fontWeight: 'bold',
             cursor: 'pointer',
-            marginTop: 30,
             color: 'red',
         },
         add: {
@@ -29,6 +29,7 @@ export default function CreateForm() {
         { id: 2, label: 'Some other question', type: 'radio', obligatory: true },
     ]);
     const [openAccordion, setOpenAccordion] = useState(null);
+    const [saving, setSaving] = useState(false);
 
     function onChangeHandler(e, input, id) {
         e.persist();
@@ -59,8 +60,15 @@ export default function CreateForm() {
         });
     }
 
+    async function saveQuestions(e) {
+        e.preventDefault();
+        setSaving(true);
+        const { code } = await Http.post('questions');
+        setSaving(false);
+    }
+
     return (
-        <form>
+        <form onSubmit={saveQuestions}>
             {
                 questions.map(question => (
                     <Accordion 
@@ -96,7 +104,9 @@ export default function CreateForm() {
                     </Accordion>
                 ))
             }
-            <p className={classnames(classes.remove, classes.add)} onClick={addQuestion}>Add question</p>
+            <p className={classnames(classes.remove, classes.add, classes.marginTop)} onClick={addQuestion}>Add question</p>
+            <Button block style={{ marginTop: 30 }} disabled={saving}>Save</Button>
+            <Loading faction={faction} loading={saving} />
         </form>
     );
 }
