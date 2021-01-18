@@ -14228,16 +14228,15 @@ function Settings(_ref) {
                 errorMessage: 'Something went wrong'
               };
               e.preventDefault();
-              console.log('save', args.url);
               formData = new FormData();
               formData.append(args.name, JSON.stringify(args.data));
               setSaving(true);
-              _context2.next = 8;
+              _context2.next = 7;
               return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.post(args.url, {
                 body: formData
               });
 
-            case 8:
+            case 7:
               _yield$Http$post = _context2.sent;
               code = _yield$Http$post.code;
               setSaving(false);
@@ -14252,7 +14251,7 @@ function Settings(_ref) {
                 handlePopup(args.errorMessage, 'error');
               }
 
-            case 12:
+            case 11:
             case "end":
               return _context2.stop();
           }

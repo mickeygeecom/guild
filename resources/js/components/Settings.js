@@ -99,7 +99,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
 
     async function save(e, args = { data: [], name: '', setter: null, url: '', successMessage: '', errorMessage: 'Something went wrong' }) {
         e.preventDefault();
-        console.log('save', args.url);
         const formData = new FormData();
         formData.append(args.name, JSON.stringify(args.data));
         setSaving(true);
