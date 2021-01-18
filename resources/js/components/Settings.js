@@ -5,6 +5,7 @@ import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { Http } from '../classes';
 import CreateForm from './CreateForm';
+import Recruitment from './Recruitment';
 
 export default function Settings({ guild, setGuild, handlePopup }) {
     const styles = createUseStyles({
@@ -63,6 +64,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         realm: guild.realm,
         name: guild.name,
     });
+    const [specs, setSpecs] = useState([]);
 
     useEffect(() => {
         setGuildInputs({
@@ -73,6 +75,17 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         });
     }, [guild]);
 
+    useEffect(() => {
+        (async () => {
+            const { data, code } = await Http.get('specs');
+            if (code >= 400) {
+                popup('Couldn\'t load specs', 'error');
+            } else {
+                setSpecs(Object.values(data));
+            }
+        })();
+    }, []);
+
     function handleGuildInput(value, input) {
         setGuildInputs(p => ({ ...p, [input]: value }));
     }
@@ -81,18 +94,18 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         handleGuildInput(guildInputs.faction === 'horde' ? 'alliance' : 'horde', 'faction');
     }
 
-    async function saveGuild(e) {
+    async function save(e, args = { data: [], name: '', url: '', setter, successMessage: '', errorMessage: 'Something went wrong' }) {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('guild', JSON.stringify(guildInputs));
+        formData.append(args.name, JSON.stringify(args.data));
         setSaving(true);
-        const { code } = await Http.post('guild', { body: formData });
+        const { code } = await Http.post(args.url, { body: formData });
         setSaving(false);
         if (code === 200) {
-            handlePopup('Successfully updated guild', 'success');
-            setGuild(guildInputs);
+            handlePopup(args.successMessage, 'success');
+            setGuild(args.data);
         } else {
-            handlePopup('Something went wrong', 'error');
+            handlePopup(args.errorMessage, 'error');
         }
     }
 
@@ -107,7 +120,13 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                 </Row>
                 <Col className={classnames(classes.tabWrapper)}>
                     <Route path="/settings/guild" exact>
-                        <form onSubmit={saveGuild}>
+                        <form onSubmit={e => save(e, {
+                            successMessage: 'Successfully updated guild',
+                            data: guildInputs,
+                            setter: setGuild,
+                            name: 'guild',
+                            url: 'guild',
+                        })}>
                             <Input
                                 autoFocus label="Name" autoComplete="off" value={guildInputs.name}
                                 onChange={e => handleGuildInput(e.target.value, 'name')}
@@ -139,7 +158,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                         </form>
                     </Route>
                     <Route path="/settings/recruitment" exact>
-                        2
+                        <Recruitment specs={specs} setSpecs={setSpecs} save={save} popup={handlePopup} />
                     </Route>
                     <Route path="/settings/usps" exact>
                         3

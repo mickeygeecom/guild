@@ -25,8 +25,8 @@ export default function CreateForm({ faction = 'horde' }) {
     const classes = styles();
 
     const [questions, setQuestions] = useState([
-        { id: 1, label: 'A question', type: 'radio', obligatory: true },
-        { id: 2, label: 'Some other question', type: 'radio', obligatory: true },
+        { id: 1, label: 'A question', type: 'radio', options: ['Yes', 'No'], obligatory: true },
+        { id: 2, label: 'Some other question', type: 'radio', options: ['Yes', 'No'], obligatory: true },
     ]);
     const [openAccordion, setOpenAccordion] = useState(null);
     const [saving, setSaving] = useState(false);
@@ -36,6 +36,13 @@ export default function CreateForm({ faction = 'horde' }) {
         setQuestions(p => {
             let question = p.find(question => question.id === id);
             const filtered = p.filter(element => element !== question);
+            // if (input === 'options') {
+            //     const options = question.options;
+            //     console.log([ ...options, e.target.value ]);
+            //     question = { ...question, [input]: [ ...options, e.target.value ] };
+            // } else {
+            //     question = { ...question, [input]: e.target.value };
+            // }
             question = { ...question, [input]: e.target.value };
             return [ ...filtered, question ].sort((a, b) => a.id - b.id);
         });
@@ -95,12 +102,22 @@ export default function CreateForm({ faction = 'horde' }) {
                             <option value="radio">Radio</option>
                             <option value="check">Check</option>
                         </Select>
+                        {
+                            question.type === 'radio' &&
+                                question.options.map(option => (
+                                    <Input 
+                                        onChange={e => onChangeHandler(e, 'options', question.id)}
+                                        key={Math.random()}
+                                        label={option}
+                                        value={option}
+                                    />
+                                ))
+                        }
                         <Row className={classnames(classes.marginTop)} align="center">
                             <Label style={{ margin: 0 }}>Obligatory</Label>
                             <input type="checkbox" onChange={e => onChangeHandler(e, 'obligatory', question.id)} checked={questions.obligatory} />
                         </Row>
-                        {/* options */}
-                        <p className={classnames(classes.remove)} onClick={() => removeQuestion(question.id)}>Remove</p>
+                        <p className={classnames(classes.remove, classes.marginTop)} onClick={() => removeQuestion(question.id)}>Remove</p>
                     </Accordion>
                 ))
             }
