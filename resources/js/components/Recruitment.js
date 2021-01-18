@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Col, H4, Row } from './styled-components';
+import { Button } from './styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
-import { Http } from '../classes';
 import Class from './Class';
+import React from 'react';
 
-export default function Recruitment({ save, popup, specs = [], setSpecs }) {
+export default function Recruitment({ save, specs = [], setSpecs }) {
     const styles = createUseStyles({
         wrapper: {
-            gridTemplateColumns: 'repeat(2, 1fr)',  
+            gridTemplateColumns: 'repeat(3, 1fr)',  
+            marginBottom: 30,
             display: 'grid',
             gridGap: 26,
         },
@@ -30,8 +30,16 @@ export default function Recruitment({ save, popup, specs = [], setSpecs }) {
     }
 
     return (
-        <form className={classnames(classes.wrapper)} onSubmit={save}>
-            {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
+        <form onSubmit={e => save(e, {
+            successMessage: 'Successfully updated recruitment',
+            name: 'specs',
+            url: 'specs',
+            data: specs,
+        })}>
+            <div className={classnames(classes.wrapper)}>
+                {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
+            </div>
+            <Button block>Save</Button>
         </form>
     );
 }

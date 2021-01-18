@@ -6,7 +6,19 @@
   --expansion: 194, 112, 65;
   --alliance: 0, 127, 255;
   --horde: 200, 0, 0;
-  --text-secondary: rgb(150, 150, 150);
+  --demon-hunter: 163, 48, 201;
+  --death-knight: 196, 30, 58;
+  --paladin: 244, 140, 186;
+  --warlock: 135, 136, 238;
+  --warrior: 198, 155, 109;
+  --hunter: 170, 211, 114;
+  --priest: 255, 255, 255;
+  --rogue: 255, 244, 104;
+  --druid: 255, 124, 10;
+  --shaman: 0, 112, 221;
+  --mage: 64, 199, 235;
+  --monk: 0, 255, 152;
+  --text-secondary: RGB(150, 150, 150);
 }
 
 .color-horde {

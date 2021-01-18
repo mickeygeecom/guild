@@ -18,10 +18,12 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         settings: {
             backgroundColor: 'white',
             margin: [0, 'auto'],
-            marginTop: '25vh',
+            marginTop: '15vh',
             borderRadius: 5,
         },
         tabWrapper: {
+            maxHeight: '60vh',
+            overflowY: 'auto',
             padding: 30,
         },
         marginTop: {
@@ -94,7 +96,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         handleGuildInput(guildInputs.faction === 'horde' ? 'alliance' : 'horde', 'faction');
     }
 
-    async function save(e, args = { data: [], name: '', url: '', setter, successMessage: '', errorMessage: 'Something went wrong' }) {
+    async function save(e, args = { data: [], name: '', url: '', successMessage: '', errorMessage: 'Something went wrong' }) {
         e.preventDefault();
         const formData = new FormData();
         formData.append(args.name, JSON.stringify(args.data));
@@ -123,7 +125,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                         <form onSubmit={e => save(e, {
                             successMessage: 'Successfully updated guild',
                             data: guildInputs,
-                            setter: setGuild,
                             name: 'guild',
                             url: 'guild',
                         })}>
