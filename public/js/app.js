@@ -13215,13 +13215,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
 /* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mdi/react */ "./node_modules/@mdi/react/Icon.js");
-/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_mdi_react__WEBPACK_IMPORTED_MODULE_5__);
-
-
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
@@ -13249,6 +13245,9 @@ function Class(_ref) {
     title: {
       marginBottom: 10
     },
+    counter: {
+      marginBottom: 15
+    },
     container: {
       border: '1px solid rgb(150, 150, 150)',
       backgroundColor: 'rgb(250, 250, 250)',
@@ -13256,11 +13255,19 @@ function Class(_ref) {
     }
   });
   var classes = styles();
+
+  var recruitingAmount = _class.filter(function (spec) {
+    return Boolean(spec.recruiting);
+  }).length;
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
-    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.container),
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.container),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H4, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.title),
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.title),
       children: _class[0]["class"]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H5, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.counter),
+      children: [recruitingAmount, " / ", _class.length]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
       justify: "center",
       children: _class.map(function (spec) {
@@ -13269,7 +13276,7 @@ function Class(_ref) {
           onClick: function onClick() {
             return updateSpecs(spec.recruiting ? 'remove' : 'add', spec["class"], spec.spec);
           },
-          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.icon, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.icon, {
             active: Boolean(spec.recruiting)
           }),
           title: "".concat(spec.spec, " ").concat(spec["class"]),
@@ -13961,7 +13968,7 @@ function Recruitment(_ref) {
       gridTemplateColumns: 'repeat(3, 1fr)',
       marginBottom: 30,
       display: 'grid',
-      gridGap: 26
+      gridGap: 10
     },
     icon: {
       width: 50
@@ -14084,6 +14091,7 @@ function Settings(_ref) {
       height: '100vh'
     },
     settings: {
+      boxShadow: [0, 0, 10, 0, 'rgba(0, 0, 0, 0.5)'],
       backgroundColor: 'white',
       margin: [0, 'auto'],
       marginTop: '15vh',
@@ -14214,32 +14222,37 @@ function Settings(_ref) {
               args = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : {
                 data: [],
                 name: '',
+                setter: null,
                 url: '',
                 successMessage: '',
                 errorMessage: 'Something went wrong'
               };
               e.preventDefault();
+              console.log('save', args.url);
               formData = new FormData();
               formData.append(args.name, JSON.stringify(args.data));
               setSaving(true);
-              _context2.next = 7;
+              _context2.next = 8;
               return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.post(args.url, {
                 body: formData
               });
 
-            case 7:
+            case 8:
               _yield$Http$post = _context2.sent;
               code = _yield$Http$post.code;
               setSaving(false);
 
               if (code === 200) {
                 handlePopup(args.successMessage, 'success');
-                setGuild(args.data);
+
+                if (args.setter) {
+                  setGuild(args.data);
+                }
               } else {
                 handlePopup(args.errorMessage, 'error');
               }
 
-            case 11:
+            case 12:
             case "end":
               return _context2.stop();
           }

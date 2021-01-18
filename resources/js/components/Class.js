@@ -1,9 +1,7 @@
-import { Row, Col, H4 } from './styled-components';
-import { mdiPlus, mdiClose } from '@mdi/js';
+import { Row, Col, H4, H5 } from './styled-components';
 import { createUseStyles } from 'react-jss';
-import React, { useState } from 'react';
 import classnames from 'classnames';
-import Icon from '@mdi/react';
+import React from 'react';
 
 export default function Class({ _class, updateSpecs }) {
     const styles = createUseStyles({
@@ -24,6 +22,9 @@ export default function Class({ _class, updateSpecs }) {
         title: {
             marginBottom: 10,
         },
+        counter: {
+            marginBottom: 15,
+        },
         container: {
             border: '1px solid rgb(150, 150, 150)',
             backgroundColor: 'rgb(250, 250, 250)',
@@ -32,9 +33,14 @@ export default function Class({ _class, updateSpecs }) {
     });
     const classes = styles();
 
+    const recruitingAmount = _class.filter(spec => Boolean(spec.recruiting)).length;
+
     return (
         <Col className={classnames(classes.container)}>
             <H4 className={classnames(classes.title)}>{_class[0].class}</H4>
+            <H5 className={classnames(classes.counter)}>
+                {recruitingAmount} / {_class.length}
+            </H5>
             <Row justify="center">
                 {
                     _class.map(spec => (

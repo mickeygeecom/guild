@@ -10,7 +10,7 @@ export default function Recruitment({ save, specs = [], setSpecs }) {
             gridTemplateColumns: 'repeat(3, 1fr)',  
             marginBottom: 30,
             display: 'grid',
-            gridGap: 26,
+            gridGap: 10,
         },
         icon: {
             width: 50,
