@@ -21,6 +21,10 @@
   --text-secondary: RGB(150, 150, 150);
 }
 
+#app {
+  min-height: 100vh;
+}
+
 * .color-horde {
   color: RGB(var(--horde));
 }
