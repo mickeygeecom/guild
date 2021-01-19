@@ -1,5 +1,5 @@
 import useOnclickOutside from "react-cool-onclickoutside";
-import { mdiPlus, mdiMinus } from '@mdi/js';
+import { mdiPlus, mdiMinus, mdiLoading } from '@mdi/js';
 import { createUseStyles } from 'react-jss';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -172,6 +172,29 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
     )
 }
 
+const StyledPageLoading = styled.div`
+    background-color: rgb(25, 25, 25);
+    transition: all 0.25s ease-in-out;
+    z-index: 1000000;
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    &.loading {
+        opacity: 1;
+    }
+`;
+const PageLoading = ({ loading = true }) => {
+    return (
+        <StyledPageLoading className={classnames({ loading: loading })}>
+            <Icon path={mdiLoading} size={4} spin={1} color="rgb(var(--expansion))" style={{ margin: 'auto' }} />
+        </StyledPageLoading>
+    );
+}
+
 const StyledSelect = styled.select`
     border: 1px solid black;
     font-family: Roboto;
@@ -306,6 +329,7 @@ const TabPanel = styled.div`
 
 export {
     FactionToggler,
+    PageLoading,
     Accordion,
     TabPanel,
     Loading,

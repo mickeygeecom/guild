@@ -13205,12 +13205,12 @@ function App() {
         path: "/",
         exact: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Home__WEBPACK_IMPORTED_MODULE_7__.default, {
+          handlePopup: handlePopup,
+          loading: loading,
           guild: guild,
           setGuild: setGuild,
           usps: usps,
-          specs: specs,
-          handlePopup: handlePopup,
-          loading: loading
+          specs: specs
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
         path: "/login",
@@ -13220,14 +13220,14 @@ function App() {
         path: "/settings/:tab?",
         exact: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Settings__WEBPACK_IMPORTED_MODULE_4__.default, {
+          handlePopup: handlePopup,
+          loading: loading,
           guild: guild,
           setGuild: setGuild,
-          usps: usps,
-          setUsps: setUsps,
           specs: specs,
           setSpecs: setSpecs,
-          handlePopup: handlePopup,
-          loading: loading
+          usps: usps,
+          setUsps: setUsps
         })
       })]
     })]
@@ -13629,12 +13629,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
-
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
@@ -13647,8 +13645,10 @@ function Home(_ref) {
       _ref$usps = _ref.usps,
       usps = _ref$usps === void 0 ? [] : _ref$usps,
       _ref$loading = _ref.loading,
-      loading = _ref$loading === void 0 ? true : _ref$loading;
-  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_3__.createUseStyles)({
+      loading = _ref$loading === void 0 ? {
+    loading: loading
+  } : _ref$loading;
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     '@keyframes fadeInUpwards': {
       from: {
         opacity: 0,
@@ -13748,27 +13748,29 @@ function Home(_ref) {
   });
   var classes = styles();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
-    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.home),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.hero),
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.home),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.PageLoading, {
+      loading: loading
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.hero),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H1, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.title, "color-".concat(guild.faction)),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.title, "color-".concat(guild.faction)),
         children: guild.name
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H2, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.realm),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.realm),
         children: guild.realm
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.usps),
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.usps),
       children: usps.map(function (usp) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Usp, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.usp),
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.usp),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H5, {
-            className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.uspTitle),
+            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.uspTitle),
             children: usp.title
           }), usp.value.split('\n').map(function (row) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.uspRow),
+              className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.uspRow),
               children: row
             }, Math.random());
           })]
@@ -14220,7 +14222,9 @@ function Settings(_ref) {
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.wrapper),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.PageLoading, {
+      loading: loading
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
       className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.settings),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels),
@@ -14354,7 +14358,7 @@ function Settings(_ref) {
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
       faction: guild.faction || 'horde',
-      loading: loading || saving
+      loading: saving
     })]
   });
 }
@@ -14371,6 +14375,7 @@ function Settings(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "FactionToggler": () => /* binding */ FactionToggler,
+/* harmony export */   "PageLoading": () => /* binding */ PageLoading,
 /* harmony export */   "Accordion": () => /* binding */ Accordion,
 /* harmony export */   "TabPanel": () => /* binding */ TabPanel,
 /* harmony export */   "Loading": () => /* binding */ Loading,
@@ -14401,10 +14406,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _templateObject20() {
+function _templateObject21() {
   var data = _taggedTemplateLiteral(["\n    user-select: none;\n"]);
 
-  _templateObject20 = function _templateObject20() {
+  _templateObject21 = function _templateObject21() {
     return data;
   };
 
@@ -14423,8 +14428,18 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _templateObject19() {
+function _templateObject20() {
   var data = _taggedTemplateLiteral(["\n    background-color: rgb(var(--expansion));\n    user-select: none;\n    cursor: pointer;\n    padding: 15px;\n    color: white;\n"]);
+
+  _templateObject20 = function _templateObject20() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject19() {
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(var(--expansion));\n    transition: all 0.25s linear;\n    overflow: hidden;\n"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -14434,7 +14449,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(var(--expansion));\n    transition: all 0.25s linear;\n    overflow: hidden;\n"]);
+  var data = _taggedTemplateLiteral(["\n    font-weight: bold;\n"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -14444,7 +14459,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["\n    font-weight: bold;\n"]);
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    user-select: none;\n    font-size: 1rem;\n    cursor: pointer;\n    padding: 5px;\n    outline: 0;\n"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -14454,7 +14469,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    user-select: none;\n    font-size: 1rem;\n    cursor: pointer;\n    padding: 5px;\n    outline: 0;\n"]);
+  var data = _taggedTemplateLiteral(["\n    background-color: rgb(25, 25, 25);\n    transition: all 0.25s ease-in-out;\n    z-index: 1000000;\n    position: fixed;\n    display: flex;\n    height: 100%;\n    width: 100%;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        opacity: 1;\n    }\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -14745,16 +14760,37 @@ var Loading = function Loading(_ref17) {
   });
 };
 
-var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.select(_templateObject16());
+var StyledPageLoading = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject16());
 
-var Select = function Select(_ref18) {
-  var _ref18$containerClass = _ref18.containerClass,
-      containerClass = _ref18$containerClass === void 0 ? '' : _ref18$containerClass,
-      _ref18$obligatory = _ref18.obligatory,
-      obligatory = _ref18$obligatory === void 0 ? false : _ref18$obligatory,
-      _ref18$label = _ref18.label,
-      label = _ref18$label === void 0 ? null : _ref18$label,
-      props = _objectWithoutProperties(_ref18, ["containerClass", "obligatory", "label"]);
+var PageLoading = function PageLoading(_ref18) {
+  var _ref18$loading = _ref18.loading,
+      loading = _ref18$loading === void 0 ? true : _ref18$loading;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledPageLoading, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()({
+      loading: loading
+    }),
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_5___default()), {
+      path: _mdi_js__WEBPACK_IMPORTED_MODULE_7__.mdiLoading,
+      size: 4,
+      spin: 1,
+      color: "rgb(var(--expansion))",
+      style: {
+        margin: 'auto'
+      }
+    })
+  });
+};
+
+var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.select(_templateObject17());
+
+var Select = function Select(_ref19) {
+  var _ref19$containerClass = _ref19.containerClass,
+      containerClass = _ref19$containerClass === void 0 ? '' : _ref19$containerClass,
+      _ref19$obligatory = _ref19.obligatory,
+      obligatory = _ref19$obligatory === void 0 ? false : _ref19$obligatory,
+      _ref19$label = _ref19.label,
+      label = _ref19$label === void 0 ? null : _ref19$label,
+      props = _objectWithoutProperties(_ref19, ["containerClass", "obligatory", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(containerClass),
@@ -14767,19 +14803,19 @@ var Select = function Select(_ref18) {
   });
 };
 
-var StyledAccordionLabel = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject17());
-var StyledAccordionContent = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject18());
-var StyledAccordionHead = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject19());
+var StyledAccordionLabel = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.p(_templateObject18());
+var StyledAccordionContent = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject19());
+var StyledAccordionHead = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject20());
 
-var Accordion = function Accordion(_ref19) {
-  var _ref19$className = _ref19.className,
-      className = _ref19$className === void 0 ? '' : _ref19$className,
-      _ref19$label = _ref19.label,
-      label = _ref19$label === void 0 ? null : _ref19$label,
-      _ref19$open = _ref19.open,
-      open = _ref19$open === void 0 ? false : _ref19$open,
-      toggle = _ref19.toggle,
-      children = _ref19.children;
+var Accordion = function Accordion(_ref20) {
+  var _ref20$className = _ref20.className,
+      className = _ref20$className === void 0 ? '' : _ref20$className,
+      _ref20$label = _ref20.label,
+      label = _ref20$label === void 0 ? null : _ref20$label,
+      _ref20$open = _ref20.open,
+      open = _ref20$open === void 0 ? false : _ref20$open,
+      toggle = _ref20.toggle,
+      children = _ref20.children;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -14825,13 +14861,13 @@ var Accordion = function Accordion(_ref19) {
   });
 };
 
-var FactionToggler = function FactionToggler(_ref20) {
-  var _ref20$label = _ref20.label,
-      label = _ref20$label === void 0 ? null : _ref20$label,
-      _ref20$active = _ref20.active,
-      active = _ref20$active === void 0 ? 'horde' : _ref20$active,
-      toggleActive = _ref20.toggleActive,
-      props = _objectWithoutProperties(_ref20, ["label", "active", "toggleActive"]);
+var FactionToggler = function FactionToggler(_ref21) {
+  var _ref21$label = _ref21.label,
+      label = _ref21$label === void 0 ? null : _ref21$label,
+      _ref21$active = _ref21.active,
+      active = _ref21$active === void 0 ? 'horde' : _ref21$active,
+      toggleActive = _ref21.toggleActive,
+      props = _objectWithoutProperties(_ref21, ["label", "active", "toggleActive"]);
 
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     toggler: {
@@ -14908,7 +14944,7 @@ var FactionToggler = function FactionToggler(_ref20) {
   }));
 };
 
-var TabPanel = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject20());
+var TabPanel = styled_components__WEBPACK_IMPORTED_MODULE_6__.default.div(_templateObject21());
 
 
 /***/ }),

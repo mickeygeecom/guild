@@ -46,13 +46,22 @@ export default function App() {
             <Popup popup={popup} setPopup={setPopup} />
             <Switch>
                 <Route path="/" exact>
-                    <Home guild={guild} setGuild={setGuild} usps={usps} specs={specs} handlePopup={handlePopup} loading={loading} />
+                    <Home
+                        handlePopup={handlePopup} loading={loading}
+                        guild={guild} setGuild={setGuild}
+                        usps={usps} specs={specs}
+                    />
                 </Route>
                 <Route path="/login" exact>
                     <Login />
                 </Route>
                 <Route path="/settings/:tab?" exact>
-                    <Settings guild={guild} setGuild={setGuild} usps={usps} setUsps={setUsps} specs={specs} setSpecs={setSpecs} handlePopup={handlePopup} loading={loading} />
+                    <Settings
+                        handlePopup={handlePopup} loading={loading}
+                        guild={guild} setGuild={setGuild}
+                        specs={specs} setSpecs={setSpecs}
+                        usps={usps} setUsps={setUsps}
+                    />
                 </Route>
             </Switch>
         </Router>

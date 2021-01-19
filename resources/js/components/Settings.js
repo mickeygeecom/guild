@@ -1,4 +1,4 @@
-import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler } from './styled-components';
+import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler, PageLoading } from './styled-components';
 import React, { useState, useEffect } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
@@ -99,6 +99,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
 
     return (
         <Col className={classnames(classes.wrapper)}>
+            <PageLoading loading={loading} />
             <Col className={classnames(classes.settings)}>
                 <Row className={classnames(classes.tabPanels)}>
                     <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
@@ -156,7 +157,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
                     </Route>
                 </Col>
             </Col>
-            <Loading faction={guild.faction || 'horde'} loading={loading || saving} />
+            <Loading faction={guild.faction || 'horde'} loading={saving} />
         </Col>
     );
 }

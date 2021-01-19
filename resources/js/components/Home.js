@@ -1,10 +1,9 @@
-import { Col, H1, H2, H5, Usp } from './styled-components';
-import React, { useState, useEffect } from 'react';
+import { Col, H1, H2, H5, PageLoading, Usp } from './styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
-import { Http } from '../classes';
+import React from 'react';
 
-export default function Home({ guild = {}, usps = [], loading = true }) {
+export default function Home({ guild = {}, usps = [], loading={loading} }) {
     const styles = createUseStyles({
         '@keyframes fadeInUpwards': {
             from: { opacity: 0, transform: 'translateY(20px)' },
@@ -95,6 +94,7 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
 
     return (
         <Col className={classnames(classes.home)}>
+            <PageLoading loading={loading} />
             <Col className={classnames(classes.hero)}>
                 <H1 className={classnames(classes.title, `color-${guild.faction}`)}>{guild.name}</H1>
                 <H2 className={classnames(classes.realm)}>{guild.realm}</H2>
