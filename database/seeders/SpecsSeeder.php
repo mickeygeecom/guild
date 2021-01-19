@@ -30,6 +30,18 @@ class SpecsSeeder extends Seeder
         Spec::create(['class' => 'Hunter', 'spec' => 'Marksmanship']);
         Spec::create(['class' => 'Hunter', 'spec' => 'Survival']);
 
+        Spec::create(['class' => 'Mage', 'spec' => 'Arcane']);
+        Spec::create(['class' => 'Mage', 'spec' => 'Frost']);
+        Spec::create(['class' => 'Mage', 'spec' => 'Fire']);
+
+        Spec::create(['class' => 'Monk', 'spec' => 'Brewmaster']);
+        Spec::create(['class' => 'Monk', 'spec' => 'Windwalker']);
+        Spec::create(['class' => 'Monk', 'spec' => 'Mistweaver']);
+
+        Spec::create(['class' => 'Paladin', 'spec' => 'Retribution']);
+        Spec::create(['class' => 'Paladin', 'spec' => 'Protection']);
+        Spec::create(['class' => 'Paladin', 'spec' => 'Holy']);
+
         Spec::create(['class' => 'Priest', 'spec' => 'Discipline']);
         Spec::create(['class' => 'Priest', 'spec' => 'Shadow']);
         Spec::create(['class' => 'Priest', 'spec' => 'Holy']);
@@ -38,21 +50,9 @@ class SpecsSeeder extends Seeder
         Spec::create(['class' => 'Rogue', 'spec' => 'Subtlety']);
         Spec::create(['class' => 'Rogue', 'spec' => 'Outlaw']);
 
-        Spec::create(['class' => 'Monk', 'spec' => 'Brewmaster']);
-        Spec::create(['class' => 'Monk', 'spec' => 'Windwalker']);
-        Spec::create(['class' => 'Monk', 'spec' => 'Mistweaver']);
-
         Spec::create(['class' => 'Shaman', 'spec' => 'Restoration']);
         Spec::create(['class' => 'Shaman', 'spec' => 'Enhancement']);
         Spec::create(['class' => 'Shaman', 'spec' => 'Elemental']);
-
-        Spec::create(['class' => 'Paladin', 'spec' => 'Retribution']);
-        Spec::create(['class' => 'Paladin', 'spec' => 'Protection']);
-        Spec::create(['class' => 'Paladin', 'spec' => 'Holy']);
-
-        Spec::create(['class' => 'Mage', 'spec' => 'Arcane']);
-        Spec::create(['class' => 'Mage', 'spec' => 'Frost']);
-        Spec::create(['class' => 'Mage', 'spec' => 'Fire']);
 
         Spec::create(['class' => 'Warlock', 'spec' => 'Destruction']);
         Spec::create(['class' => 'Warlock', 'spec' => 'Affliction']);

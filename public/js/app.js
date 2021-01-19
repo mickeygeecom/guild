@@ -14040,11 +14040,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
-/* harmony import */ var _CreateForm__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./CreateForm */ "./resources/js/components/CreateForm.js");
-/* harmony import */ var _Recruitment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Recruitment */ "./resources/js/components/Recruitment.js");
+/* harmony import */ var _Recruitment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Recruitment */ "./resources/js/components/Recruitment.js");
+/* harmony import */ var _CreateForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CreateForm */ "./resources/js/components/CreateForm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
 
 
 
@@ -14171,7 +14171,7 @@ function Settings(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.get('specs');
+              return _classes__WEBPACK_IMPORTED_MODULE_8__.Http.get('specs');
 
             case 2:
               _yield$Http$get = _context.sent;
@@ -14232,7 +14232,7 @@ function Settings(_ref) {
               formData.append(args.name, JSON.stringify(args.data));
               setSaving(true);
               _context2.next = 7;
-              return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.post(args.url, {
+              return _classes__WEBPACK_IMPORTED_MODULE_8__.Http.post(args.url, {
                 body: formData
               });
 
@@ -14262,34 +14262,34 @@ function Settings(_ref) {
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.wrapper),
+    className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.wrapper),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.settings),
+      className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.settings),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanels),
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/guild",
           children: "Guild"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/recruitment",
           children: "Recruitment"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/usps",
           children: "USPs"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabPanel),
+          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/form",
           children: "Form"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.tabWrapper),
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabWrapper),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/guild",
           exact: true,
@@ -14311,7 +14311,7 @@ function Settings(_ref) {
                 return handleGuildInput(e.target.value, 'name');
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-              containerClass: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               label: "Realm",
               autoComplete: "off",
               value: guildInputs.realm,
@@ -14319,7 +14319,7 @@ function Settings(_ref) {
                 return handleGuildInput(e.target.value, 'realm');
               }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
-              containerClass: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               value: guildInputs.region,
               label: "Region",
               onChange: function onChange(e) {
@@ -14360,12 +14360,12 @@ function Settings(_ref) {
                 children: "Taiwanese"
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.FactionToggler, {
-              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               active: guildInputs.faction,
               toggleActive: toggleFaction
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
               justify: "center",
-              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
+              className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                 block: true,
                 disabled: saving,
@@ -14376,7 +14376,7 @@ function Settings(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/recruitment",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Recruitment__WEBPACK_IMPORTED_MODULE_8__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Recruitment__WEBPACK_IMPORTED_MODULE_5__.default, {
             specs: specs,
             setSpecs: setSpecs,
             save: save,
@@ -14389,7 +14389,7 @@ function Settings(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/form",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_7__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_6__.default, {
             faction: guild.faction
           })
         })]

@@ -28,7 +28,6 @@ export default function App() {
     }
 
     useEffect(() => {
-        document.querySelector('body').classList = guild.faction;
         document.title = guild.name;
     }, [guild]);
 
@@ -42,7 +41,7 @@ export default function App() {
                 <Route path="/login" exact>
                     <Login />
                 </Route>
-                <Route path="/settings" exact>
+                <Route path="/settings/:tab?" exact>
                     <Settings guild={guild} setGuild={setGuild} handlePopup={handlePopup} />
                 </Route>
             </Switch>

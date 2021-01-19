@@ -2,10 +2,10 @@ import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler } from './
 import React, { useState, useEffect } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
+import Recruitment from './Recruitment';
+import CreateForm from './CreateForm';
 import classnames from 'classnames';
 import { Http } from '../classes';
-import CreateForm from './CreateForm';
-import Recruitment from './Recruitment';
 
 export default function Settings({ guild, setGuild, handlePopup }) {
     const styles = createUseStyles({

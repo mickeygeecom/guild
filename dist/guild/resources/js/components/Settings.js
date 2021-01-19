@@ -1,9 +1,11 @@
 import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler } from './styled-components';
 import React, { useState, useEffect } from 'react';
+import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { Http } from '../classes';
-import Tab from './Tab';
+import CreateForm from './CreateForm';
+import Recruitment from './Recruitment';
 
 export default function Settings({ guild, setGuild, handlePopup }) {
     const styles = createUseStyles({
@@ -14,17 +16,16 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             height: '100vh',
         },
         settings: {
+            boxShadow: [0, 0, 10, 0, 'rgba(0, 0, 0, 0.5)'],
             backgroundColor: 'white',
             margin: [0, 'auto'],
-            marginTop: '25vh',
+            marginTop: '15vh',
             borderRadius: 5,
-            width: 450,
         },
-        tabs: {
+        tabWrapper: {
+            maxHeight: '60vh',
+            overflowY: 'auto',
             padding: 30,
-        },
-        tab: {
-            flex: 1,
         },
         marginTop: {
             marginTop: 25,
@@ -52,11 +53,12 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                 borderColor: 'rgb(var(--expansion))',
             },
         },
+        tabPanels: {
+            padding: [10, 30],
+        },
     });
     const classes = styles();
-
-    const [activeTab, setActiveTab] = useState('guild');
-
+    
     const [saving, setSaving] = useState(false);
 
     const [guildInputs, setGuildInputs] = useState({
@@ -65,6 +67,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         realm: guild.realm,
         name: guild.name,
     });
+    const [specs, setSpecs] = useState([]);
 
     useEffect(() => {
         setGuildInputs({
@@ -75,6 +78,17 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         });
     }, [guild]);
 
+    useEffect(() => {
+        (async () => {
+            const { data, code } = await Http.get('specs');
+            if (code >= 400) {
+                popup('Couldn\'t load specs', 'error');
+            } else {
+                setSpecs(Object.values(data));
+            }
+        })();
+    }, []);
+
     function handleGuildInput(value, input) {
         setGuildInputs(p => ({ ...p, [input]: value }));
     }
@@ -83,18 +97,20 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         handleGuildInput(guildInputs.faction === 'horde' ? 'alliance' : 'horde', 'faction');
     }
 
-    async function saveGuild(e) {
+    async function save(e, args = { data: [], name: '', setter: null, url: '', successMessage: '', errorMessage: 'Something went wrong' }) {
         e.preventDefault();
         const formData = new FormData();
-        formData.append('guild', JSON.stringify(guildInputs));
+        formData.append(args.name, JSON.stringify(args.data));
         setSaving(true);
-        const { code } = await Http.post('guild', { body: formData });
+        const { code } = await Http.post(args.url, { body: formData });
         setSaving(false);
         if (code === 200) {
-            handlePopup('Successfully updated guild', 'success');
-            setGuild(guildInputs);
+            handlePopup(args.successMessage, 'success');
+            if (args.setter) {
+                setGuild(args.data);
+            }
         } else {
-            handlePopup('Something went wrong', 'error');
+            handlePopup(args.errorMessage, 'error');
         }
     }
 
@@ -102,19 +118,19 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         <Col className={classnames(classes.wrapper)}>
             <Col className={classnames(classes.settings)}>
                 <Row className={classnames(classes.tabPanels)}>
-                    <H6 className={classnames(classes.tabPanel, { active: activeTab === 'guild' })} onClick={() => setActiveTab('guild')}>
-                        Guild
-                    </H6>
-                    <H6 className={classnames(classes.tabPanel, { active: activeTab === 'recruitment' })} onClick={() => setActiveTab('recruitment')}>
-                        Recruitment
-                    </H6>
-                    <H6 className={classnames(classes.tabPanel, { active: activeTab === 'usps' })} onClick={() => setActiveTab('usps')}>
-                        USPs
-                    </H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment">Recruitment</H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps">USPs</H6>
+                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/form">Form</H6>
                 </Row>
-                <Row className={classnames(classes.tabs)}>
-                    <Tab className={classnames(classes.tab)} active={activeTab === 'guild'}>
-                        <form onSubmit={saveGuild}>
+                <Col className={classnames(classes.tabWrapper)}>
+                    <Route path="/settings/guild" exact>
+                        <form onSubmit={e => save(e, {
+                            successMessage: 'Successfully updated guild',
+                            data: guildInputs,
+                            name: 'guild',
+                            url: 'guild',
+                        })}>
                             <Input
                                 autoFocus label="Name" autoComplete="off" value={guildInputs.name}
                                 onChange={e => handleGuildInput(e.target.value, 'name')}
@@ -130,7 +146,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                                 <option value="EU">Europe</option>
                                 <option value="NA">North America</option>
                                 <option value="CN">China</option>
-                                <option value="OCE">Oceanic</option>
+                                <option value="OC">Oceanic</option>
                                 <option value="RU">Russia</option>
                                 <option value="DE">Germany</option>
                                 <option value="FR">France</option>
@@ -144,14 +160,17 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                                 <Button block disabled={saving}>Save</Button>
                             </Row>
                         </form>
-                    </Tab>
-                    <Tab className={classnames(classes.tab)} active={activeTab === 'recruitment'}>
-                        2
-                    </Tab>
-                    <Tab className={classnames(classes.tab)} active={activeTab === 'usps'}>
+                    </Route>
+                    <Route path="/settings/recruitment" exact>
+                        <Recruitment specs={specs} setSpecs={setSpecs} save={save} popup={handlePopup} />
+                    </Route>
+                    <Route path="/settings/usps" exact>
                         3
-                    </Tab>
-                </Row>
+                    </Route>
+                    <Route path="/settings/form" exact>
+                        <CreateForm faction={guild.faction} />
+                    </Route>
+                </Col>
             </Col>
             <Loading faction={guild.faction} loading={saving} />
         </Col>
