@@ -7,7 +7,7 @@ import CreateForm from './CreateForm';
 import classnames from 'classnames';
 import { Http } from '../classes';
 
-export default function Settings({ guild, setGuild, handlePopup }) {
+export default function Settings({ guild = {}, setGuild, usps = [], setUsps, specs = [], setSpecs, loading = true, handlePopup }) {
     const styles = createUseStyles({
         wrapper: {
             backgroundImage: 'url("/storage/covenants.jpg")',
@@ -37,6 +37,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             textAlign: 'center',
             userSelect: 'none',
             cursor: 'pointer',
+            color: 'inherit',
             letterSpacing: 2,
             padding: 20,
             flex: 1,
@@ -58,7 +59,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         },
     });
     const classes = styles();
-    
+
     const [saving, setSaving] = useState(false);
 
     const [guildInputs, setGuildInputs] = useState({
@@ -67,7 +68,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         realm: guild.realm,
         name: guild.name,
     });
-    const [specs, setSpecs] = useState([]);
 
     useEffect(() => {
         setGuildInputs({
@@ -77,17 +77,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             name: guild.name,
         });
     }, [guild]);
-
-    useEffect(() => {
-        (async () => {
-            const { data, code } = await Http.get('specs');
-            if (code >= 400) {
-                popup('Couldn\'t load specs', 'error');
-            } else {
-                setSpecs(Object.values(data));
-            }
-        })();
-    }, []);
 
     function handleGuildInput(value, input) {
         setGuildInputs(p => ({ ...p, [input]: value }));
@@ -107,7 +96,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         if (code === 200) {
             handlePopup(args.successMessage, 'success');
             if (args.setter) {
-                setGuild(args.data);
+                setter(args.data);
             }
         } else {
             handlePopup(args.errorMessage, 'error');
@@ -128,6 +117,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                         <form onSubmit={e => save(e, {
                             successMessage: 'Successfully updated guild',
                             data: guildInputs,
+                            setter: setGuild,
                             name: 'guild',
                             url: 'guild',
                         })}>
@@ -172,7 +162,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                     </Route>
                 </Col>
             </Col>
-            <Loading faction={guild.faction} loading={saving} />
+            <Loading faction={guild.faction} loading={loading || saving} />
         </Col>
     );
 }

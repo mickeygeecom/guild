@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { Http } from '../classes';
 
-export default function Home({ guild, setGuild, handlePopup }) {
+export default function Home({ guild = {}, usps = [], loading = true }) {
     const styles = createUseStyles({
         '@keyframes fadeInUpwards': {
             from: { opacity: 0, transform: 'translateY(20px)' },
@@ -92,15 +92,6 @@ export default function Home({ guild, setGuild, handlePopup }) {
         },
     });
     const classes = styles();
-
-    const [usps, setUsps] = useState([]);
-
-    useEffect(() => {
-        (async () => {
-            const { data } = await Http.get('usps');
-            setUsps(data);
-        })();
-    }, []);
 
     return (
         <Col className={classnames(classes.home)}>

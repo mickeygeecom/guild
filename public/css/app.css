@@ -21,7 +21,7 @@
   --text-secondary: RGB(150, 150, 150);
 }
 
-.color-horde {
+* .color-horde {
   color: RGB(var(--horde));
 }
 

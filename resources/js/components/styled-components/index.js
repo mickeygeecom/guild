@@ -55,10 +55,6 @@ const H1 = styled.h1`
     text-decoration: none;
     font-size: 5rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H2 = styled.h2`
@@ -66,10 +62,6 @@ const H2 = styled.h2`
     text-decoration: none;
     font-size: 2.5rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H3 = styled.h3`
@@ -77,10 +69,6 @@ const H3 = styled.h3`
     text-decoration: none;
     font-size: 2rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H4 = styled.h4`
@@ -88,10 +76,6 @@ const H4 = styled.h4`
     text-decoration: none;
     font-size: 1.5rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H5 = styled.h5`
@@ -99,10 +83,6 @@ const H5 = styled.h5`
     text-decoration: none;
     font-size: 1.25rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H6 = styled.h6`
@@ -110,10 +90,6 @@ const H6 = styled.h6`
     text-decoration: none;
     font-size: 1rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const StyledInput = styled.input`

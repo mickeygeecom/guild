@@ -13112,43 +13112,70 @@ function App() {
       guild = _useState2[0],
       setGuild = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      specs = _useState4[0],
+      setSpecs = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      usps = _useState6[0],
+      setUsps = _useState6[1];
+
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
     message: '',
     type: 'success'
   }),
-      _useState4 = _slicedToArray(_useState3, 2),
-      popup = _useState4[0],
-      setPopup = _useState4[1];
+      _useState8 = _slicedToArray(_useState7, 2),
+      popup = _useState8[0],
+      setPopup = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
+      _useState10 = _slicedToArray(_useState9, 2),
+      loading = _useState10[0],
+      setLoading = _useState10[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var _yield$Http$get, data, getValue;
-
+      var guild, specs, usps, getGuildValue;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
+              setLoading(true);
+              _context.next = 3;
               return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('guild');
 
-            case 2:
-              _yield$Http$get = _context.sent;
-              data = _yield$Http$get.data;
+            case 3:
+              guild = _context.sent;
+              _context.next = 6;
+              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('specs');
 
-              getValue = function getValue(name) {
-                return data.find(function (object) {
+            case 6:
+              specs = _context.sent;
+              _context.next = 9;
+              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('usps');
+
+            case 9:
+              usps = _context.sent;
+              setLoading(false);
+
+              getGuildValue = function getGuildValue(name) {
+                return guild.data.find(function (object) {
                   return object.name === name;
                 }).value;
               };
 
               setGuild({
-                faction: getValue('faction'),
-                region: getValue('region'),
-                realm: getValue('realm'),
-                name: getValue('name')
+                faction: getGuildValue('faction'),
+                region: getGuildValue('region'),
+                realm: getGuildValue('realm'),
+                name: getGuildValue('name')
               });
+              setSpecs(Object.values(specs.data));
+              setUsps(usps.data);
 
-            case 6:
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -13180,7 +13207,10 @@ function App() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Home__WEBPACK_IMPORTED_MODULE_7__.default, {
           guild: guild,
           setGuild: setGuild,
-          handlePopup: handlePopup
+          usps: usps,
+          specs: specs,
+          handlePopup: handlePopup,
+          loading: loading
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_9__.Route, {
         path: "/login",
@@ -13192,7 +13222,12 @@ function App() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Settings__WEBPACK_IMPORTED_MODULE_4__.default, {
           guild: guild,
           setGuild: setGuild,
-          handlePopup: handlePopup
+          usps: usps,
+          setUsps: setUsps,
+          specs: specs,
+          setSpecs: setSpecs,
+          handlePopup: handlePopup,
+          loading: loading
         })
       })]
     })]
@@ -13593,33 +13628,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* binding */ Home
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
+/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
 
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
@@ -13627,10 +13642,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Home(_ref) {
-  var guild = _ref.guild,
-      setGuild = _ref.setGuild,
-      handlePopup = _ref.handlePopup;
-  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_4__.createUseStyles)({
+  var _ref$guild = _ref.guild,
+      guild = _ref$guild === void 0 ? {} : _ref$guild,
+      _ref$usps = _ref.usps,
+      usps = _ref$usps === void 0 ? [] : _ref$usps,
+      _ref$loading = _ref.loading,
+      loading = _ref$loading === void 0 ? true : _ref$loading;
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_3__.createUseStyles)({
     '@keyframes fadeInUpwards': {
       from: {
         opacity: 0,
@@ -13729,58 +13747,28 @@ function Home(_ref) {
     }
   });
   var classes = styles();
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      usps = _useState2[0],
-      setUsps = _useState2[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var _yield$Http$get, data;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.get('usps');
-
-            case 2:
-              _yield$Http$get = _context.sent;
-              data = _yield$Http$get.data;
-              setUsps(data);
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.home),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.hero),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H1, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.title, "color-".concat(guild.faction)),
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+    className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.home),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.hero),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H1, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.title, "color-".concat(guild.faction)),
         children: guild.name
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H2, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.realm),
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H2, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.realm),
         children: guild.realm
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.usps),
+      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.usps),
       children: usps.map(function (usp) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Usp, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.usp),
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H5, {
-            className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.uspTitle),
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Usp, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.usp),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H5, {
+            className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.uspTitle),
             children: usp.title
           }), usp.value.split('\n').map(function (row) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
-              className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.uspRow),
+              className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.uspRow),
               children: row
             }, Math.random());
           })]
@@ -14032,9 +14020,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => /* binding */ Settings
 /* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
@@ -14049,15 +14037,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -14080,8 +14068,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function Settings(_ref) {
-  var guild = _ref.guild,
+  var _ref$guild = _ref.guild,
+      guild = _ref$guild === void 0 ? {} : _ref$guild,
       setGuild = _ref.setGuild,
+      _ref$usps = _ref.usps,
+      usps = _ref$usps === void 0 ? [] : _ref$usps,
+      setUsps = _ref.setUsps,
+      _ref$specs = _ref.specs,
+      specs = _ref$specs === void 0 ? [] : _ref$specs,
+      setSpecs = _ref.setSpecs,
+      _ref$loading = _ref.loading,
+      loading = _ref$loading === void 0 ? true : _ref$loading,
       handlePopup = _ref.handlePopup;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_4__.createUseStyles)({
     wrapper: {
@@ -14112,6 +14109,7 @@ function Settings(_ref) {
       textAlign: 'center',
       userSelect: 'none',
       cursor: 'pointer',
+      color: 'inherit',
       letterSpacing: 2,
       padding: 20,
       flex: 1,
@@ -14149,11 +14147,6 @@ function Settings(_ref) {
       guildInputs = _useState4[0],
       setGuildInputs = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]),
-      _useState6 = _slicedToArray(_useState5, 2),
-      specs = _useState6[0],
-      setSpecs = _useState6[1];
-
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
     setGuildInputs({
       faction: guild.faction,
@@ -14162,36 +14155,6 @@ function Settings(_ref) {
       name: guild.name
     });
   }, [guild]);
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var _yield$Http$get, data, code;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _classes__WEBPACK_IMPORTED_MODULE_8__.Http.get('specs');
-
-            case 2:
-              _yield$Http$get = _context.sent;
-              data = _yield$Http$get.data;
-              code = _yield$Http$get.code;
-
-              if (code >= 400) {
-                popup('Couldn\'t load specs', 'error');
-              } else {
-                setSpecs(Object.values(data));
-              }
-
-            case 6:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }))();
-  }, []);
 
   function handleGuildInput(value, input) {
     setGuildInputs(function (p) {
@@ -14208,18 +14171,18 @@ function Settings(_ref) {
   }
 
   function _save() {
-    _save = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee2(e) {
+    _save = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
       var args,
           formData,
           _yield$Http$post,
           code,
-          _args2 = arguments;
+          _args = arguments;
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context.prev = _context.next) {
             case 0:
-              args = _args2.length > 1 && _args2[1] !== undefined ? _args2[1] : {
+              args = _args.length > 1 && _args[1] !== undefined ? _args[1] : {
                 data: [],
                 name: '',
                 setter: null,
@@ -14231,13 +14194,13 @@ function Settings(_ref) {
               formData = new FormData();
               formData.append(args.name, JSON.stringify(args.data));
               setSaving(true);
-              _context2.next = 7;
+              _context.next = 7;
               return _classes__WEBPACK_IMPORTED_MODULE_8__.Http.post(args.url, {
                 body: formData
               });
 
             case 7:
-              _yield$Http$post = _context2.sent;
+              _yield$Http$post = _context.sent;
               code = _yield$Http$post.code;
               setSaving(false);
 
@@ -14245,7 +14208,7 @@ function Settings(_ref) {
                 handlePopup(args.successMessage, 'success');
 
                 if (args.setter) {
-                  setGuild(args.data);
+                  setter(args.data);
                 }
               } else {
                 handlePopup(args.errorMessage, 'error');
@@ -14253,56 +14216,57 @@ function Settings(_ref) {
 
             case 11:
             case "end":
-              return _context2.stop();
+              return _context.stop();
           }
         }
-      }, _callee2);
+      }, _callee);
     }));
     return _save.apply(this, arguments);
   }
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.wrapper),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
       className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.settings),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/guild",
           children: "Guild"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/recruitment",
           children: "Recruitment"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/usps",
           children: "USPs"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
           as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/form",
           children: "Form"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabWrapper),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/guild",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
             onSubmit: function onSubmit(e) {
               return save(e, {
                 successMessage: 'Successfully updated guild',
                 data: guildInputs,
+                setter: setGuild,
                 name: 'guild',
                 url: 'guild'
               });
             },
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
               autoFocus: true,
               label: "Name",
               autoComplete: "off",
@@ -14310,7 +14274,7 @@ function Settings(_ref) {
               onChange: function onChange(e) {
                 return handleGuildInput(e.target.value, 'name');
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
               containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               label: "Realm",
               autoComplete: "off",
@@ -14318,85 +14282,85 @@ function Settings(_ref) {
               onChange: function onChange(e) {
                 return handleGuildInput(e.target.value, 'realm');
               }
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
               containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               value: guildInputs.region,
               label: "Region",
               onChange: function onChange(e) {
                 return handleGuildInput(e.target.value, 'region');
               },
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "EU",
                 children: "Europe"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "NA",
                 children: "North America"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "CN",
                 children: "China"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "OC",
                 children: "Oceanic"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "RU",
                 children: "Russia"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "DE",
                 children: "Germany"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "FR",
                 children: "France"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "ES",
                 children: "Spain"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "KR",
                 children: "Korean"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "SA",
                 children: "South America"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
                 value: "TW",
                 children: "Taiwanese"
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.FactionToggler, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.FactionToggler, {
               className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               active: guildInputs.faction,
               toggleActive: toggleFaction
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
               justify: "center",
               className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
                 block: true,
                 disabled: saving,
                 children: "Save"
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/recruitment",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Recruitment__WEBPACK_IMPORTED_MODULE_5__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Recruitment__WEBPACK_IMPORTED_MODULE_5__.default, {
             specs: specs,
             setSpecs: setSpecs,
             save: save,
             popup: handlePopup
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/usps",
           exact: true,
           children: "3"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
           path: "/settings/form",
           exact: true,
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_6__.default, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_6__.default, {
             faction: guild.faction
           })
         })]
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
       faction: guild.faction,
-      loading: saving
+      loading: loading || saving
     })]
   });
 }
@@ -14566,7 +14530,7 @@ function _templateObject11() {
 }
 
 function _templateObject10() {
-  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 1rem;\n    line-height: 1;\n    color: inherit;\n    &:visited {\n        color: inherit;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 1rem;\n    line-height: 1;\n"]);
 
   _templateObject10 = function _templateObject10() {
     return data;
@@ -14576,7 +14540,7 @@ function _templateObject10() {
 }
 
 function _templateObject9() {
-  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 1.25rem;\n    line-height: 1;\n    color: inherit;\n    &:visited {\n        color: inherit;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 1.25rem;\n    line-height: 1;\n"]);
 
   _templateObject9 = function _templateObject9() {
     return data;
@@ -14586,7 +14550,7 @@ function _templateObject9() {
 }
 
 function _templateObject8() {
-  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 1.5rem;\n    line-height: 1;\n    color: inherit;\n    &:visited {\n        color: inherit;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 1.5rem;\n    line-height: 1;\n"]);
 
   _templateObject8 = function _templateObject8() {
     return data;
@@ -14596,7 +14560,7 @@ function _templateObject8() {
 }
 
 function _templateObject7() {
-  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 2rem;\n    line-height: 1;\n    color: inherit;\n    &:visited {\n        color: inherit;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 2rem;\n    line-height: 1;\n"]);
 
   _templateObject7 = function _templateObject7() {
     return data;
@@ -14606,7 +14570,7 @@ function _templateObject7() {
 }
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 2.5rem;\n    line-height: 1;\n    color: inherit;\n    &:visited {\n        color: inherit;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 2.5rem;\n    line-height: 1;\n"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -14616,7 +14580,7 @@ function _templateObject6() {
 }
 
 function _templateObject5() {
-  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 5rem;\n    line-height: 1;\n    color: inherit;\n    &:visited {\n        color: inherit;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    text-align: ", ";\n    text-decoration: none;\n    font-size: 5rem;\n    line-height: 1;\n"]);
 
   _templateObject5 = function _templateObject5() {
     return data;
