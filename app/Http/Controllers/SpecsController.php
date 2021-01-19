@@ -12,7 +12,6 @@ class SpecsController extends Controller
     }
 
     public function save(Request $request) {
-        sleep(5);
         $classes = json_decode($request->specs);
         foreach ($classes as $class) {
             foreach ($class as $spec) {
