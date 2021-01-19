@@ -13103,8 +13103,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function App() {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
-    faction: 'horde',
-    region: 'EU',
+    faction: '',
+    region: '',
     name: '',
     realm: ''
   }),
@@ -14353,7 +14353,7 @@ function Settings(_ref) {
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
-      faction: guild.faction,
+      faction: guild.faction || 'horde',
       loading: loading || saving
     })]
   });

@@ -7,7 +7,7 @@ import Popup from './Popup';
 import Home from './Home';
 
 export default function App() {
-    const [guild, setGuild] = useState({ faction: 'horde', region: 'EU', name: '', realm: '' });
+    const [guild, setGuild] = useState({ faction: '', region: '', name: '', realm: '' });
     const [specs, setSpecs] = useState([]);
     const [usps, setUsps] = useState([]);
 

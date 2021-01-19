@@ -156,7 +156,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
                     </Route>
                 </Col>
             </Col>
-            <Loading faction={guild.faction} loading={loading || saving} />
+            <Loading faction={guild.faction || 'horde'} loading={loading || saving} />
         </Col>
     );
 }

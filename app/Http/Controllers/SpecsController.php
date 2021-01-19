@@ -8,6 +8,7 @@ use App\Models\Spec;
 class SpecsController extends Controller
 {
     public function all() {
+        sleep(5);
         return response(Spec::all()->groupBy('class'));
     }
 
