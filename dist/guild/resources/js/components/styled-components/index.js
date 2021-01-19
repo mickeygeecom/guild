@@ -1,5 +1,5 @@
 import useOnclickOutside from "react-cool-onclickoutside";
-import { mdiPlus, mdiMinus } from '@mdi/js';
+import { mdiPlus, mdiMinus, mdiLoading } from '@mdi/js';
 import { createUseStyles } from 'react-jss';
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -55,10 +55,6 @@ const H1 = styled.h1`
     text-decoration: none;
     font-size: 5rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H2 = styled.h2`
@@ -66,10 +62,6 @@ const H2 = styled.h2`
     text-decoration: none;
     font-size: 2.5rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H3 = styled.h3`
@@ -77,10 +69,6 @@ const H3 = styled.h3`
     text-decoration: none;
     font-size: 2rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H4 = styled.h4`
@@ -88,10 +76,6 @@ const H4 = styled.h4`
     text-decoration: none;
     font-size: 1.5rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H5 = styled.h5`
@@ -99,10 +83,6 @@ const H5 = styled.h5`
     text-decoration: none;
     font-size: 1.25rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const H6 = styled.h6`
@@ -110,10 +90,6 @@ const H6 = styled.h6`
     text-decoration: none;
     font-size: 1rem;
     line-height: 1;
-    color: inherit;
-    &:visited {
-        color: inherit;
-    }
 `;
 
 const StyledInput = styled.input`
@@ -194,6 +170,30 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
             </StyledLoadingSpinnerBackground>
         </StyledLoadingBackground>
     )
+}
+
+const StyledPageLoading = styled.div`
+    background-color: rgb(25, 25, 25);
+    transition: all 0.25s ease-in-out;
+    pointer-events: none;
+    z-index: 1000000;
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    &.loading {
+        opacity: 1;
+    }
+`;
+const PageLoading = ({ loading = true }) => {
+    return (
+        <StyledPageLoading className={classnames({ loading: loading })}>
+            <Icon path={mdiLoading} size={4} spin={1} color="rgb(var(--expansion))" style={{ margin: 'auto' }} />
+        </StyledPageLoading>
+    );
 }
 
 const StyledSelect = styled.select`
@@ -330,6 +330,7 @@ const TabPanel = styled.div`
 
 export {
     FactionToggler,
+    PageLoading,
     Accordion,
     TabPanel,
     Loading,

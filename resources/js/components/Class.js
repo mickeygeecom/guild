@@ -45,7 +45,7 @@ export default function Class({ _class, updateSpecs }) {
                 {
                     _class.map(spec => (
                         <img
-                            src={`/storage/specs/${spec.class.replace(' ', '_')}-${spec.spec.replace(' ', '_')}.jpg`}
+                            src={`/storage/specs/${spec.class.replace(' ', '_').toLowerCase()}-${spec.spec.replace(' ', '_').toLowerCase()}.jpg`}
                             onClick={() => updateSpecs(spec.recruiting ? 'remove' : 'add', spec.class, spec.spec)}
                             className={classnames(classes.icon, { active: Boolean(spec.recruiting) })}
                             title={`${spec.spec} ${spec.class}`}

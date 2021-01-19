@@ -13307,7 +13307,7 @@ function Class(_ref) {
       justify: "center",
       children: _class.map(function (spec) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "/storage/specs/".concat(spec["class"].replace(' ', '_'), "-").concat(spec.spec.replace(' ', '_'), ".jpg"),
+          src: "/storage/specs/".concat(spec["class"].replace(' ', '_').toLowerCase(), "-").concat(spec.spec.replace(' ', '_').toLowerCase(), ".jpg"),
           onClick: function onClick() {
             return updateSpecs(spec.recruiting ? 'remove' : 'add', spec["class"], spec.spec);
           },
@@ -14469,7 +14469,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n    background-color: rgb(25, 25, 25);\n    transition: all 0.25s ease-in-out;\n    z-index: 1000000;\n    position: fixed;\n    display: flex;\n    height: 100%;\n    width: 100%;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        opacity: 1;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    background-color: rgb(25, 25, 25);\n    transition: all 0.25s ease-in-out;\n    pointer-events: none;\n    z-index: 1000000;\n    position: fixed;\n    display: flex;\n    height: 100%;\n    width: 100%;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        opacity: 1;\n    }\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;

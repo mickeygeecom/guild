@@ -1,13 +1,13 @@
-import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler } from './styled-components';
+import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler, PageLoading } from './styled-components';
 import React, { useState, useEffect } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
+import Recruitment from './Recruitment';
+import CreateForm from './CreateForm';
 import classnames from 'classnames';
 import { Http } from '../classes';
-import CreateForm from './CreateForm';
-import Recruitment from './Recruitment';
 
-export default function Settings({ guild, setGuild, handlePopup }) {
+export default function Settings({ guild = {}, setGuild, usps = [], setUsps, specs = [], setSpecs, loading = true, handlePopup }) {
     const styles = createUseStyles({
         wrapper: {
             backgroundImage: 'url("/storage/covenants.jpg")',
@@ -38,14 +38,9 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             userSelect: 'none',
             cursor: 'pointer',
             letterSpacing: 2,
+            color: 'inherit',
             padding: 20,
             flex: 1,
-            '&:first-child': {
-                borderTopLeftRadius: 5,
-            },
-            '&:last-child': {
-                borderTopRightRadius: 5,
-            },
             '&.active, &:hover': {
                 color: 'rgb(var(--expansion))',
             },
@@ -58,7 +53,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         },
     });
     const classes = styles();
-    
+
     const [saving, setSaving] = useState(false);
 
     const [guildInputs, setGuildInputs] = useState({
@@ -67,7 +62,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         realm: guild.realm,
         name: guild.name,
     });
-    const [specs, setSpecs] = useState([]);
 
     useEffect(() => {
         setGuildInputs({
@@ -77,17 +71,6 @@ export default function Settings({ guild, setGuild, handlePopup }) {
             name: guild.name,
         });
     }, [guild]);
-
-    useEffect(() => {
-        (async () => {
-            const { data, code } = await Http.get('specs');
-            if (code >= 400) {
-                popup('Couldn\'t load specs', 'error');
-            } else {
-                setSpecs(Object.values(data));
-            }
-        })();
-    }, []);
 
     function handleGuildInput(value, input) {
         setGuildInputs(p => ({ ...p, [input]: value }));
@@ -107,7 +90,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
         if (code === 200) {
             handlePopup(args.successMessage, 'success');
             if (args.setter) {
-                setGuild(args.data);
+                args.setter(args.data);
             }
         } else {
             handlePopup(args.errorMessage, 'error');
@@ -116,6 +99,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
 
     return (
         <Col className={classnames(classes.wrapper)}>
+            <PageLoading loading={loading} />
             <Col className={classnames(classes.settings)}>
                 <Row className={classnames(classes.tabPanels)}>
                     <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
@@ -128,6 +112,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                         <form onSubmit={e => save(e, {
                             successMessage: 'Successfully updated guild',
                             data: guildInputs,
+                            setter: setGuild,
                             name: 'guild',
                             url: 'guild',
                         })}>
@@ -172,7 +157,7 @@ export default function Settings({ guild, setGuild, handlePopup }) {
                     </Route>
                 </Col>
             </Col>
-            <Loading faction={guild.faction} loading={saving} />
+            <Loading faction={guild.faction || 'horde'} loading={saving} />
         </Col>
     );
 }

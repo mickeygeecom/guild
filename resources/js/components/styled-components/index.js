@@ -175,6 +175,7 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
 const StyledPageLoading = styled.div`
     background-color: rgb(25, 25, 25);
     transition: all 0.25s ease-in-out;
+    pointer-events: none;
     z-index: 1000000;
     position: fixed;
     display: flex;

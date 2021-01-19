@@ -20,7 +20,7 @@ class GuildController extends Controller
         try {
             $guild = json_decode($request->guild);
             $this->saveGuildField('faction', $guild->faction);
-            // $this->saveGuildField('region', $guild->region);
+            $this->saveGuildField('region', $guild->region);
             $this->saveGuildField('realm', $guild->realm);
             $this->saveGuildField('name', $guild->name);
             return response(true);

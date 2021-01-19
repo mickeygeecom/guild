@@ -7,19 +7,29 @@ import Popup from './Popup';
 import Home from './Home';
 
 export default function App() {
-    const [guild, setGuild] = useState({ faction: 'horde', region: 'EU', name: '', realm: '' });
+    const [guild, setGuild] = useState({ faction: '', region: '', name: '', realm: '' });
+    const [specs, setSpecs] = useState([]);
+    const [usps, setUsps] = useState([]);
+
     const [popup, setPopup] = useState({ message: '', type: 'success' });
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         (async () => {
-            const { data } = await Http.get('guild');
-            const getValue = name => data.find(object => object.name === name).value;
+            setLoading(true);
+            const guild = await Http.get('guild');
+            const specs = await Http.get('specs');
+            const usps = await Http.get('usps');
+            setLoading(false);
+            const getGuildValue = name => guild.data.find(object => object.name === name).value;
             setGuild({
-                faction: getValue('faction'),
-                region: getValue('region'),
-                realm: getValue('realm'),
-                name: getValue('name'),
+                faction: getGuildValue('faction'),
+                region: getGuildValue('region'),
+                realm: getGuildValue('realm'),
+                name: getGuildValue('name'),
             });
+            setSpecs(Object.values(specs.data));
+            setUsps(usps.data);
         })();
     }, []);
 
@@ -36,13 +46,22 @@ export default function App() {
             <Popup popup={popup} setPopup={setPopup} />
             <Switch>
                 <Route path="/" exact>
-                    <Home guild={guild} setGuild={setGuild} handlePopup={handlePopup} />
+                    <Home
+                        handlePopup={handlePopup} loading={loading}
+                        guild={guild} setGuild={setGuild}
+                        usps={usps} specs={specs}
+                    />
                 </Route>
                 <Route path="/login" exact>
                     <Login />
                 </Route>
                 <Route path="/settings/:tab?" exact>
-                    <Settings guild={guild} setGuild={setGuild} handlePopup={handlePopup} />
+                    <Settings
+                        handlePopup={handlePopup} loading={loading}
+                        guild={guild} setGuild={setGuild}
+                        specs={specs} setSpecs={setSpecs}
+                        usps={usps} setUsps={setUsps}
+                    />
                 </Route>
             </Switch>
         </Router>
