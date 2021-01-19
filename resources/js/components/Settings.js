@@ -37,16 +37,10 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
             textAlign: 'center',
             userSelect: 'none',
             cursor: 'pointer',
-            color: 'inherit',
             letterSpacing: 2,
+            color: 'inherit',
             padding: 20,
             flex: 1,
-            '&:first-child': {
-                borderTopLeftRadius: 5,
-            },
-            '&:last-child': {
-                borderTopRightRadius: 5,
-            },
             '&.active, &:hover': {
                 color: 'rgb(var(--expansion))',
             },
@@ -96,7 +90,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
         if (code === 200) {
             handlePopup(args.successMessage, 'success');
             if (args.setter) {
-                setter(args.data);
+                args.setter(args.data);
             }
         } else {
             handlePopup(args.errorMessage, 'error');

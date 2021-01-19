@@ -14109,16 +14109,10 @@ function Settings(_ref) {
       textAlign: 'center',
       userSelect: 'none',
       cursor: 'pointer',
-      color: 'inherit',
       letterSpacing: 2,
+      color: 'inherit',
       padding: 20,
       flex: 1,
-      '&:first-child': {
-        borderTopLeftRadius: 5
-      },
-      '&:last-child': {
-        borderTopRightRadius: 5
-      },
       '&.active, &:hover': {
         color: 'rgb(var(--expansion))'
       },
@@ -14208,7 +14202,7 @@ function Settings(_ref) {
                 handlePopup(args.successMessage, 'success');
 
                 if (args.setter) {
-                  setter(args.data);
+                  args.setter(args.data);
                 }
               } else {
                 handlePopup(args.errorMessage, 'error');
