@@ -1,8 +1,8 @@
 import { Button, Col, Row, Input } from './styled-components';
+import { mdiClose, mdiPlus } from '@mdi/js';
 import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
-import { mdiClose } from '@mdi/js';
 import Icon from '@mdi/react';
 
 export default function Usps({ usps = [], setUsps, save, saving = false }) {
@@ -10,11 +10,22 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
         usp: {
             marginBottom: 30,
         },
+        add: {
+            border: '3px solid rgb(var(--expansion))',
+            color: 'rgb(var(--expansion))',
+            cursor: 'pointer',
+            marginBottom: 30,
+            width: 35,
+        },
     });
     const classes = styles();
 
     function removeUsp(usp) {
         setUsps(usps => usps.filter(_usp => _usp.id !== usp.id));
+    }
+
+    function addUsp() {
+        setUsps(usps => [ ...usps, { id: usps[usps.length - 1].id + 1, value: '', title: '' } ]);
     }
 
     function onChangeHandler(e, usp, input) {
@@ -46,6 +57,7 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
                     </Col>
                 ))
             }
+            <Icon className={classnames(classes.add)} path={mdiPlus} onClick={addUsp} />
             <Button disabled={saving} block>Save</Button>
         </form>
     );
