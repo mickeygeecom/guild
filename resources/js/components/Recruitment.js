@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import Class from './Class';
 import React from 'react';
 
-export default function Recruitment({ save, specs = [], setSpecs }) {
+export default function Recruitment({ save, specs = [], setSpecs, saving = false }) {
     const styles = createUseStyles({
         wrapper: {
             gridTemplateColumns: 'repeat(3, 1fr)',  
@@ -39,7 +39,7 @@ export default function Recruitment({ save, specs = [], setSpecs }) {
             <div className={classnames(classes.wrapper)}>
                 {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
             </div>
-            <Button block>Save</Button>
+            <Button disabled={saving} block>Save</Button>
         </form>
     );
 }

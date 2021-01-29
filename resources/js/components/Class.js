@@ -6,7 +6,7 @@ import React from 'react';
 export default function Class({ _class, updateSpecs }) {
     const styles = createUseStyles({
         icon: {
-            border: '3px solid transparent',
+            border: '2px solid transparent',
             transition: 'all 0.05s linear',
             filter: 'brightness(0.5)',
             cursor: 'pointer',
@@ -14,7 +14,7 @@ export default function Class({ _class, updateSpecs }) {
             height: 50,
             width: 50,
             '&.active': {
-                boxShadow: [0, 0, 1, 2, `rgb(var(--${_class[0].class.replace(' ', '-').toLowerCase()}))`],
+                boxShadow: [0, 0, 1, 1, `rgb(var(--${_class[0].class.replace(' ', '-').toLowerCase()}))`],
                 filter: 'brightness(1)',
                 borderColor: 'black',
             },
@@ -48,8 +48,8 @@ export default function Class({ _class, updateSpecs }) {
                             src={`/storage/specs/${spec.class.replace(' ', '_').toLowerCase()}-${spec.spec.replace(' ', '_').toLowerCase()}.jpg`}
                             onClick={() => updateSpecs(spec.recruiting ? 'remove' : 'add', spec.class, spec.spec)}
                             className={classnames(classes.icon, { active: Boolean(spec.recruiting) })}
-                            title={`${spec.spec} ${spec.class}`}
-                            alt={`${spec.spec} ${spec.class}`}
+                            title={spec.spec}
+                            alt={spec.spec}
                             key={spec.id}
                         />
                     ))

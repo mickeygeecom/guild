@@ -1,4 +1,3 @@
-import useOnclickOutside from "react-cool-onclickoutside";
 import { mdiPlus, mdiMinus, mdiLoading } from '@mdi/js';
 import { createUseStyles } from 'react-jss';
 import React, { useEffect, useRef, useState } from 'react';
@@ -126,11 +125,18 @@ const Input = ({ containerClass = '', obligatory = false, type = 'text', label =
 
 const StyledLoadingBackground = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
+    transition: all 0.25s ease-in-out;
+    pointer-events: none;
     position: fixed;
     height: 100vh;
     width: 100vw;
+    opacity: 0;
     left: 0;
     top: 0;
+    &.loading {
+        pointer-events: all;
+        opacity: 1;
+    }
 `;
 const StyledLoadingSpinnerBackground = styled.div`
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);
@@ -141,12 +147,12 @@ const StyledLoadingSpinnerBackground = styled.div`
     margin: auto;
 `;
 const StyledLoadingSpinner = styled.img`
-    animation: spin 2s infinite linear;
+    animation: loading-spin 2s infinite linear;
     height: 100px;
     margin: auto;
     width: 100px;
 
-    @keyframes spin {
+    @keyframes loading-spin {
         from {
             transform: rotateY(0deg);
         }
@@ -158,14 +164,10 @@ const StyledLoadingSpinner = styled.img`
 const Loading = ({ loading = false, faction = 'horde' }) => {
     document.querySelector('body').style.overflowY = loading ? 'hidden' : 'auto';
 
-    if (!loading) {
-        return null;
-    }
-
     return (
-        <StyledLoadingBackground as={Col}>
+        <StyledLoadingBackground className={classnames({ loading: loading })} as={Col}>
             <StyledLoadingSpinnerBackground as={Col}>
-                <StyledLoadingSpinner src={`/storage/${faction}.svg`} alt="Faction" />
+                <StyledLoadingSpinner src={`/storage/${faction}.svg`} loading="lazy" alt="Faction" />
                 <p style={{ marginTop: 25 }}>Loading, please wait</p>
             </StyledLoadingSpinnerBackground>
         </StyledLoadingBackground>

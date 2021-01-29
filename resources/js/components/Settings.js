@@ -1,11 +1,14 @@
-import { Col, Row, Input, Select, Button, Loading, H6, FactionToggler, PageLoading } from './styled-components';
+import { Col, Row, Input, Select, Button, Loading, H6, H4, FactionToggler, PageLoading } from './styled-components';
 import React, { useState, useEffect } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import Recruitment from './Recruitment';
 import CreateForm from './CreateForm';
 import classnames from 'classnames';
+import { mdiClose } from '@mdi/js';
 import { Http } from '../classes';
+import Icon from '@mdi/react';
+import Usps from './Usps';
 
 export default function Settings({ guild = {}, setGuild, usps = [], setUsps, specs = [], setSpecs, loading = true, handlePopup }) {
     const styles = createUseStyles({
@@ -147,10 +150,10 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
                         </form>
                     </Route>
                     <Route path="/settings/recruitment" exact>
-                        <Recruitment specs={specs} setSpecs={setSpecs} save={save} popup={handlePopup} />
+                        <Recruitment specs={specs} setSpecs={setSpecs} save={save} saving={saving} />
                     </Route>
                     <Route path="/settings/usps" exact>
-                        3
+                        <Usps usps={usps} setUsps={setUsps} save={save} saving={saving} />
                     </Route>
                     <Route path="/settings/form" exact>
                         <CreateForm faction={guild.faction} />

@@ -38,6 +38,7 @@ export default function App() {
     }
 
     useEffect(() => {
+        document.querySelector('body').classList = guild.faction;
         document.title = guild.name;
     }, [guild]);
 

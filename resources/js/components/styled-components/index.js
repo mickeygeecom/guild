@@ -91,7 +91,19 @@ const H6 = styled.h6`
     line-height: 1;
 `;
 
+const Label = styled.label`
+    font-family: Roboto Slab;
+    margin-bottom: 5px;
+    cursor: text;
+    &::after {
+        content: "${({ obligatory }) => obligatory ? '*' : ''}";
+        margin-left: 5px;
+        color: red;
+    }
+`;
+
 const StyledInput = styled.input`
+    resize: ${({ resize }) => resize ?? 'auto'};
     border: 1px solid rgb(200, 200, 200);
     background-color: white;
     transition: all 0.05s;
@@ -104,16 +116,7 @@ const StyledInput = styled.input`
         border-color: rgb(var(--expansion));
     }
 `;
-const Label = styled.label`
-    font-family: Roboto Slab;
-    margin-bottom: 5px;
-    cursor: text;
-    &::after {
-        content: "${({ obligatory }) => obligatory ? '*' : ''}";
-        margin-left: 5px;
-        color: red;
-    }
-`;
+
 const Input = ({ containerClass = '', obligatory = false, type = 'text', label = null, ...props }) => {
     return (
         <Col className={classnames(containerClass)}>
@@ -147,12 +150,12 @@ const StyledLoadingSpinnerBackground = styled.div`
     margin: auto;
 `;
 const StyledLoadingSpinner = styled.img`
-    animation: spin 2s infinite linear;
+    animation: loading-spin 2s infinite linear;
     height: 100px;
     margin: auto;
     width: 100px;
 
-    @keyframes spin {
+    @keyframes loading-spin {
         from {
             transform: rotateY(0deg);
         }
@@ -167,7 +170,7 @@ const Loading = ({ loading = false, faction = 'horde' }) => {
     return (
         <StyledLoadingBackground className={classnames({ loading: loading })} as={Col}>
             <StyledLoadingSpinnerBackground as={Col}>
-                <StyledLoadingSpinner src={`/storage/${faction}.svg`} alt="Faction" />
+                <StyledLoadingSpinner src={`/storage/${faction}.svg`} loading="lazy" alt="Faction" />
                 <p style={{ marginTop: 25 }}>Loading, please wait</p>
             </StyledLoadingSpinnerBackground>
         </StyledLoadingBackground>

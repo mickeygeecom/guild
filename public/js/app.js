@@ -13194,6 +13194,7 @@ function App() {
   }
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    document.querySelector('body').classList = guild.faction;
     document.title = guild.name;
   }, [guild]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.BrowserRouter, {
@@ -13264,7 +13265,7 @@ function Class(_ref) {
       updateSpecs = _ref.updateSpecs;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     icon: {
-      border: '3px solid transparent',
+      border: '2px solid transparent',
       transition: 'all 0.05s linear',
       filter: 'brightness(0.5)',
       cursor: 'pointer',
@@ -13272,7 +13273,7 @@ function Class(_ref) {
       height: 50,
       width: 50,
       '&.active': {
-        boxShadow: [0, 0, 1, 2, "rgb(var(--".concat(_class[0]["class"].replace(' ', '-').toLowerCase(), "))")],
+        boxShadow: [0, 0, 1, 1, "rgb(var(--".concat(_class[0]["class"].replace(' ', '-').toLowerCase(), "))")],
         filter: 'brightness(1)',
         borderColor: 'black'
       }
@@ -13314,8 +13315,8 @@ function Class(_ref) {
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.icon, {
             active: Boolean(spec.recruiting)
           }),
-          title: "".concat(spec.spec, " ").concat(spec["class"]),
-          alt: "".concat(spec.spec, " ").concat(spec["class"])
+          title: spec.spec,
+          alt: spec.spec
         }, spec.id);
       })
     })]
@@ -13952,7 +13953,9 @@ function Recruitment(_ref) {
   var save = _ref.save,
       _ref$specs = _ref.specs,
       specs = _ref$specs === void 0 ? [] : _ref$specs,
-      setSpecs = _ref.setSpecs;
+      setSpecs = _ref.setSpecs,
+      _ref$saving = _ref.saving,
+      saving = _ref$saving === void 0 ? false : _ref$saving;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     wrapper: {
       gridTemplateColumns: 'repeat(3, 1fr)',
@@ -14003,6 +14006,7 @@ function Recruitment(_ref) {
         }, _class[0]["class"]);
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+      disabled: saving,
       block: true,
       children: "Save"
     })]
@@ -14027,14 +14031,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
 /* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 /* harmony import */ var _Recruitment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Recruitment */ "./resources/js/components/Recruitment.js");
 /* harmony import */ var _CreateForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CreateForm */ "./resources/js/components/CreateForm.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @mdi/react */ "./node_modules/@mdi/react/Icon.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_mdi_react__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _Usps__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Usps */ "./resources/js/components/Usps.js");
 
 
 
@@ -14060,6 +14067,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
 
 
 
@@ -14229,29 +14239,29 @@ function Settings(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/guild",
           children: "Guild"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/recruitment",
           children: "Recruitment"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/usps",
           children: "USPs"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_9__.NavLink,
+          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
           className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
           to: "/settings/form",
           children: "Form"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabWrapper),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
           path: "/settings/guild",
           exact: true,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
@@ -14335,20 +14345,25 @@ function Settings(_ref) {
               })
             })]
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
           path: "/settings/recruitment",
           exact: true,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Recruitment__WEBPACK_IMPORTED_MODULE_5__.default, {
             specs: specs,
             setSpecs: setSpecs,
             save: save,
-            popup: handlePopup
+            saving: saving
           })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
           path: "/settings/usps",
           exact: true,
-          children: "3"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_10__.Route, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Usps__WEBPACK_IMPORTED_MODULE_10__.default, {
+            usps: usps,
+            setUsps: setUsps,
+            save: save,
+            saving: saving
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
           path: "/settings/form",
           exact: true,
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_6__.default, {
@@ -14359,6 +14374,126 @@ function Settings(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
       faction: guild.faction || 'horde',
       loading: saving
+    })]
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Usps.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Usps.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Usps
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _mdi_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mdi/js */ "./node_modules/@mdi/js/mdi.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mdi/react */ "./node_modules/@mdi/react/Icon.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_mdi_react__WEBPACK_IMPORTED_MODULE_5__);
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+function Usps(_ref) {
+  var _ref$usps = _ref.usps,
+      usps = _ref$usps === void 0 ? [] : _ref$usps,
+      setUsps = _ref.setUsps,
+      save = _ref.save,
+      _ref$saving = _ref.saving,
+      saving = _ref$saving === void 0 ? false : _ref$saving;
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_3__.createUseStyles)({
+    usp: {
+      marginBottom: 30
+    }
+  });
+  var classes = styles();
+
+  function removeUsp(usp) {
+    setUsps(function (usps) {
+      return usps.filter(function (_usp) {
+        return _usp.id !== usp.id;
+      });
+    });
+  }
+
+  function onChangeHandler(e, usp, input) {
+    e.persist();
+    setUsps(function (usps) {
+      return usps.map(function (_usp) {
+        return _usp.id === usp.id ? _objectSpread(_objectSpread({}, usp), {}, _defineProperty({}, input, e.target.value)) : _usp;
+      });
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+    onSubmit: function onSubmit(e) {
+      return save(e, {
+        successMessage: 'Successfully updated USPs',
+        setter: setUsps,
+        name: 'usps',
+        url: 'usps',
+        data: usps
+      });
+    },
+    children: [usps.map(function (usp) {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.usp),
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
+          align: "center",
+          style: {
+            marginBottom: 10
+          },
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
+            value: usp.title,
+            onChange: function onChange(e) {
+              return onChangeHandler(e, usp, 'title');
+            }
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_5___default()), {
+            style: {
+              marginLeft: 'auto',
+              cursor: 'pointer'
+            },
+            onClick: function onClick() {
+              return removeUsp(usp);
+            },
+            path: _mdi_js__WEBPACK_IMPORTED_MODULE_6__.mdiClose,
+            size: 1
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
+          as: "textarea",
+          rows: 8,
+          resize: "none",
+          onChange: function onChange(e) {
+            return onChangeHandler(e, usp, 'value');
+          },
+          value: usp.value
+        })]
+      }, usp.id);
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+      disabled: saving,
+      block: true,
+      children: "Save"
     })]
   });
 }
@@ -14478,7 +14613,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n    animation: spin 2s infinite linear;\n    height: 100px;\n    margin: auto;\n    width: 100px;\n\n    @keyframes spin {\n        from {\n            transform: rotateY(0deg);\n        }\n        to {\n            transform: rotateY(360deg);\n        }\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    animation: loading-spin 2s infinite linear;\n    height: 100px;\n    margin: auto;\n    width: 100px;\n\n    @keyframes loading-spin {\n        from {\n            transform: rotateY(0deg);\n        }\n        to {\n            transform: rotateY(360deg);\n        }\n    }\n"]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -14518,7 +14653,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _templateObject12() {
-  var data = _taggedTemplateLiteral(["\n    font-family: Roboto Slab;\n    margin-bottom: 5px;\n    cursor: text;\n    &::after {\n        content: \"", "\";\n        margin-left: 5px;\n        color: red;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    resize: ", ";\n    border: 1px solid rgb(200, 200, 200);\n    background-color: white;\n    transition: all 0.05s;\n    border-radius: 2px;\n    font-size: 1rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
 
   _templateObject12 = function _templateObject12() {
     return data;
@@ -14528,7 +14663,7 @@ function _templateObject12() {
 }
 
 function _templateObject11() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(200, 200, 200);\n    background-color: white;\n    transition: all 0.05s;\n    border-radius: 2px;\n    font-size: 1rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    font-family: Roboto Slab;\n    margin-bottom: 5px;\n    cursor: text;\n    &::after {\n        content: \"", "\";\n        margin-left: 5px;\n        color: red;\n    }\n"]);
 
   _templateObject11 = function _templateObject11() {
     return data;
@@ -14697,22 +14832,25 @@ var H6 = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.h6(_templateObje
   var align = _ref14.align;
   return align ? align : 'center';
 });
-var StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.input(_templateObject11());
-var Label = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.label(_templateObject12(), function (_ref15) {
+var Label = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.label(_templateObject11(), function (_ref15) {
   var obligatory = _ref15.obligatory;
   return obligatory ? '*' : '';
 });
+var StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.input(_templateObject12(), function (_ref16) {
+  var resize = _ref16.resize;
+  return resize !== null && resize !== void 0 ? resize : 'auto';
+});
 
-var Input = function Input(_ref16) {
-  var _ref16$containerClass = _ref16.containerClass,
-      containerClass = _ref16$containerClass === void 0 ? '' : _ref16$containerClass,
-      _ref16$obligatory = _ref16.obligatory,
-      obligatory = _ref16$obligatory === void 0 ? false : _ref16$obligatory,
-      _ref16$type = _ref16.type,
-      type = _ref16$type === void 0 ? 'text' : _ref16$type,
-      _ref16$label = _ref16.label,
-      label = _ref16$label === void 0 ? null : _ref16$label,
-      props = _objectWithoutProperties(_ref16, ["containerClass", "obligatory", "type", "label"]);
+var Input = function Input(_ref17) {
+  var _ref17$containerClass = _ref17.containerClass,
+      containerClass = _ref17$containerClass === void 0 ? '' : _ref17$containerClass,
+      _ref17$obligatory = _ref17.obligatory,
+      obligatory = _ref17$obligatory === void 0 ? false : _ref17$obligatory,
+      _ref17$type = _ref17.type,
+      type = _ref17$type === void 0 ? 'text' : _ref17$type,
+      _ref17$label = _ref17.label,
+      label = _ref17$label === void 0 ? null : _ref17$label,
+      props = _objectWithoutProperties(_ref17, ["containerClass", "obligatory", "type", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(containerClass),
@@ -14730,11 +14868,11 @@ var StyledLoadingBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.def
 var StyledLoadingSpinnerBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject14());
 var StyledLoadingSpinner = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject15());
 
-var Loading = function Loading(_ref17) {
-  var _ref17$loading = _ref17.loading,
-      loading = _ref17$loading === void 0 ? false : _ref17$loading,
-      _ref17$faction = _ref17.faction,
-      faction = _ref17$faction === void 0 ? 'horde' : _ref17$faction;
+var Loading = function Loading(_ref18) {
+  var _ref18$loading = _ref18.loading,
+      loading = _ref18$loading === void 0 ? false : _ref18$loading,
+      _ref18$faction = _ref18.faction,
+      faction = _ref18$faction === void 0 ? 'horde' : _ref18$faction;
   document.querySelector('body').style.overflowY = loading ? 'hidden' : 'auto';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledLoadingBackground, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
@@ -14745,6 +14883,7 @@ var Loading = function Loading(_ref17) {
       as: Col,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledLoadingSpinner, {
         src: "/storage/".concat(faction, ".svg"),
+        loading: "lazy",
         alt: "Faction"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
         style: {
@@ -14758,9 +14897,9 @@ var Loading = function Loading(_ref17) {
 
 var StyledPageLoading = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject16());
 
-var PageLoading = function PageLoading(_ref18) {
-  var _ref18$loading = _ref18.loading,
-      loading = _ref18$loading === void 0 ? true : _ref18$loading;
+var PageLoading = function PageLoading(_ref19) {
+  var _ref19$loading = _ref19.loading,
+      loading = _ref19$loading === void 0 ? true : _ref19$loading;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledPageLoading, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
       loading: loading
@@ -14779,14 +14918,14 @@ var PageLoading = function PageLoading(_ref18) {
 
 var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.select(_templateObject17());
 
-var Select = function Select(_ref19) {
-  var _ref19$containerClass = _ref19.containerClass,
-      containerClass = _ref19$containerClass === void 0 ? '' : _ref19$containerClass,
-      _ref19$obligatory = _ref19.obligatory,
-      obligatory = _ref19$obligatory === void 0 ? false : _ref19$obligatory,
-      _ref19$label = _ref19.label,
-      label = _ref19$label === void 0 ? null : _ref19$label,
-      props = _objectWithoutProperties(_ref19, ["containerClass", "obligatory", "label"]);
+var Select = function Select(_ref20) {
+  var _ref20$containerClass = _ref20.containerClass,
+      containerClass = _ref20$containerClass === void 0 ? '' : _ref20$containerClass,
+      _ref20$obligatory = _ref20.obligatory,
+      obligatory = _ref20$obligatory === void 0 ? false : _ref20$obligatory,
+      _ref20$label = _ref20.label,
+      label = _ref20$label === void 0 ? null : _ref20$label,
+      props = _objectWithoutProperties(_ref20, ["containerClass", "obligatory", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(containerClass),
@@ -14803,15 +14942,15 @@ var StyledAccordionLabel = styled_components__WEBPACK_IMPORTED_MODULE_5__.defaul
 var StyledAccordionContent = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject19());
 var StyledAccordionHead = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject20());
 
-var Accordion = function Accordion(_ref20) {
-  var _ref20$className = _ref20.className,
-      className = _ref20$className === void 0 ? '' : _ref20$className,
-      _ref20$label = _ref20.label,
-      label = _ref20$label === void 0 ? null : _ref20$label,
-      _ref20$open = _ref20.open,
-      open = _ref20$open === void 0 ? false : _ref20$open,
-      toggle = _ref20.toggle,
-      children = _ref20.children;
+var Accordion = function Accordion(_ref21) {
+  var _ref21$className = _ref21.className,
+      className = _ref21$className === void 0 ? '' : _ref21$className,
+      _ref21$label = _ref21.label,
+      label = _ref21$label === void 0 ? null : _ref21$label,
+      _ref21$open = _ref21.open,
+      open = _ref21$open === void 0 ? false : _ref21$open,
+      toggle = _ref21.toggle,
+      children = _ref21.children;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -14857,13 +14996,13 @@ var Accordion = function Accordion(_ref20) {
   });
 };
 
-var FactionToggler = function FactionToggler(_ref21) {
-  var _ref21$label = _ref21.label,
-      label = _ref21$label === void 0 ? null : _ref21$label,
-      _ref21$active = _ref21.active,
-      active = _ref21$active === void 0 ? 'horde' : _ref21$active,
-      toggleActive = _ref21.toggleActive,
-      props = _objectWithoutProperties(_ref21, ["label", "active", "toggleActive"]);
+var FactionToggler = function FactionToggler(_ref22) {
+  var _ref22$label = _ref22.label,
+      label = _ref22$label === void 0 ? null : _ref22$label,
+      _ref22$active = _ref22.active,
+      active = _ref22$active === void 0 ? 'horde' : _ref22$active,
+      toggleActive = _ref22.toggleActive,
+      props = _objectWithoutProperties(_ref22, ["label", "active", "toggleActive"]);
 
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_1__.createUseStyles)({
     toggler: {
