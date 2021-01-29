@@ -1,21 +1,36 @@
 import { Button, Col, Row, Input } from './styled-components';
 import { mdiClose, mdiPlus } from '@mdi/js';
-import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import Icon from '@mdi/react';
+import React from 'react';
 
 export default function Usps({ usps = [], setUsps, save, saving = false }) {
     const styles = createUseStyles({
         usp: {
             marginBottom: 30,
         },
+        uspTitle: {
+            marginBottom: 15,
+        },
         add: {
-            border: '3px solid rgb(var(--expansion))',
-            color: 'rgb(var(--expansion))',
+            transition: 'all 0.05s linear',
+            border: '3px solid',
             cursor: 'pointer',
             marginBottom: 30,
             width: 35,
+            '&:hover': {
+                borderColor: 'rgb(var(--expansion))',
+                color: 'rgb(var(--expansion))',
+            },
+        },
+        remove: {
+            transition: 'all 0.05s linear',
+            marginLeft: 'auto',
+            cursor: 'pointer',
+            '&:hover': {
+                color: 'rgb(var(--expansion))',
+            },
         },
     });
     const classes = styles();
@@ -44,16 +59,23 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
             {
                 usps.map(usp => (
                     <Col className={classnames(classes.usp)} key={usp.id}>
-                        <Row align="center" style={{ marginBottom: 10 }}>
-                            <Input value={usp.title} onChange={e => onChangeHandler(e, usp, 'title')} />
+                        <Row className={classnames(classes.uspTitle)}>
+                            <Input label="Title" value={usp.title} onChange={e => onChangeHandler(e, usp, 'title')} />
                             <Icon
-                                style={{ marginLeft: 'auto', cursor: 'pointer' }}
+                                className={classnames(classes.remove)}
                                 onClick={() => removeUsp(usp)}
                                 path={mdiClose}
                                 size={1}
                             />
                         </Row>
-                        <Input as="textarea" rows={8} resize="none" onChange={e => onChangeHandler(e, usp, 'value')} value={usp.value} />
+                        <Input
+                            onChange={e => onChangeHandler(e, usp, 'value')}
+                            value={usp.value}
+                            label="Content"
+                            resize="none"
+                            as="textarea"
+                            rows={8}
+                        />
                     </Col>
                 ))
             }

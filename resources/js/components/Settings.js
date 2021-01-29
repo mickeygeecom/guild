@@ -22,37 +22,55 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
             boxShadow: [0, 0, 10, 0, 'rgba(0, 0, 0, 0.5)'],
             backgroundColor: 'white',
             margin: [0, 'auto'],
-            marginTop: '15vh',
             borderRadius: 5,
+            marginTop: 15,
+            padding: 5,
         },
         tabWrapper: {
             maxHeight: '60vh',
             overflowY: 'auto',
+            minWidth: 500,
             padding: 30,
+            '&::-webkit-scrollbar': {
+                width: 8,
+            },
+            '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'rgb(var(--expansion))',
+                borderRadius: 10,
+            },
         },
         marginTop: {
-            marginTop: 25,
+            marginTop: 30,
         },
         tabPanel: {
-            borderBottom: '2px solid transparent',
-            transition: 'all 0.1s linear',
+            // transition: 'all 0.1s linear',
             textTransform: 'uppercase',
             textAlign: 'center',
             userSelect: 'none',
+            padding: [20, 30],
             cursor: 'pointer',
             letterSpacing: 2,
             color: 'inherit',
-            padding: 20,
-            flex: 1,
+            '&:first-child': {
+                borderBottomLeftRadius: 5,
+                borderTopLeftRadius: 5,
+            },
+            '&:last-child': {
+                borderBottomRightRadius: 5,
+                borderTopRightRadius: 5,
+            },
             '&.active, &:hover': {
                 color: 'rgb(var(--expansion))',
             },
             '&.active': {
-                borderColor: 'rgb(var(--expansion))',
+                backgroundColor: 'rgb(var(--expansion))',
+                color: 'white',
             },
         },
         tabPanels: {
-            padding: [10, 30],
+            marginTop: '15vh',
+            borderRadius: 5,
+            padding: 0,
         },
     });
     const classes = styles();
@@ -103,13 +121,13 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
     return (
         <Col className={classnames(classes.wrapper)}>
             <PageLoading loading={loading} />
+            <Row className={classnames(classes.tabPanels, classes.settings)}>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment">Recruitment</H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps">USPs</H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/form">Form</H6>
+            </Row>
             <Col className={classnames(classes.settings)}>
-                <Row className={classnames(classes.tabPanels)}>
-                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
-                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment">Recruitment</H6>
-                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps">USPs</H6>
-                    <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/form">Form</H6>
-                </Row>
                 <Col className={classnames(classes.tabWrapper)}>
                     <Route path="/settings/guild" exact>
                         <form onSubmit={e => save(e, {

@@ -14103,37 +14103,55 @@ function Settings(_ref) {
       boxShadow: [0, 0, 10, 0, 'rgba(0, 0, 0, 0.5)'],
       backgroundColor: 'white',
       margin: [0, 'auto'],
-      marginTop: '15vh',
-      borderRadius: 5
+      borderRadius: 5,
+      marginTop: 15,
+      padding: 5
     },
     tabWrapper: {
       maxHeight: '60vh',
       overflowY: 'auto',
-      padding: 30
+      minWidth: 500,
+      padding: 30,
+      '&::-webkit-scrollbar': {
+        width: 8
+      },
+      '&::-webkit-scrollbar-thumb': {
+        backgroundColor: 'rgb(var(--expansion))',
+        borderRadius: 10
+      }
     },
     marginTop: {
-      marginTop: 25
+      marginTop: 30
     },
     tabPanel: {
-      borderBottom: '2px solid transparent',
-      transition: 'all 0.1s linear',
+      // transition: 'all 0.1s linear',
       textTransform: 'uppercase',
       textAlign: 'center',
       userSelect: 'none',
+      padding: [20, 30],
       cursor: 'pointer',
       letterSpacing: 2,
       color: 'inherit',
-      padding: 20,
-      flex: 1,
+      '&:first-child': {
+        borderBottomLeftRadius: 5,
+        borderTopLeftRadius: 5
+      },
+      '&:last-child': {
+        borderBottomRightRadius: 5,
+        borderTopRightRadius: 5
+      },
       '&.active, &:hover': {
         color: 'rgb(var(--expansion))'
       },
       '&.active': {
-        borderColor: 'rgb(var(--expansion))'
+        backgroundColor: 'rgb(var(--expansion))',
+        color: 'white'
       }
     },
     tabPanels: {
-      padding: [10, 30]
+      marginTop: '15vh',
+      borderRadius: 5,
+      padding: 0
     }
   });
   var classes = styles();
@@ -14234,32 +14252,32 @@ function Settings(_ref) {
     className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.wrapper),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.PageLoading, {
       loading: loading
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels, classes.settings),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        to: "/settings/guild",
+        children: "Guild"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        to: "/settings/recruitment",
+        children: "Recruitment"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        to: "/settings/usps",
+        children: "USPs"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
+        as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
+        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        to: "/settings/form",
+        children: "Form"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
       className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.settings),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels),
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
-          to: "/settings/guild",
-          children: "Guild"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
-          to: "/settings/recruitment",
-          children: "Recruitment"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
-          to: "/settings/usps",
-          children: "USPs"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
-          as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-          className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
-          to: "/settings/form",
-          children: "Form"
-        })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabWrapper),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
           path: "/settings/guild",
@@ -14370,7 +14388,7 @@ function Settings(_ref) {
             faction: guild.faction
           })
         })]
-      })]
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
       faction: guild.faction || 'horde',
       loading: saving
@@ -14394,12 +14412,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
 /* harmony import */ var _mdi_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mdi/js */ "./node_modules/@mdi/js/mdi.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @mdi/react */ "./node_modules/@mdi/react/Icon.js");
-/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_mdi_react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mdi/react */ "./node_modules/@mdi/react/Icon.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_mdi_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
 
@@ -14434,16 +14452,31 @@ function Usps(_ref) {
       save = _ref.save,
       _ref$saving = _ref.saving,
       saving = _ref$saving === void 0 ? false : _ref$saving;
-  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_3__.createUseStyles)({
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     usp: {
       marginBottom: 30
     },
+    uspTitle: {
+      marginBottom: 15
+    },
     add: {
-      border: '3px solid rgb(var(--expansion))',
-      color: 'rgb(var(--expansion))',
+      transition: 'all 0.05s linear',
+      border: '3px solid',
       cursor: 'pointer',
       marginBottom: 30,
-      width: 35
+      width: 35,
+      '&:hover': {
+        borderColor: 'rgb(var(--expansion))',
+        color: 'rgb(var(--expansion))'
+      }
+    },
+    remove: {
+      transition: 'all 0.05s linear',
+      marginLeft: 'auto',
+      cursor: 'pointer',
+      '&:hover': {
+        color: 'rgb(var(--expansion))'
+      }
     }
   });
   var classes = styles();
@@ -14487,22 +14520,17 @@ function Usps(_ref) {
     },
     children: [usps.map(function (usp) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.usp),
+        className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.usp),
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
-          align: "center",
-          style: {
-            marginBottom: 10
-          },
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.uspTitle),
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
+            label: "Title",
             value: usp.title,
             onChange: function onChange(e) {
               return onChangeHandler(e, usp, 'title');
             }
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_5___default()), {
-            style: {
-              marginLeft: 'auto',
-              cursor: 'pointer'
-            },
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_4___default()), {
+            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.remove),
             onClick: function onClick() {
               return removeUsp(usp);
             },
@@ -14510,17 +14538,18 @@ function Usps(_ref) {
             size: 1
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
-          as: "textarea",
-          rows: 8,
-          resize: "none",
           onChange: function onChange(e) {
             return onChangeHandler(e, usp, 'value');
           },
-          value: usp.value
+          value: usp.value,
+          label: "Content",
+          resize: "none",
+          as: "textarea",
+          rows: 8
         })]
       }, usp.id);
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_5___default()), {
-      className: classnames__WEBPACK_IMPORTED_MODULE_4___default()(classes.add),
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_4___default()), {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.add),
       path: _mdi_js__WEBPACK_IMPORTED_MODULE_6__.mdiPlus,
       onClick: addUsp
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
