@@ -13170,6 +13170,7 @@ function App() {
                 faction: getGuildValue('faction'),
                 region: getGuildValue('region'),
                 realm: getGuildValue('realm'),
+                about: getGuildValue('about'),
                 name: getGuildValue('name')
               });
               setSpecs(Object.values(specs.data));
@@ -13646,9 +13647,7 @@ function Home(_ref) {
       _ref$usps = _ref.usps,
       usps = _ref$usps === void 0 ? [] : _ref$usps,
       _ref$loading = _ref.loading,
-      loading = _ref$loading === void 0 ? {
-    loading: loading
-  } : _ref$loading;
+      loading = _ref$loading === void 0 ? true : _ref$loading;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     '@keyframes fadeInUpwards': {
       from: {
@@ -14124,7 +14123,7 @@ function Settings(_ref) {
       marginTop: 30
     },
     tabPanel: {
-      // transition: 'all 0.1s linear',
+      transition: 'background-color 0.1s linear',
       textTransform: 'uppercase',
       textAlign: 'center',
       userSelect: 'none',
@@ -14164,6 +14163,7 @@ function Settings(_ref) {
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
     faction: guild.faction,
     region: guild.region,
+    about: guild.about,
     realm: guild.realm,
     name: guild.name
   }),
@@ -14175,6 +14175,7 @@ function Settings(_ref) {
     setGuildInputs({
       faction: guild.faction,
       region: guild.region,
+      about: guild.about,
       realm: guild.realm,
       name: guild.name
     });
@@ -14300,6 +14301,15 @@ function Settings(_ref) {
               onChange: function onChange(e) {
                 return handleGuildInput(e.target.value, 'name');
               }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
+              containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
+              label: "About",
+              as: "textarea",
+              onChange: function onChange(e) {
+                return handleGuildInput(e.target.value, 'about');
+              },
+              autoComplete: "off",
+              value: guildInputs.about
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
               containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               label: "Realm",
@@ -14454,7 +14464,9 @@ function Usps(_ref) {
       saving = _ref$saving === void 0 ? false : _ref$saving;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     usp: {
-      marginBottom: 30
+      border: '1px solid rgb(200, 200, 200)',
+      marginBottom: 30,
+      padding: 15
     },
     uspTitle: {
       marginBottom: 15
@@ -14715,7 +14727,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
 function _templateObject12() {
-  var data = _taggedTemplateLiteral(["\n    resize: ", ";\n    border: 1px solid rgb(200, 200, 200);\n    background-color: white;\n    transition: all 0.05s;\n    border-radius: 2px;\n    font-size: 1rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    resize: ", ";\n    border: 1px solid rgb(200, 200, 200);\n    background-color: white;\n    transition: all 0.05s;\n    font-family: inherit;\n    border-radius: 2px;\n    font-size: 0.9rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
 
   _templateObject12 = function _templateObject12() {
     return data;

@@ -26,6 +26,7 @@ export default function App() {
                 faction: getGuildValue('faction'),
                 region: getGuildValue('region'),
                 realm: getGuildValue('realm'),
+                about: getGuildValue('about'),
                 name: getGuildValue('name'),
             });
             setSpecs(Object.values(specs.data));

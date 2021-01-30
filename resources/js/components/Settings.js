@@ -43,7 +43,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
             marginTop: 30,
         },
         tabPanel: {
-            // transition: 'all 0.1s linear',
+            transition: 'background-color 0.1s linear',
             textTransform: 'uppercase',
             textAlign: 'center',
             userSelect: 'none',
@@ -80,6 +80,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
     const [guildInputs, setGuildInputs] = useState({
         faction: guild.faction,
         region: guild.region,
+        about: guild.about,
         realm: guild.realm,
         name: guild.name,
     });
@@ -88,6 +89,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
         setGuildInputs({
             faction: guild.faction,
             region: guild.region,
+            about: guild.about,
             realm: guild.realm,
             name: guild.name,
         });
@@ -140,6 +142,11 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
                             <Input
                                 autoFocus label="Name" autoComplete="off" value={guildInputs.name}
                                 onChange={e => handleGuildInput(e.target.value, 'name')}
+                            />
+                            <Input
+                                containerClass={classnames(classes.marginTop)} label="About" as="textarea"
+                                onChange={e => handleGuildInput(e.target.value, 'about')}
+                                autoComplete="off" value={guildInputs.about}
                             />
                             <Input
                                 containerClass={classnames(classes.marginTop)} label="Realm" autoComplete="off"

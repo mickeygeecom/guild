@@ -8,7 +8,9 @@ import React from 'react';
 export default function Usps({ usps = [], setUsps, save, saving = false }) {
     const styles = createUseStyles({
         usp: {
+            border: '1px solid rgb(200, 200, 200)',
             marginBottom: 30,
+            padding: 15,
         },
         uspTitle: {
             marginBottom: 15,

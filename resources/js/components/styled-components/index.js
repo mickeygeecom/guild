@@ -107,8 +107,9 @@ const StyledInput = styled.input`
     border: 1px solid rgb(200, 200, 200);
     background-color: white;
     transition: all 0.05s;
+    font-family: inherit;
     border-radius: 2px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 6px;
     outline: 0;
     &:focus {
