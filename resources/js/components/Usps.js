@@ -8,7 +8,7 @@ import React from 'react';
 export default function Usps({ usps = [], setUsps, save, saving = false }) {
     const styles = createUseStyles({
         usp: {
-            border: '1px solid rgb(200, 200, 200)',
+            border: '2px solid rgb(var(--expansion))',
             marginBottom: 30,
             padding: 15,
         },
@@ -17,9 +17,9 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
         },
         add: {
             transition: 'all 0.05s linear',
-            border: '3px solid',
+            border: '2px solid',
             cursor: 'pointer',
-            marginBottom: 30,
+            marginBottom: 45,
             width: 35,
             '&:hover': {
                 borderColor: 'rgb(var(--expansion))',
@@ -42,7 +42,7 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
     }
 
     function addUsp() {
-        setUsps(usps => [ ...usps, { id: usps[usps.length - 1].id + 1, value: '', title: '' } ]);
+        setUsps(usps => [ ...usps, { id: usps[usps.length - 1]?.id ?? 0 + 1, value: '', title: '' } ]);
     }
 
     function onChangeHandler(e, usp, input) {

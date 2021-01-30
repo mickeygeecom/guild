@@ -13137,7 +13137,7 @@ function App() {
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var guild, specs, usps, getGuildValue;
+      var guild, specs, usps, parsedGuild;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -13159,24 +13159,15 @@ function App() {
             case 9:
               usps = _context.sent;
               setLoading(false);
-
-              getGuildValue = function getGuildValue(name) {
-                return guild.data.find(function (object) {
-                  return object.name === name;
-                }).value;
-              };
-
-              setGuild({
-                faction: getGuildValue('faction'),
-                region: getGuildValue('region'),
-                realm: getGuildValue('realm'),
-                about: getGuildValue('about'),
-                name: getGuildValue('name')
+              parsedGuild = {};
+              guild.data.forEach(function (field) {
+                parsedGuild[field.name] = field.value;
               });
+              setGuild(parsedGuild);
               setSpecs(Object.values(specs.data));
               setUsps(usps.data);
 
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
@@ -14160,25 +14151,23 @@ function Settings(_ref) {
       saving = _useState2[0],
       setSaving = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
-    faction: guild.faction,
-    region: guild.region,
-    about: guild.about,
-    realm: guild.realm,
-    name: guild.name
-  }),
+  function parseGuildInputs() {
+    var newGuild = {};
+
+    for (var property in guild) {
+      newGuild[property] = guild[property];
+    }
+
+    return newGuild;
+  }
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(parseGuildInputs()),
       _useState4 = _slicedToArray(_useState3, 2),
       guildInputs = _useState4[0],
       setGuildInputs = _useState4[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
-    setGuildInputs({
-      faction: guild.faction,
-      region: guild.region,
-      about: guild.about,
-      realm: guild.realm,
-      name: guild.name
-    });
+    setGuildInputs(parseGuildInputs());
   }, [guild]);
 
   function handleGuildInput(value, input) {
@@ -14305,11 +14294,13 @@ function Settings(_ref) {
               containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               label: "About",
               as: "textarea",
+              autoComplete: "off",
+              value: guildInputs.about,
+              resize: "none",
+              rows: 5,
               onChange: function onChange(e) {
                 return handleGuildInput(e.target.value, 'about');
-              },
-              autoComplete: "off",
-              value: guildInputs.about
+              }
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
               containerClass: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.marginTop),
               label: "Realm",
@@ -14464,7 +14455,7 @@ function Usps(_ref) {
       saving = _ref$saving === void 0 ? false : _ref$saving;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     usp: {
-      border: '1px solid rgb(200, 200, 200)',
+      border: '2px solid rgb(var(--expansion))',
       marginBottom: 30,
       padding: 15
     },
@@ -14473,9 +14464,9 @@ function Usps(_ref) {
     },
     add: {
       transition: 'all 0.05s linear',
-      border: '3px solid',
+      border: '2px solid',
       cursor: 'pointer',
-      marginBottom: 30,
+      marginBottom: 45,
       width: 35,
       '&:hover': {
         borderColor: 'rgb(var(--expansion))',
@@ -14503,8 +14494,10 @@ function Usps(_ref) {
 
   function addUsp() {
     setUsps(function (usps) {
+      var _usps$id, _usps;
+
       return [].concat(_toConsumableArray(usps), [{
-        id: usps[usps.length - 1].id + 1,
+        id: (_usps$id = (_usps = usps[usps.length - 1]) === null || _usps === void 0 ? void 0 : _usps.id) !== null && _usps$id !== void 0 ? _usps$id : 0 + 1,
         value: '',
         title: ''
       }]);

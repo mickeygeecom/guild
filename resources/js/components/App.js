@@ -20,15 +20,15 @@ export default function App() {
             const guild = await Http.get('guild');
             const specs = await Http.get('specs');
             const usps = await Http.get('usps');
+
             setLoading(false);
-            const getGuildValue = name => guild.data.find(object => object.name === name).value;
-            setGuild({
-                faction: getGuildValue('faction'),
-                region: getGuildValue('region'),
-                realm: getGuildValue('realm'),
-                about: getGuildValue('about'),
-                name: getGuildValue('name'),
+
+            const parsedGuild = {};
+            guild.data.forEach(field => {
+                parsedGuild[field.name] = field.value;
             });
+            setGuild(parsedGuild);
+            
             setSpecs(Object.values(specs.data));
             setUsps(usps.data);
         })();

@@ -77,22 +77,18 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
 
     const [saving, setSaving] = useState(false);
 
-    const [guildInputs, setGuildInputs] = useState({
-        faction: guild.faction,
-        region: guild.region,
-        about: guild.about,
-        realm: guild.realm,
-        name: guild.name,
-    });
+    function parseGuildInputs() {
+        const newGuild = {};
+        for (const property in guild) {
+            newGuild[property] = guild[property];
+        }
+        return newGuild;
+    }
+
+    const [guildInputs, setGuildInputs] = useState(parseGuildInputs());
 
     useEffect(() => {
-        setGuildInputs({
-            faction: guild.faction,
-            region: guild.region,
-            about: guild.about,
-            realm: guild.realm,
-            name: guild.name,
-        });
+        setGuildInputs(parseGuildInputs());
     }, [guild]);
 
     function handleGuildInput(value, input) {
@@ -145,8 +141,8 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
                             />
                             <Input
                                 containerClass={classnames(classes.marginTop)} label="About" as="textarea"
+                                autoComplete="off" value={guildInputs.about} resize="none" rows={5}
                                 onChange={e => handleGuildInput(e.target.value, 'about')}
-                                autoComplete="off" value={guildInputs.about}
                             />
                             <Input
                                 containerClass={classnames(classes.marginTop)} label="Realm" autoComplete="off"
