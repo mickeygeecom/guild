@@ -17,6 +17,9 @@ export default function Recruitment({ specs = [], setSpecs, save, saving = false
         marginTop: {
             marginTop: 30,
         },
+        submit: {
+            margin: [30, 15, 15, 15],
+        },
     });
     const classes = styles();
 
@@ -47,7 +50,7 @@ export default function Recruitment({ specs = [], setSpecs, save, saving = false
                     {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
                 </div>
             </TabWrapper>
-            <Button className={classnames(classes.marginTop)} disabled={saving} block>Save</Button>
+            <Button className={classnames(classes.submit)} disabled={saving}>Save</Button>
         </Col>
     );
 }

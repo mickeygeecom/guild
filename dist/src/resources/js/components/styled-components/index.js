@@ -42,12 +42,15 @@ const TextButton = ({ children, onClick, ...props }) => {
     return <StyledTextButton onClick={click} {...props}>{children}</StyledTextButton>;
 };
 
-const TabWrapper = styled.div`
+const StyledTabWrapper = styled.div`
     max-height: 50vh;
     min-width: 500px;
     overflow: auto;
     padding: 15px;
 `;
+const TabWrapper = ({ children }) => {
+    return <StyledTabWrapper className="scrollbar">{children}</StyledTabWrapper>
+};
 
 const Button = styled.button`
     box-shadow: 0 2px 4px 0 rgba(var(--${({ faction }) => faction ?? 'expansion'}), 0.5);
