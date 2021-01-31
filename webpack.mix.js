@@ -7,16 +7,16 @@ mix.js('resources/js/app.js', 'public/js')
 // Copy into dist folder for production
 if (mix.inProduction()) {
 	// App
-	mix.copyDirectory('app', 'dist/guild/app');
-    mix.copyDirectory('bootstrap', 'dist/guild/bootstrap');
-	mix.copyDirectory('config', 'dist/guild/config');
-	mix.copyDirectory('database', 'dist/guild/database');
-	mix.copyDirectory('resources', 'dist/guild/resources');
-	mix.copyDirectory('routes', 'dist/guild/routes');
-    mix.copyDirectory('storage', 'dist/guild/storage');
-	mix.copyDirectory('tests', 'dist/guild/tests');
+	mix.copyDirectory('app', 'dist/src/app');
+    mix.copyDirectory('bootstrap', 'dist/src/bootstrap');
+	mix.copyDirectory('config', 'dist/src/config');
+	mix.copyDirectory('database', 'dist/src/database');
+	mix.copyDirectory('resources', 'dist/src/resources');
+	mix.copyDirectory('routes', 'dist/src/routes');
+    mix.copyDirectory('storage', 'dist/src/storage');
+	mix.copyDirectory('tests', 'dist/src/tests');
 
 	// Public
-	mix.copyDirectory('public/css', 'dist/guild.angelin.dev/css');
-	mix.copyDirectory('public/js', 'dist/guild.angelin.dev/js');
+	mix.copyDirectory('public/css', 'dist/public/css');
+	mix.copyDirectory('public/js', 'dist/public/js');
 }
