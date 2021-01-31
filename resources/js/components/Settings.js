@@ -81,13 +81,21 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
         <Col className={classnames(classes.wrapper)}>
             <PageLoading loading={loading} />
             <Row className={classnames(classes.tabPanels)}>
-                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/guild">Guild</H6>
-                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment">Recruitment</H6>
-                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps">USPs</H6>
-                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/form">Form</H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings" exact>
+                    Guild
+                </H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/recruitment" exact>
+                    Recruitment
+                </H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/usps" exact>
+                    USPs
+                </H6>
+                <H6 as={NavLink} className={classnames(classes.tabPanel)} to="/settings/form" exact>
+                    Form
+                </H6>
             </Row>
             <Col className={classnames(classes.settings)}>
-                <Route path="/settings/guild" exact>
+                <Route path="/settings" exact>
                     <Guild guild={guild} setGuild={setGuild} save={save} saving={saving} />
                 </Route>
                 <Route path="/settings/recruitment" exact>

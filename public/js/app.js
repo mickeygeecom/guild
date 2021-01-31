@@ -14390,28 +14390,32 @@ function Settings(_ref) {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
-        to: "/settings/guild",
+        to: "/settings",
+        exact: true,
         children: "Guild"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
         to: "/settings/recruitment",
+        exact: true,
         children: "Recruitment"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
         to: "/settings/usps",
+        exact: true,
         children: "USPs"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
         className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
         to: "/settings/form",
+        exact: true,
         children: "Form"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
       className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.settings),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
-        path: "/settings/guild",
+        path: "/settings",
         exact: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Guild__WEBPACK_IMPORTED_MODULE_9__.default, {
           guild: guild,
