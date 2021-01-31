@@ -3,6 +3,7 @@
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
+        "seed": "php artisan migrate:fresh --seed",
         "deploy": "php artisan optimize:clear && npm run prod && npm run dev",
         "watch": "mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",

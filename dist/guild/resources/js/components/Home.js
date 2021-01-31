@@ -3,7 +3,7 @@ import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import React from 'react';
 
-export default function Home({ guild = {}, usps = [], loading={loading} }) {
+export default function Home({ guild = {}, usps = [], loading = true }) {
     const styles = createUseStyles({
         '@keyframes fadeInUpwards': {
             from: { opacity: 0, transform: 'translateY(20px)' },

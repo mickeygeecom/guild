@@ -18,11 +18,9 @@ class GuildController extends Controller
 
     public function save(Request $request) {
         try {
-            $guild = json_decode($request->guild);
-            $this->saveGuildField('faction', $guild->faction);
-            $this->saveGuildField('region', $guild->region);
-            $this->saveGuildField('realm', $guild->realm);
-            $this->saveGuildField('name', $guild->name);
+            foreach (json_decode($request->guild) as $value => $field) {
+                $this->saveGuildField($value, $field);
+            }
             return response(true);
         } catch (Exception $e) {
             return abort(400, $e);

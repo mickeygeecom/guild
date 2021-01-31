@@ -20,14 +20,15 @@ export default function App() {
             const guild = await Http.get('guild');
             const specs = await Http.get('specs');
             const usps = await Http.get('usps');
+
             setLoading(false);
-            const getGuildValue = name => guild.data.find(object => object.name === name).value;
-            setGuild({
-                faction: getGuildValue('faction'),
-                region: getGuildValue('region'),
-                realm: getGuildValue('realm'),
-                name: getGuildValue('name'),
+
+            const parsedGuild = {};
+            guild.data.forEach(field => {
+                parsedGuild[field.name] = field.value;
             });
+            setGuild(parsedGuild);
+            
             setSpecs(Object.values(specs.data));
             setUsps(usps.data);
         })();
@@ -38,7 +39,12 @@ export default function App() {
     }
 
     useEffect(() => {
-        document.title = guild.name;
+        if (guild.faction) {
+            document.querySelector('body').classList = guild.faction;
+        }
+        if (guild.name) {
+            document.title = guild.name;
+        }
     }, [guild]);
 
     return (

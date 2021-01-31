@@ -14,6 +14,7 @@ class GuildSeeder extends Seeder
      */
     public function run()
     {
+        Guild::create(['name' => 'about', 'value' => 'About this guild...']);
         Guild::create(['name' => 'name', 'value' => 'Super Necessary']);
         Guild::create(['name' => 'faction', 'value' => 'horde']);
         Guild::create(['name' => 'realm', 'value' => 'Draenor']);
