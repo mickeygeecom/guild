@@ -16,7 +16,7 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
             marginBottom: 15,
         },
         submit: {
-            margin: 15,
+            margin: [30, 15, 15, 15],
         },
         remove: {
             transition: 'all 0.05s linear',

@@ -8,6 +8,9 @@ export default function Guild({ guild = {}, setGuild, save, saving = false }) {
         marginTop: {
             marginTop: 30,
         },
+        submit: {
+            margin: [30, 15, 15, 15],
+        },
     });
     const classes = styles();
 
@@ -77,7 +80,7 @@ export default function Guild({ guild = {}, setGuild, save, saving = false }) {
                 </Select>
                 <FactionToggler className={classnames(classes.marginTop)} active={guildInputs.faction} toggleActive={toggleFaction} />
             </TabWrapper>
-            <Button className={classnames(classes.marginTop)} block disabled={saving}>Save</Button>
+            <Button className={classnames(classes.submit)} disabled={saving}>Save</Button>
         </Col>
     );
 }
