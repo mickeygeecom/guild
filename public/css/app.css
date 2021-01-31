@@ -53,9 +53,18 @@
   color: RGB(var(--expansion));
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: RGB(var(--expansion));
+  border-radius: 10px;
+}
+
 body {
   background-color: #fafafa;
-  color: #4b4b4b;
+  color: #323232;
   font-family: Roboto;
 }
 

@@ -1,19 +1,21 @@
-import { Button } from './styled-components';
+import { Button, Col, TabWrapper } from './styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import Class from './Class';
 import React from 'react';
 
-export default function Recruitment({ save, specs = [], setSpecs, saving = false }) {
+export default function Recruitment({ specs = [], setSpecs, save, saving = false }) {
     const styles = createUseStyles({
         wrapper: {
             gridTemplateColumns: 'repeat(3, 1fr)',  
-            marginBottom: 30,
             display: 'grid',
             gridGap: 10,
         },
         icon: {
             width: 50,
+        },
+        marginTop: {
+            marginTop: 30,
         },
     });
     const classes = styles();
@@ -29,17 +31,23 @@ export default function Recruitment({ save, specs = [], setSpecs, saving = false
         }));
     }
 
-    return (
-        <form onSubmit={e => save(e, {
+    function submit(e) {
+        save(e, {
             successMessage: 'Successfully updated recruitment',
             name: 'specs',
             url: 'specs',
             data: specs,
-        })}>
-            <div className={classnames(classes.wrapper)}>
-                {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
-            </div>
-            <Button disabled={saving} block>Save</Button>
-        </form>
+        });
+    }
+
+    return (
+        <Col as="form" onSubmit={submit}>
+            <TabWrapper>
+                <div className={classnames(classes.wrapper)}>
+                    {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
+                </div>
+            </TabWrapper>
+            <Button className={classnames(classes.marginTop)} disabled={saving} block>Save</Button>
+        </Col>
     );
 }

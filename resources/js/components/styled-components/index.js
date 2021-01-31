@@ -1,6 +1,6 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { mdiPlus, mdiMinus, mdiLoading } from '@mdi/js';
 import { createUseStyles } from 'react-jss';
-import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
 import Icon from '@mdi/react';
@@ -25,6 +25,28 @@ const Usp = styled.div`
     text-align: center;
     padding: 30px;
     display: flex;
+`;
+
+const StyledTextButton = styled.a`
+    color: rgb(var(--expansion));
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+`;
+
+const TextButton = ({ children, onClick, ...props }) => {
+    function click(e) {
+        e.preventDefault();
+        onClick();
+    }
+    return <StyledTextButton onClick={click} {...props}>{children}</StyledTextButton>;
+};
+
+const TabWrapper = styled.div`
+    max-height: 50vh;
+    min-width: 500px;
+    overflow: auto;
+    padding: 15px;
 `;
 
 const Button = styled.button`
@@ -335,22 +357,13 @@ const TabPanel = styled.div`
 `;
 
 export {
+    H1, H2, H3, H4, H5, H6,
+    Label, Input, Select,
+    PageLoading, Loading,
+    TabPanel, TabWrapper,
+    TextButton, Button,
     FactionToggler,
-    PageLoading,
     Accordion,
-    TabPanel,
-    Loading,
-    Select,
-    Button,
-    Label,
-    Input,
-    Col,
-    Row,
+    Col, Row,
     Usp,
-    H1,
-    H2,
-    H3,
-    H4,
-    H5,
-    H6,
 };

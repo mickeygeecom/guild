@@ -1,7 +1,7 @@
-import { Button, Col, Row, Input } from './styled-components';
-import { mdiClose, mdiPlus } from '@mdi/js';
+import { Button, Col, Row, Input, TextButton, TabWrapper } from './styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
+import { mdiClose } from '@mdi/js';
 import Icon from '@mdi/react';
 import React from 'react';
 
@@ -15,12 +15,8 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
         uspTitle: {
             marginBottom: 15,
         },
-        add: {
-            transition: 'all 0.05s linear',
-            color: 'rgb(var(--expansion))',
-            textDecoration: 'underline',
-            cursor: 'pointer',
-            marginBottom: 45,
+        submit: {
+            margin: 15,
         },
         remove: {
             transition: 'all 0.05s linear',
@@ -34,52 +30,51 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
     const classes = styles();
 
     function removeUsp(usp) {
-        setUsps(usps => usps.filter(_usp => _usp.id !== usp.id));
+        setUsps(p => p.filter(_usp => _usp.id !== usp.id));
     }
 
     function addUsp() {
-        setUsps(usps => [ ...usps, { id: (usps[usps.length - 1]?.id ?? 0) + 1, value: '', title: '' } ]);
+        setUsps(p => [ ...p, { id: (p[p.length - 1]?.id ?? 0) + 1, value: '', title: '' } ]);
     }
 
     function onChangeHandler(e, usp, input) {
         e.persist();
-        setUsps(usps => usps.map(_usp => _usp.id === usp.id ? { ...usp, [input]: e.target.value } : _usp));
+        setUsps(p => p.map(_usp => _usp.id === usp.id ? { ...usp, [input]: e.target.value } : _usp));
     }
 
-    return (
-        <form onSubmit={e => save(e, {
+    function submit(e) {
+        save(e, {
             successMessage: 'Successfully updated USPs',
             setter: setUsps,
             name: 'usps',
             url: 'usps',
             data: usps,
-        })}>
-            {
-                usps.map(usp => (
-                    <Col className={classnames(classes.usp)} key={usp.id}>
-                        <Row className={classnames(classes.uspTitle)}>
-                            <Input label="Title" value={usp.title} onChange={e => onChangeHandler(e, usp, 'title')} />
-                            <Icon
-                                className={classnames(classes.remove)}
-                                onClick={() => removeUsp(usp)}
-                                title="Remove USP"
-                                path={mdiClose}
-                                size={1}
+        });
+    }
+
+    return (
+        <Col as="form" onSubmit={submit}>
+            <TabWrapper>
+                {
+                    usps.map(usp => (
+                        <Col className={classnames(classes.usp)} key={usp.id}>
+                            <Row className={classnames(classes.uspTitle)}>
+                                <Input label="Title" value={usp.title} onChange={e => onChangeHandler(e, usp, 'title')} />
+                                <Icon
+                                    className={classnames(classes.remove)} title="Remove USP"
+                                    onClick={() => removeUsp(usp)} path={mdiClose} size={1}
+                                />
+                            </Row>
+                            <Input
+                                onChange={e => onChangeHandler(e, usp, 'value')} as="textarea"
+                                value={usp.value} label="Content" resize="none" rows={8}
                             />
-                        </Row>
-                        <Input
-                            onChange={e => onChangeHandler(e, usp, 'value')}
-                            value={usp.value}
-                            label="Content"
-                            resize="none"
-                            as="textarea"
-                            rows={8}
-                        />
-                    </Col>
-                ))
-            }
-            <p className={classnames(classes.add)} onClick={addUsp}>Add USP</p>
-            <Button disabled={saving} block>Save</Button>
-        </form>
+                        </Col>
+                    ))
+                }
+                <TextButton onClick={addUsp}>Add USP</TextButton>
+            </TabWrapper>
+            <Button className={classnames(classes.submit)} disabled={saving}>Save</Button>
+        </Col>
     );
 }
