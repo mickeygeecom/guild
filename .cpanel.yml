@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - /bin/cp -R dist/public/* /home/angelin/guild.angelin.dev
+    - /bin/cp -R dist/guild/* /home/angelin/guild
+    
