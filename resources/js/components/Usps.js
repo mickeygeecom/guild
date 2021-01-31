@@ -17,14 +17,10 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
         },
         add: {
             transition: 'all 0.05s linear',
-            border: '2px solid',
+            color: 'rgb(var(--expansion))',
+            textDecoration: 'underline',
             cursor: 'pointer',
             marginBottom: 45,
-            width: 35,
-            '&:hover': {
-                borderColor: 'rgb(var(--expansion))',
-                color: 'rgb(var(--expansion))',
-            },
         },
         remove: {
             transition: 'all 0.05s linear',
@@ -42,7 +38,7 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
     }
 
     function addUsp() {
-        setUsps(usps => [ ...usps, { id: usps[usps.length - 1]?.id ?? 0 + 1, value: '', title: '' } ]);
+        setUsps(usps => [ ...usps, { id: (usps[usps.length - 1]?.id ?? 0) + 1, value: '', title: '' } ]);
     }
 
     function onChangeHandler(e, usp, input) {
@@ -66,6 +62,7 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
                             <Icon
                                 className={classnames(classes.remove)}
                                 onClick={() => removeUsp(usp)}
+                                title="Remove USP"
                                 path={mdiClose}
                                 size={1}
                             />
@@ -81,7 +78,7 @@ export default function Usps({ usps = [], setUsps, save, saving = false }) {
                     </Col>
                 ))
             }
-            <Icon className={classnames(classes.add)} path={mdiPlus} onClick={addUsp} />
+            <p className={classnames(classes.add)} onClick={addUsp}>Add USP</p>
             <Button disabled={saving} block>Save</Button>
         </form>
     );

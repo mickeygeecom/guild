@@ -14464,14 +14464,10 @@ function Usps(_ref) {
     },
     add: {
       transition: 'all 0.05s linear',
-      border: '2px solid',
+      color: 'rgb(var(--expansion))',
+      textDecoration: 'underline',
       cursor: 'pointer',
-      marginBottom: 45,
-      width: 35,
-      '&:hover': {
-        borderColor: 'rgb(var(--expansion))',
-        color: 'rgb(var(--expansion))'
-      }
+      marginBottom: 45
     },
     remove: {
       transition: 'all 0.05s linear',
@@ -14497,7 +14493,7 @@ function Usps(_ref) {
       var _usps$id, _usps;
 
       return [].concat(_toConsumableArray(usps), [{
-        id: (_usps$id = (_usps = usps[usps.length - 1]) === null || _usps === void 0 ? void 0 : _usps.id) !== null && _usps$id !== void 0 ? _usps$id : 0 + 1,
+        id: ((_usps$id = (_usps = usps[usps.length - 1]) === null || _usps === void 0 ? void 0 : _usps.id) !== null && _usps$id !== void 0 ? _usps$id : 0) + 1,
         value: '',
         title: ''
       }]);
@@ -14539,6 +14535,7 @@ function Usps(_ref) {
             onClick: function onClick() {
               return removeUsp(usp);
             },
+            title: "Remove USP",
             path: _mdi_js__WEBPACK_IMPORTED_MODULE_6__.mdiClose,
             size: 1
           })]
@@ -14553,10 +14550,10 @@ function Usps(_ref) {
           rows: 8
         })]
       }, usp.id);
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_4___default()), {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.add),
-      path: _mdi_js__WEBPACK_IMPORTED_MODULE_6__.mdiPlus,
-      onClick: addUsp
+      onClick: addUsp,
+      children: "Add USP"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
       disabled: saving,
       block: true,
