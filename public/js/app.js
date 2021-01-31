@@ -14138,7 +14138,7 @@ function Recruitment(_ref) {
     wrapper: {
       gridTemplateColumns: 'repeat(3, 1fr)',
       display: 'grid',
-      gridGap: 10
+      gridGap: 15
     },
     icon: {
       width: 50
@@ -14296,9 +14296,12 @@ function Settings(_ref) {
       padding: [20, 30],
       cursor: 'pointer',
       letterSpacing: 2,
-      margin: [0, 5],
       color: 'inherit',
       borderRadius: 5,
+      marginRight: 15,
+      '&:last-child': {
+        marginRight: 0
+      },
       '&.active, &:hover': {
         color: 'rgb(var(--expansion))'
       },

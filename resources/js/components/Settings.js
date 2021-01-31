@@ -36,9 +36,12 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
             padding: [20, 30],
             cursor: 'pointer',
             letterSpacing: 2,
-            margin: [0, 5],
             color: 'inherit',
             borderRadius: 5,
+            marginRight: 15,
+            '&:last-child': {
+                marginRight: 0,
+            },
             '&.active, &:hover': {
                 color: 'rgb(var(--expansion))',
             },
