@@ -1,8 +1,8 @@
 import { Button, Col, TabWrapper } from './styled-components';
 import { createUseStyles } from 'react-jss';
+import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import Class from './Class';
-import React from 'react';
 
 export default function Recruitment({ specs = [], setSpecs, save, saving = false }) {
     const styles = createUseStyles({
@@ -11,17 +11,29 @@ export default function Recruitment({ specs = [], setSpecs, save, saving = false
             display: 'grid',
             gridGap: 15,
         },
+        toggler: {
+            marginBottom: 15,
+        },
         icon: {
             width: 50,
         },
-        marginTop: {
-            marginTop: 30,
-        },
         submit: {
-            margin: [30, 15, 15, 15],
+            marginTop: 15,
         },
     });
     const classes = styles();
+
+    const [amountOfCheckedSpecs, setAmountOfCheckedSpecs] = useState(0);
+
+    useEffect(() => {
+        let amountOfCheckedSpecs = 0;
+        specs.forEach(_class => {
+            _class.forEach(spec => {
+                amountOfCheckedSpecs += spec.recruiting;
+            });
+        });
+        setAmountOfCheckedSpecs(amountOfCheckedSpecs);
+    });
 
     function updateSpecs(action = 'add', _class = '', spec = '') {
         setSpecs(p => p.map(element => {
@@ -43,14 +55,24 @@ export default function Recruitment({ specs = [], setSpecs, save, saving = false
         });
     }
 
+    function toggleAll() {
+        setSpecs(p => p.map(_class => {
+            _class.forEach(spec => {
+                spec.recruiting = amountOfCheckedSpecs > 0 ? 0 : 1;
+            });
+            return _class;
+        }));
+    }
+
     return (
-        <Col as="form" onSubmit={submit}>
+        <Col align="center" as="form" onSubmit={submit}>
+            <Button className={classnames(classes.toggler)} type="button" onClick={toggleAll}>Toggle all</Button>
             <TabWrapper>
                 <div className={classnames(classes.wrapper)}>
                     {specs.map(_class => <Class key={_class[0].class} updateSpecs={updateSpecs} _class={_class} />)}
                 </div>
             </TabWrapper>
-            <Button className={classnames(classes.submit)} disabled={saving}>Save</Button>
+            <Button className={classnames(classes.submit)} block disabled={saving}>Save</Button>
         </Col>
     );
 }

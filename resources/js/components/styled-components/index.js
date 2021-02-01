@@ -6,6 +6,8 @@ import classnames from 'classnames';
 import Icon from '@mdi/react';
 
 const Col = styled.div`
+    ${({ justify }) => justify ? 'justify-content:' + justify + ';' : ''}
+    ${({ align }) => align ? 'align-items:' + align + ';' : ''}
     flex-direction: column;
     display: flex;
 `;
