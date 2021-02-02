@@ -152,7 +152,7 @@ const Input = ({ containerClass = '', obligatory = false, type = 'text', label =
             <StyledInput type={type} id={label} {...props} />
         </Col>
     );
-}
+};
 
 const StyledLoadingBackground = styled.div`
     background-color: rgba(0, 0, 0, 0.5);

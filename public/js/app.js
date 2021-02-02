@@ -13114,49 +13114,59 @@ function App() {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      specs = _useState4[0],
-      setSpecs = _useState4[1];
+      questions = _useState4[0],
+      setQuestions = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      usps = _useState6[0],
-      setUsps = _useState6[1];
+      specs = _useState6[0],
+      setSpecs = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      usps = _useState8[0],
+      setUsps = _useState8[1];
+
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
     message: '',
     type: 'success'
   }),
-      _useState8 = _slicedToArray(_useState7, 2),
-      popup = _useState8[0],
-      setPopup = _useState8[1];
-
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
       _useState10 = _slicedToArray(_useState9, 2),
-      loading = _useState10[0],
-      setLoading = _useState10[1];
+      popup = _useState10[0],
+      setPopup = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
+      _useState12 = _slicedToArray(_useState11, 2),
+      loading = _useState12[0],
+      setLoading = _useState12[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var guild, specs, usps, parsedGuild;
+      var questions, guild, specs, usps, parsedGuild;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               setLoading(true);
               _context.next = 3;
-              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('guild');
+              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('questions');
 
             case 3:
-              guild = _context.sent;
+              questions = _context.sent;
               _context.next = 6;
-              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('specs');
+              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('guild');
 
             case 6:
-              specs = _context.sent;
+              guild = _context.sent;
               _context.next = 9;
-              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('usps');
+              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('specs');
 
             case 9:
+              specs = _context.sent;
+              _context.next = 12;
+              return _classes__WEBPACK_IMPORTED_MODULE_3__.Http.get('usps');
+
+            case 12:
               usps = _context.sent;
               setLoading(false);
               parsedGuild = {};
@@ -13165,9 +13175,10 @@ function App() {
               });
               setGuild(parsedGuild);
               setSpecs(Object.values(specs.data));
+              setQuestions(questions.data);
               setUsps(usps.data);
 
-            case 16:
+            case 20:
             case "end":
               return _context.stop();
           }
@@ -13218,6 +13229,8 @@ function App() {
         path: "/settings/:tab?",
         exact: true,
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_Settings__WEBPACK_IMPORTED_MODULE_4__.default, {
+          questions: questions,
+          setQuestions: setQuestions,
           handlePopup: handlePopup,
           loading: loading,
           guild: guild,
@@ -13316,298 +13329,6 @@ function Class(_ref) {
           alt: spec.spec
         }, spec.id);
       })
-    })]
-  });
-}
-
-/***/ }),
-
-/***/ "./resources/js/components/CreateForm.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/CreateForm.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* binding */ CreateForm
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
-
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-function CreateForm(_ref) {
-  var _ref$faction = _ref.faction,
-      faction = _ref$faction === void 0 ? 'horde' : _ref$faction;
-  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_4__.createUseStyles)({
-    marginTop: {
-      marginTop: 15,
-      '&:first-child': {
-        marginTop: 0
-      }
-    },
-    remove: {
-      textDecoration: 'underline',
-      fontWeight: 'bold',
-      cursor: 'pointer',
-      color: 'red'
-    },
-    add: {
-      color: 'rgb(var(--expansion))'
-    }
-  });
-  var classes = styles();
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([{
-    id: 1,
-    label: 'A question',
-    type: 'radio',
-    options: ['Yes', 'No'],
-    obligatory: true
-  }, {
-    id: 2,
-    label: 'Some other question',
-    type: 'radio',
-    options: ['Yes', 'No'],
-    obligatory: true
-  }]),
-      _useState2 = _slicedToArray(_useState, 2),
-      questions = _useState2[0],
-      setQuestions = _useState2[1];
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null),
-      _useState4 = _slicedToArray(_useState3, 2),
-      openAccordion = _useState4[0],
-      setOpenAccordion = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false),
-      _useState6 = _slicedToArray(_useState5, 2),
-      saving = _useState6[0],
-      setSaving = _useState6[1];
-
-  function onChangeHandler(e, input, id) {
-    e.persist();
-    setQuestions(function (p) {
-      var question = p.find(function (question) {
-        return question.id === id;
-      });
-      var filtered = p.filter(function (element) {
-        return element !== question;
-      }); // if (input === 'options') {
-      //     const options = question.options;
-      //     console.log([ ...options, e.target.value ]);
-      //     question = { ...question, [input]: [ ...options, e.target.value ] };
-      // } else {
-      //     question = { ...question, [input]: e.target.value };
-      // }
-
-      question = _objectSpread(_objectSpread({}, question), {}, _defineProperty({}, input, e.target.value));
-      return [].concat(_toConsumableArray(filtered), [question]).sort(function (a, b) {
-        return a.id - b.id;
-      });
-    });
-  }
-
-  function toggleAccordion(id) {
-    setOpenAccordion(function (p) {
-      return p === id ? null : id;
-    });
-  }
-
-  function removeQuestion(id) {
-    if (questions.find(function (question) {
-      return question.id === id && question.label;
-    }) && !confirm('Remove this question?')) {
-      return;
-    }
-
-    setQuestions(function (p) {
-      return p.filter(function (question) {
-        return question.id !== id;
-      });
-    });
-  }
-
-  function addQuestion() {
-    setQuestions(function (p) {
-      var id = p[p.length - 1].id + 1;
-      setOpenAccordion(id);
-      return [].concat(_toConsumableArray(p), [{
-        id: id,
-        label: '',
-        type: 'text',
-        obligatory: true
-      }]);
-    });
-  }
-
-  function saveQuestions(_x) {
-    return _saveQuestions.apply(this, arguments);
-  }
-
-  function _saveQuestions() {
-    _saveQuestions = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(e) {
-      var _yield$Http$post, code;
-
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              e.preventDefault();
-              setSaving(true);
-              _context.next = 4;
-              return _classes__WEBPACK_IMPORTED_MODULE_6__.Http.post('questions');
-
-            case 4:
-              _yield$Http$post = _context.sent;
-              code = _yield$Http$post.code;
-              setSaving(false);
-
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-    return _saveQuestions.apply(this, arguments);
-  }
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
-    onSubmit: saveQuestions,
-    children: [questions.map(function (question) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Accordion, {
-        toggle: function toggle() {
-          return toggleAccordion(question.id);
-        },
-        className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
-        open: openAccordion === question.id,
-        label: question.label,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-          value: question.label,
-          onChange: function onChange(e) {
-            return onChangeHandler(e, 'label', question.id);
-          },
-          label: "Question",
-          autoFocus: true,
-          autoComplete: "off",
-          containerClass: classes.marginTop
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Select, {
-          onChange: function onChange(e) {
-            return onChangeHandler(e, 'type', question.id);
-          },
-          containerClass: classes.marginTop,
-          value: question.type,
-          label: "Input type",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-            value: "text",
-            children: "Text"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-            value: "number",
-            children: "Number"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-            value: "textarea",
-            children: "Textarea"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-            value: "select",
-            children: "Select"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-            value: "radio",
-            children: "Radio"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-            value: "check",
-            children: "Check"
-          })]
-        }), question.type === 'radio' && question.options.map(function (option) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Input, {
-            onChange: function onChange(e) {
-              return onChangeHandler(e, 'options', question.id);
-            },
-            label: option,
-            value: option
-          }, Math.random());
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.marginTop),
-          align: "center",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Label, {
-            style: {
-              margin: 0
-            },
-            children: "Obligatory"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-            type: "checkbox",
-            onChange: function onChange(e) {
-              return onChangeHandler(e, 'obligatory', question.id);
-            },
-            checked: questions.obligatory
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-          className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.remove, classes.marginTop),
-          onClick: function onClick() {
-            return removeQuestion(question.id);
-          },
-          children: "Remove"
-        })]
-      }, question.id);
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
-      className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(classes.remove, classes.add, classes.marginTop),
-      onClick: addQuestion,
-      children: "Add question"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
-      block: true,
-      style: {
-        marginTop: 30
-      },
-      disabled: saving,
-      children: "Save"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {
-      faction: faction,
-      loading: saving
     })]
   });
 }
@@ -14104,6 +13825,205 @@ function Popup(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Questions.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/Questions.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* binding */ Questions
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _mdi_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @mdi/js */ "./node_modules/@mdi/js/mdi.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @mdi/react */ "./node_modules/@mdi/react/Icon.js");
+/* harmony import */ var _mdi_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_mdi_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+
+
+
+
+function Questions(_ref) {
+  var _ref$questions = _ref.questions,
+      questions = _ref$questions === void 0 ? [] : _ref$questions,
+      setQuestions = _ref.setQuestions,
+      save = _ref.save,
+      _ref$saving = _ref.saving,
+      saving = _ref$saving === void 0 ? false : _ref$saving;
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
+    question: {
+      border: '2px solid rgb(var(--expansion))',
+      marginBottom: 30,
+      padding: 15
+    },
+    marginBottom: {
+      marginBottom: 15
+    },
+    submit: {
+      margin: [30, 15, 15, 15]
+    },
+    remove: {
+      transition: 'all 0.05s linear',
+      marginLeft: 'auto',
+      cursor: 'pointer',
+      '&:hover': {
+        color: 'rgb(var(--expansion))'
+      }
+    },
+    obligatory: {
+      flexDirection: 'row !important',
+      alignItems: 'center'
+    }
+  });
+  var classes = styles();
+
+  function removeQuestion(questionToRemove) {
+    setQuestions(function (p) {
+      return p.filter(function (question) {
+        return question.id !== questionToRemove.id;
+      });
+    });
+  }
+
+  function addQuestion() {
+    setQuestions(function (p) {
+      var _p$id, _p;
+
+      return [].concat(_toConsumableArray(p), [{
+        id: ((_p$id = (_p = p[p.length - 1]) === null || _p === void 0 ? void 0 : _p.id) !== null && _p$id !== void 0 ? _p$id : 0) + 1,
+        obligatory: true,
+        options: null,
+        type: 'text',
+        label: ''
+      }]);
+    });
+  }
+
+  function onChangeHandler(e, questionToUpdate, input) {
+    e.persist();
+    setQuestions(function (p) {
+      return p.map(function (question) {
+        return question.id === questionToUpdate.id ? _objectSpread(_objectSpread({}, questionToUpdate), {}, _defineProperty({}, input, e.target.value)) : question;
+      });
+    });
+  }
+
+  function obligatoryOnChangeHandler(e, questionToUpdate, input) {
+    e.persist();
+    setQuestions(function (p) {
+      return p.map(function (question) {
+        return question.id === questionToUpdate.id ? _objectSpread(_objectSpread({}, questionToUpdate), {}, _defineProperty({}, input, e.target.checked)) : question;
+      });
+    });
+  }
+
+  function submit(e) {
+    save(e, {
+      successMessage: 'Successfully updated questions',
+      setter: setQuestions,
+      name: 'questions',
+      url: 'questions',
+      data: questions
+    });
+  }
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+    as: "form",
+    onSubmit: submit,
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.TabWrapper, {
+      children: [questions.map(function (question) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.question),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
+            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.marginBottom),
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
+              label: "Label",
+              value: question.label,
+              onChange: function onChange(e) {
+                return onChangeHandler(e, question, 'label');
+              }
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)((_mdi_react__WEBPACK_IMPORTED_MODULE_4___default()), {
+              onClick: function onClick() {
+                return removeQuestion(question);
+              },
+              path: _mdi_js__WEBPACK_IMPORTED_MODULE_6__.mdiClose,
+              size: 1,
+              className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.remove),
+              title: "Remove question"
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Select, {
+            onChange: function onChange(e) {
+              return onChangeHandler(e, question, 'type');
+            },
+            value: question.type,
+            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.marginBottom),
+            label: "Input type",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              value: "text",
+              children: "Text"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              value: "number",
+              children: "Number"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              value: "radio",
+              children: "Radio"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("option", {
+              value: "textarea",
+              children: "Textarea"
+            })]
+          }), question.type === 'radio' && '<radio options>', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Input, {
+            containerClass: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.obligatory),
+            label: "Obligatory",
+            checked: question.obligatory,
+            onChange: function onChange(e) {
+              return obligatoryOnChangeHandler(e, question, 'obligatory');
+            },
+            type: "checkbox"
+          })]
+        }, question.id);
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.TextButton, {
+        onClick: addQuestion,
+        children: "Add question"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.submit),
+      disabled: saving,
+      children: "Save"
+    })]
+  });
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Recruitment.js":
 /*!************************************************!*\
   !*** ./resources/js/components/Recruitment.js ***!
@@ -14117,8 +14037,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 /* harmony import */ var _styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styled-components */ "./resources/js/components/styled-components/index.js");
-/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Class__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Class */ "./resources/js/components/Class.js");
@@ -14149,7 +14069,7 @@ function Recruitment(_ref) {
       save = _ref.save,
       _ref$saving = _ref.saving,
       saving = _ref$saving === void 0 ? false : _ref$saving;
-  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
+  var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_3__.createUseStyles)({
     wrapper: {
       gridTemplateColumns: 'repeat(3, 1fr)',
       display: 'grid',
@@ -14167,12 +14087,12 @@ function Recruitment(_ref) {
   });
   var classes = styles();
 
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0),
       _useState2 = _slicedToArray(_useState, 2),
       amountOfCheckedSpecs = _useState2[0],
       setAmountOfCheckedSpecs = _useState2[1];
 
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(function () {
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     var amountOfCheckedSpecs = 0;
     specs.forEach(function (_class) {
       _class.forEach(function (spec) {
@@ -14272,9 +14192,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-jss */ "./node_modules/react-jss/dist/react-jss.esm.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Recruitment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Recruitment */ "./resources/js/components/Recruitment.js");
-/* harmony import */ var _CreateForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./CreateForm */ "./resources/js/components/CreateForm.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _Questions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Questions */ "./resources/js/components/Questions.js");
 /* harmony import */ var _classes__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../classes */ "./resources/js/classes/index.js");
 /* harmony import */ var _Guild__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Guild */ "./resources/js/components/Guild.js");
 /* harmony import */ var _Usps__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Usps */ "./resources/js/components/Usps.js");
@@ -14312,6 +14232,9 @@ function Settings(_ref) {
   var _ref$guild = _ref.guild,
       guild = _ref$guild === void 0 ? {} : _ref$guild,
       setGuild = _ref.setGuild,
+      _ref$questions = _ref.questions,
+      questions = _ref$questions === void 0 ? [] : _ref$questions,
+      setQuestions = _ref.setQuestions,
       _ref$usps = _ref.usps,
       usps = _ref$usps === void 0 ? [] : _ref$usps,
       setUsps = _ref.setUsps,
@@ -14433,38 +14356,38 @@ function Settings(_ref) {
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-    className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.wrapper),
+    className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.wrapper),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.PageLoading, {
       loading: loading
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Row, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanels),
+      className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.tabPanels),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.tabPanel),
         to: "/settings",
         exact: true,
         children: "Guild"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.tabPanel),
         to: "/settings/recruitment",
         exact: true,
         children: "Recruitment"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.tabPanel),
         to: "/settings/usps",
         exact: true,
         children: "USPs"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.H6, {
         as: react_router_dom__WEBPACK_IMPORTED_MODULE_11__.NavLink,
-        className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.tabPanel),
+        className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.tabPanel),
         to: "/settings/form",
         exact: true,
         children: "Form"
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Col, {
-      className: classnames__WEBPACK_IMPORTED_MODULE_7___default()(classes.settings),
+      className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(classes.settings),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/settings",
         exact: true,
@@ -14495,8 +14418,11 @@ function Settings(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/settings/form",
         exact: true,
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_CreateForm__WEBPACK_IMPORTED_MODULE_6__.default, {
-          faction: guild.faction
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_Questions__WEBPACK_IMPORTED_MODULE_7__.default, {
+          questions: questions,
+          setQuestions: setQuestions,
+          save: save,
+          saving: saving
         })
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_2__.Loading, {

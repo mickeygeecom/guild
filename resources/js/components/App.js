@@ -8,6 +8,7 @@ import Home from './Home';
 
 export default function App() {
     const [guild, setGuild] = useState({ faction: '', region: '', name: '', realm: '' });
+    const [questions, setQuestions] = useState([]);
     const [specs, setSpecs] = useState([]);
     const [usps, setUsps] = useState([]);
 
@@ -17,6 +18,7 @@ export default function App() {
     useEffect(() => {
         (async () => {
             setLoading(true);
+            const questions = await Http.get('questions');
             const guild = await Http.get('guild');
             const specs = await Http.get('specs');
             const usps = await Http.get('usps');
@@ -30,6 +32,7 @@ export default function App() {
             setGuild(parsedGuild);
             
             setSpecs(Object.values(specs.data));
+            setQuestions(questions.data);
             setUsps(usps.data);
         })();
     }, []);
@@ -63,6 +66,7 @@ export default function App() {
                 </Route>
                 <Route path="/settings/:tab?" exact>
                     <Settings
+                        questions={questions} setQuestions={setQuestions}
                         handlePopup={handlePopup} loading={loading}
                         guild={guild} setGuild={setGuild}
                         specs={specs} setSpecs={setSpecs}

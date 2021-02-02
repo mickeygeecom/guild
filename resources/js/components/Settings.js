@@ -3,13 +3,13 @@ import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import React, { useState } from 'react';
 import Recruitment from './Recruitment';
-import CreateForm from './CreateForm';
 import classnames from 'classnames';
+import Questions from './Questions';
 import { Http } from '../classes';
 import Guild from './Guild';
 import Usps from './Usps';
 
-export default function Settings({ guild = {}, setGuild, usps = [], setUsps, specs = [], setSpecs, loading = true, handlePopup }) {
+export default function Settings({ guild = {}, setGuild, questions = [], setQuestions, usps = [], setUsps, specs = [], setSpecs, loading = true, handlePopup }) {
     const styles = createUseStyles({
         wrapper: {
             backgroundImage: 'url("/storage/covenants.jpg")',
@@ -105,7 +105,7 @@ export default function Settings({ guild = {}, setGuild, usps = [], setUsps, spe
                     <Usps usps={usps} setUsps={setUsps} save={save} saving={saving} />
                 </Route>
                 <Route path="/settings/form" exact>
-                    <CreateForm faction={guild.faction} />
+                    <Questions questions={questions} setQuestions={setQuestions} save={save} saving={saving} />
                 </Route>
             </Col>
             <Loading faction={guild.faction || 'horde'} loading={saving} />

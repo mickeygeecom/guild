@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormFieldsTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateFormFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('form_fields', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question');
+            $table->string('label');
             $table->boolean('obligatory')->default(true);
             $table->string('type');
             $table->text('options')->nullable();
@@ -30,6 +30,6 @@ class CreateFormFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_fields');
+        Schema::dropIfExists('questions');
     }
 }
