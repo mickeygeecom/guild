@@ -1,4 +1,4 @@
-import { TabWrapper, Col, Input, Select, FactionToggler, Button } from './styled-components';
+import { TabWrapper, Col, Input, Select, FactionToggler, Button } from '../styled-components';
 import React, { useState, useEffect } from 'react';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';

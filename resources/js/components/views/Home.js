@@ -1,4 +1,4 @@
-import { Col, H1, H2, H5, PageLoading, Usp } from './styled-components';
+import { Col, H1, H2, H5, PageLoading, Row, Usp } from '../styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import React from 'react';
@@ -56,12 +56,10 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
             justifyContent: 'space-between',
         },
         usps: {
-            justifyContent: 'center',
             flexWrap: 'wrap',
-            display: 'flex',
             margin: 'auto',
-            width: '50%',
-            '@media (max-width: 768px)': {
+            width: 1250,
+            '@media (max-width: 1200px)': {
                 width: '100%',
                 margin: 0,
             },
@@ -71,18 +69,14 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
             width: '25%',
             opacity: 0,
             margin: 50,
-            '&:nth-child(1)': {
-                animationDelay: 1000,
-            },
-            '&:nth-child(2)': {
-                animationDelay: 1150,
-            },
-            '&:nth-child(3)': {
-                animationDelay: 1300,
+            '@media (max-width: 1200px)': {
+                margin: 30,
             },
             '@media (max-width: 768px)': {
                 width: '100%',
-                margin: 30,
+                '&:not(:first-child)': {
+                    marginTop: 0,
+                },
             },
         },
         uspTitle: {
@@ -99,22 +93,21 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
                 <H1 className={classnames(classes.title, `color-${guild.faction}`)}>{guild.name}</H1>
                 <H2 className={classnames(classes.realm)}>{guild.realm}</H2>
             </Col>
-            <div className={classnames(classes.usps)}>
+            <Row className={classnames(classes.usps)} justify="center">
                 {
-                    usps.map(usp => (
-                        <Usp className={classnames(classes.usp)} key={usp.id}>
+                    usps.map((usp, i) => (
+                        <Usp className={classnames(classes.usp)} style={{ animationDelay: `${1000 + (100 * i)}ms` }} key={usp.id}>
                             <H5 className={classnames(classes.uspTitle)}>{usp.title}</H5>
                             {
                                 usp.value.split('\n').map(row => (
-                                    <p className={classnames(classes.uspRow)} key={Math.random()}>
-                                        {row}
-                                    </p>
+                                    <p className={classnames(classes.uspRow)} key={Math.random()}>{row}</p>
                                 ))
                             }
                         </Usp>
                     ))
                 }
-            </div>
+            </Row>
+            
         </Col>
     );
 }

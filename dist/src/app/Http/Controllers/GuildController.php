@@ -8,7 +8,7 @@ use Exception;
 
 class GuildController extends Controller
 {
-    public function get() {
+    public function all() {
         return response(Guild::all());
     }
 

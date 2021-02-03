@@ -1,4 +1,4 @@
-import { Button, Col, Row, Input, Select, TextButton, TabWrapper } from './styled-components';
+import { Button, Col, Row, Input, Select, TextButton, TabWrapper } from '../styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import { mdiClose } from '@mdi/js';

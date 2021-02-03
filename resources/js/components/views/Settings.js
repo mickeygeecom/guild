@@ -1,13 +1,10 @@
-import { Col, Row, Loading, H6, PageLoading } from './styled-components';
+import { Col, Row, Loading, H6, PageLoading } from '../styled-components';
+import { Guild, Usps, Questions, Recruitment } from '../settings';
 import { NavLink, Route } from 'react-router-dom';
 import { createUseStyles } from 'react-jss';
 import React, { useState } from 'react';
-import Recruitment from './Recruitment';
+import { Http } from '../../classes';
 import classnames from 'classnames';
-import Questions from './Questions';
-import { Http } from '../classes';
-import Guild from './Guild';
-import Usps from './Usps';
 
 export default function Settings({ guild = {}, setGuild, questions = [], setQuestions, usps = [], setUsps, specs = [], setSpecs, loading = true, handlePopup }) {
     const styles = createUseStyles({

@@ -1,4 +1,4 @@
-import { Row, Col, H5, H6 } from './styled-components';
+import { Row, Col, H5, H6 } from '../styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import React from 'react';

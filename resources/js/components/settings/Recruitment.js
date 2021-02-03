@@ -1,4 +1,4 @@
-import { Button, Col, TabWrapper } from './styled-components';
+import { Button, Col, TabWrapper } from '../styled-components';
 import React, { useEffect, useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';

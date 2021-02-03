@@ -6,6 +6,8 @@ import classnames from 'classnames';
 import Icon from '@mdi/react';
 
 const Col = styled.div`
+    ${({ justify }) => justify ? 'justify-content:' + justify + ';' : ''}
+    ${({ align }) => align ? 'align-items:' + align + ';' : ''}
     flex-direction: column;
     display: flex;
 `;
@@ -129,7 +131,7 @@ const Label = styled.label`
 
 const StyledInput = styled.input`
     resize: ${({ resize }) => resize ?? 'auto'};
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid rgb(100, 100, 100);
     background-color: white;
     transition: all 0.05s;
     font-family: inherit;
@@ -150,7 +152,7 @@ const Input = ({ containerClass = '', obligatory = false, type = 'text', label =
             <StyledInput type={type} id={label} {...props} />
         </Col>
     );
-}
+};
 
 const StyledLoadingBackground = styled.div`
     background-color: rgba(0, 0, 0, 0.5);

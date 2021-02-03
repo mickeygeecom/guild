@@ -11,10 +11,12 @@ export default class Http {
         };
         const response = await fetch(url, { ...args, ...standard });
         let data = [];
-        try {
-            data = await response.json();
-        } catch (e) {
-            console.error(e);
+        if (response.status === 200) {
+            try {
+                data = await response.json();
+            } catch (e) {
+                console.error(e);
+            }
         }
         return { data: data, code: response.status, response: response };
     }

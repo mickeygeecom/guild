@@ -131,7 +131,7 @@ const Label = styled.label`
 
 const StyledInput = styled.input`
     resize: ${({ resize }) => resize ?? 'auto'};
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid rgb(100, 100, 100);
     background-color: white;
     transition: all 0.05s;
     font-family: inherit;

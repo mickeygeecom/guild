@@ -1,10 +1,8 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { Home, Login, Settings } from './views';
 import { Http } from '../classes';
-import Settings from './Settings'; 
-import Login from './Login';
 import Popup from './Popup';
-import Home from './Home';
 
 export default function App() {
     const [guild, setGuild] = useState({ faction: '', region: '', name: '', realm: '' });
