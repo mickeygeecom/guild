@@ -21,7 +21,8 @@ const Row = styled.div`
 
 const Usp = styled.div`
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05), 0 3px 5px 0 rgba(0, 0, 0, 0.15);
-    background-color: white;
+    background-color: rgba(15, 15, 15);
+    color: rgb(225, 225, 225);
     flex-direction: column;
     border-radius: 5px;
     text-align: center;
@@ -135,7 +136,6 @@ const StyledInput = styled.input`
     background-color: white;
     transition: all 0.05s;
     font-family: inherit;
-    border-radius: 2px;
     font-size: 0.9rem;
     padding: 6px;
     outline: 0;
@@ -144,6 +144,81 @@ const StyledInput = styled.input`
         border-color: rgb(var(--expansion));
     }
 `;
+
+const StyledOrderHallBackground = styled.div`
+    transition: all 0.15s ease-out;
+    position: relative;
+    height: 400px;
+    &::after {
+        box-shadow: 0 0 50px 0 black inset, 0 0 5px 0 black;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        height: 100%;
+        content: "";
+        width: 100%;
+        left: 0;
+        top: 0;
+    }
+    &:not(.active) {
+        background-color: rgba(0, 0, 0, 0.85);
+        img {
+            filter: grayscale(1);
+        }
+    }
+    &:hover {
+        transform: scale(1.05);
+        z-index: 100;
+        img {
+            filter: grayscale(0);
+        }
+        &::after {
+            box-shadow:
+                0 0 0 1px ${({ _class }) => _class ? `rgb(var(--${_class.replace(' ', '-').toLowerCase()}))` : 'black'} inset,
+                0 0 50px 0 black inset,
+                0 0 5px 0 black;
+        }
+    }
+`;
+const StyledOrderHallImage = styled.img`
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+`;
+const StyledOrderHallContent = styled.div`
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    display: flex;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+`;
+const OrderHallBackground = ({ _class, active = false, children, ...props }) => {
+    return (
+        <StyledOrderHallBackground className={classnames({ active: active })} _class={_class} {...props}>
+            {_class && <StyledOrderHallImage src={`/storage/order-halls/${_class.replace(' ', '-').toLowerCase()}.jpg`} />}
+            <StyledOrderHallContent>{children}</StyledOrderHallContent>
+        </StyledOrderHallBackground>
+    );
+};
+
+const StyledSpecIcon = styled.img`
+    border: 3px solid black;
+    height: 40px;
+    width: 40px;
+`;
+const SpecIcon = ({ spec, ...props }) => {
+    return (
+        <StyledSpecIcon
+            src={`/storage/specs/${spec.class.replace(' ', '_').toLowerCase()}-${spec.spec.replace(' ', '_').toLowerCase()}.jpg`}
+            title={spec.spec}
+            alt={spec.spec}
+            {...props}
+        />
+    );
+};
 
 const Input = ({ containerClass = '', obligatory = false, type = 'text', label = null, ...props }) => {
     return (
@@ -366,9 +441,11 @@ export {
     Label, Input, Select,
     PageLoading, Loading,
     TabPanel, TabWrapper,
+    OrderHallBackground,
     TextButton, Button,
     FactionToggler,
     Accordion,
+    SpecIcon,
     Col, Row,
     Usp,
 };

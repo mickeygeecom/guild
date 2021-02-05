@@ -1,9 +1,9 @@
-import { Col, H1, H2, H5, PageLoading, Row, Usp } from '../styled-components';
+import { Col, H1, H2, H5, PageLoading, Row, Usp, SpecIcon, OrderHallBackground } from '../styled-components';
 import { createUseStyles } from 'react-jss';
 import classnames from 'classnames';
 import React from 'react';
 
-export default function Home({ guild = {}, usps = [], loading = true }) {
+export default function Home({ guild = {}, usps = [], specs = [], loading = true }) {
     const styles = createUseStyles({
         '@keyframes fadeInUpwards': {
             from: { opacity: 0, transform: 'translateY(20px)' },
@@ -56,11 +56,11 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
             justifyContent: 'space-between',
         },
         usps: {
+            backgroundColor: 'rgb(20, 20, 20)',
+            padding: [0, 200],
             flexWrap: 'wrap',
-            margin: 'auto',
-            width: 1250,
             '@media (max-width: 1200px)': {
-                width: '100%',
+                padding: 0,
                 margin: 0,
             },
         },
@@ -80,8 +80,27 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
             },
         },
         uspTitle: {
+            color: 'rgb(var(--expansion))',
             textTransform: 'uppercase',
             marginBottom: 20,
+        },
+        recruitment: {
+            gridTemplateColumns: `repeat(${Math.floor(specs.length / 2) || 6 }, 200px)`,
+            backgroundColor: 'rgb(15, 15, 15)',
+            justifyContent: 'center',
+            padding: [0, 200],
+            display: 'grid',
+            color: 'white',
+            '@media (max-width: 1200px)': {
+                padding: 0,
+            },
+        },
+        recruitmentSpecs: {
+            marginTop: 10,
+        },
+        specIcon: {
+            boxShadow: [0, 0, 15, 0, 'black'],
+            margin: 2,
         },
     });
     const classes = styles();
@@ -99,15 +118,33 @@ export default function Home({ guild = {}, usps = [], loading = true }) {
                         <Usp className={classnames(classes.usp)} style={{ animationDelay: `${1000 + (100 * i)}ms` }} key={usp.id}>
                             <H5 className={classnames(classes.uspTitle)}>{usp.title}</H5>
                             {
-                                usp.value.split('\n').map(row => (
-                                    <p className={classnames(classes.uspRow)} key={Math.random()}>{row}</p>
+                                usp.value.split('\n').map((row, i) => (
+                                    <p className={classnames(classes.uspRow)} key={i}>{row}</p>
                                 ))
                             }
                         </Usp>
                     ))
                 }
             </Row>
-            
+            <div className={classnames(classes.recruitment)}>
+                {
+                    specs.map((_class, i) => (
+                        <Col className={classnames(classes.recruitmentClass)} align="center" title={_class[0].class} key={i}>
+                            <OrderHallBackground active={Boolean(_class.find(spec => spec.recruiting === 1))} _class={_class[0].class}>
+                                <img style={{ width: 50 }} src={`/storage/classes/${_class[0].class.replace(' ', '-').toLowerCase()}.jpg`} />
+                                <Row className={classnames(classes.recruitmentSpecs)}>
+                                    {
+                                        _class.map((spec, i) => spec.recruiting
+                                            ? <SpecIcon className={classnames(classes.specIcon)} spec={spec} key={i} />
+                                            : null
+                                        )
+                                    }
+                                </Row>
+                            </OrderHallBackground>
+                        </Col>
+                    ))
+                }
+            </div>
         </Col>
     );
 }

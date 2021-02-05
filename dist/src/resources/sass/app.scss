@@ -9,8 +9,8 @@
     --horde: 200, 0, 0;
 
     // Classes
-    --death-knight: 196, 30, 58;
     --demon-hunter: 163, 48, 201;
+    --death-knight: 196, 30, 58;
     --paladin: 244, 140, 186;
     --warlock: 135, 136, 238;
     --warrior: 198, 155, 109;
@@ -67,6 +67,7 @@ body {
     background-color: rgb(250, 250, 250);
     color: rgb(50, 50, 50);
     font-family: Roboto;
+    overflow-x: hidden;
 }
 
 button {

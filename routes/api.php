@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 Route::post('/questions', [QuestionsController::class, 'save']);
 Route::get('/questions', [QuestionsController::class, 'all']);
 
+Route::get('/recruiting', [SpecsController::class, 'recruiting']);
 Route::post('/specs', [SpecsController::class, 'save']);
 Route::get('/specs', [SpecsController::class, 'all']);
 

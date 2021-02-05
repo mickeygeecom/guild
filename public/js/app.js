@@ -13116,59 +13116,69 @@ function App() {
 
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState4 = _slicedToArray(_useState3, 2),
-      questions = _useState4[0],
-      setQuestions = _useState4[1];
+      recruiting = _useState4[0],
+      setRecruiting = _useState4[1];
 
   var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState6 = _slicedToArray(_useState5, 2),
-      specs = _useState6[0],
-      setSpecs = _useState6[1];
+      questions = _useState6[0],
+      setQuestions = _useState6[1];
 
   var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState8 = _slicedToArray(_useState7, 2),
-      usps = _useState8[0],
-      setUsps = _useState8[1];
+      specs = _useState8[0],
+      setSpecs = _useState8[1];
 
-  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
+  var _useState9 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
+      _useState10 = _slicedToArray(_useState9, 2),
+      usps = _useState10[0],
+      setUsps = _useState10[1];
+
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({
     message: '',
     type: 'success'
   }),
-      _useState10 = _slicedToArray(_useState9, 2),
-      popup = _useState10[0],
-      setPopup = _useState10[1];
-
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
       _useState12 = _slicedToArray(_useState11, 2),
-      loading = _useState12[0],
-      setLoading = _useState12[1];
+      popup = _useState12[0],
+      setPopup = _useState12[1];
+
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(true),
+      _useState14 = _slicedToArray(_useState13, 2),
+      loading = _useState14[0],
+      setLoading = _useState14[1];
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().mark(function _callee() {
-      var questions, guild, specs, usps, parsedGuild;
+      var recruiting, questions, guild, specs, usps, parsedGuild;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_1___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               setLoading(true);
               _context.next = 3;
-              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('questions');
+              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('recruiting');
 
             case 3:
-              questions = _context.sent;
+              recruiting = _context.sent;
               _context.next = 6;
-              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('guild');
+              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('questions');
 
             case 6:
-              guild = _context.sent;
+              questions = _context.sent;
               _context.next = 9;
-              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('specs');
+              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('guild');
 
             case 9:
-              specs = _context.sent;
+              guild = _context.sent;
               _context.next = 12;
-              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('usps');
+              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('specs');
 
             case 12:
+              specs = _context.sent;
+              _context.next = 15;
+              return _classes__WEBPACK_IMPORTED_MODULE_4__.Http.get('usps');
+
+            case 15:
               usps = _context.sent;
               setLoading(false);
               parsedGuild = {};
@@ -13176,11 +13186,12 @@ function App() {
                 parsedGuild[field.name] = field.value;
               });
               setGuild(parsedGuild);
+              setRecruiting(Object.values(recruiting.data));
               setSpecs(Object.values(specs.data));
               setQuestions(questions.data);
               setUsps(usps.data);
 
-            case 20:
+            case 24:
             case "end":
               return _context.stop();
           }
@@ -13218,10 +13229,9 @@ function App() {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_views__WEBPACK_IMPORTED_MODULE_3__.Home, {
           handlePopup: handlePopup,
           loading: loading,
-          guild: guild,
-          setGuild: setGuild,
           usps: usps,
-          specs: specs
+          specs: specs,
+          guild: guild
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Route, {
         path: "/login",
@@ -13397,8 +13407,6 @@ function Class(_ref) {
       filter: 'brightness(0.5)',
       cursor: 'pointer',
       margin: [0, 5],
-      height: 40,
-      width: 40,
       '&.active': {
         boxShadow: [0, 0, 1, 1, "rgb(var(--".concat(_class[0]["class"].replace(' ', '-').toLowerCase(), "))")],
         filter: 'brightness(1)',
@@ -13433,18 +13441,16 @@ function Class(_ref) {
       children: [recruitingAmount, " / ", _class.length]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
       justify: "center",
-      children: _class.map(function (spec) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
-          src: "/storage/specs/".concat(spec["class"].replace(' ', '_').toLowerCase(), "-").concat(spec.spec.replace(' ', '_').toLowerCase(), ".jpg"),
+      children: _class.map(function (spec, i) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.SpecIcon, {
           onClick: function onClick() {
             return updateSpecs(spec.recruiting ? 'remove' : 'add', spec["class"], spec.spec);
           },
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.icon, {
             active: Boolean(spec.recruiting)
           }),
-          title: spec.spec,
-          alt: spec.spec
-        }, spec.id);
+          spec: spec
+        }, i);
       })
     })]
   });
@@ -14197,10 +14203,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Loading": () => /* binding */ Loading,
 /* harmony export */   "TabPanel": () => /* binding */ TabPanel,
 /* harmony export */   "TabWrapper": () => /* binding */ TabWrapper,
+/* harmony export */   "OrderHallBackground": () => /* binding */ OrderHallBackground,
 /* harmony export */   "TextButton": () => /* binding */ TextButton,
 /* harmony export */   "Button": () => /* binding */ Button,
 /* harmony export */   "FactionToggler": () => /* binding */ FactionToggler,
 /* harmony export */   "Accordion": () => /* binding */ Accordion,
+/* harmony export */   "SpecIcon": () => /* binding */ SpecIcon,
 /* harmony export */   "Col": () => /* binding */ Col,
 /* harmony export */   "Row": () => /* binding */ Row,
 /* harmony export */   "Usp": () => /* binding */ Usp
@@ -14217,10 +14225,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function _templateObject23() {
+function _templateObject27() {
   var data = _taggedTemplateLiteral(["\n    user-select: none;\n"]);
 
-  _templateObject23 = function _templateObject23() {
+  _templateObject27 = function _templateObject27() {
     return data;
   };
 
@@ -14239,8 +14247,48 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _templateObject22() {
+function _templateObject26() {
   var data = _taggedTemplateLiteral(["\n    background-color: rgb(var(--expansion));\n    user-select: none;\n    cursor: pointer;\n    padding: 15px;\n    color: white;\n"]);
+
+  _templateObject26 = function _templateObject26() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject25() {
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(var(--expansion));\n    transition: all 0.25s linear;\n    overflow: hidden;\n"]);
+
+  _templateObject25 = function _templateObject25() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject24() {
+  var data = _taggedTemplateLiteral(["\n    font-weight: bold;\n"]);
+
+  _templateObject24 = function _templateObject24() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject23() {
+  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    user-select: none;\n    font-size: 1rem;\n    cursor: pointer;\n    padding: 5px;\n    outline: 0;\n"]);
+
+  _templateObject23 = function _templateObject23() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject22() {
+  var data = _taggedTemplateLiteral(["\n    background-color: rgb(25, 25, 25);\n    transition: all 0.25s ease-in-out;\n    pointer-events: none;\n    z-index: 1000000;\n    position: fixed;\n    display: flex;\n    height: 100%;\n    width: 100%;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        opacity: 1;\n    }\n"]);
 
   _templateObject22 = function _templateObject22() {
     return data;
@@ -14250,7 +14298,7 @@ function _templateObject22() {
 }
 
 function _templateObject21() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid rgb(var(--expansion));\n    transition: all 0.25s linear;\n    overflow: hidden;\n"]);
+  var data = _taggedTemplateLiteral(["\n    animation: loading-spin 2s infinite linear;\n    height: 100px;\n    margin: auto;\n    width: 100px;\n\n    @keyframes loading-spin {\n        from {\n            transform: rotateY(0deg);\n        }\n        to {\n            transform: rotateY(360deg);\n        }\n    }\n"]);
 
   _templateObject21 = function _templateObject21() {
     return data;
@@ -14260,7 +14308,7 @@ function _templateObject21() {
 }
 
 function _templateObject20() {
-  var data = _taggedTemplateLiteral(["\n    font-weight: bold;\n"]);
+  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);\n    border: 1px solid rgb(var(--expansion));\n    background-color: white;\n    border-radius: 5px;\n    padding: 35px;\n    margin: auto;\n"]);
 
   _templateObject20 = function _templateObject20() {
     return data;
@@ -14270,7 +14318,7 @@ function _templateObject20() {
 }
 
 function _templateObject19() {
-  var data = _taggedTemplateLiteral(["\n    border: 1px solid black;\n    font-family: Roboto;\n    user-select: none;\n    font-size: 1rem;\n    cursor: pointer;\n    padding: 5px;\n    outline: 0;\n"]);
+  var data = _taggedTemplateLiteral(["\n    background-color: rgba(0, 0, 0, 0.5);\n    transition: all 0.25s ease-in-out;\n    pointer-events: none;\n    position: fixed;\n    height: 100vh;\n    width: 100vw;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        pointer-events: all;\n        opacity: 1;\n    }\n"]);
 
   _templateObject19 = function _templateObject19() {
     return data;
@@ -14280,7 +14328,7 @@ function _templateObject19() {
 }
 
 function _templateObject18() {
-  var data = _taggedTemplateLiteral(["\n    background-color: rgb(25, 25, 25);\n    transition: all 0.25s ease-in-out;\n    pointer-events: none;\n    z-index: 1000000;\n    position: fixed;\n    display: flex;\n    height: 100%;\n    width: 100%;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        opacity: 1;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    border: 3px solid black;\n    height: 40px;\n    width: 40px;\n"]);
 
   _templateObject18 = function _templateObject18() {
     return data;
@@ -14290,7 +14338,7 @@ function _templateObject18() {
 }
 
 function _templateObject17() {
-  var data = _taggedTemplateLiteral(["\n    animation: loading-spin 2s infinite linear;\n    height: 100px;\n    margin: auto;\n    width: 100px;\n\n    @keyframes loading-spin {\n        from {\n            transform: rotateY(0deg);\n        }\n        to {\n            transform: rotateY(360deg);\n        }\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    transform: translate(-50%, -50%);\n    justify-content: center;\n    flex-direction: column;\n    align-items: center;\n    position: absolute;\n    display: flex;\n    z-index: 1000;\n    left: 50%;\n    top: 50%;\n"]);
 
   _templateObject17 = function _templateObject17() {
     return data;
@@ -14300,7 +14348,7 @@ function _templateObject17() {
 }
 
 function _templateObject16() {
-  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25);\n    border: 1px solid rgb(var(--expansion));\n    background-color: white;\n    border-radius: 5px;\n    padding: 35px;\n    margin: auto;\n"]);
+  var data = _taggedTemplateLiteral(["\n    object-fit: cover;\n    height: 100%;\n    width: 100%;\n"]);
 
   _templateObject16 = function _templateObject16() {
     return data;
@@ -14310,7 +14358,7 @@ function _templateObject16() {
 }
 
 function _templateObject15() {
-  var data = _taggedTemplateLiteral(["\n    background-color: rgba(0, 0, 0, 0.5);\n    transition: all 0.25s ease-in-out;\n    pointer-events: none;\n    position: fixed;\n    height: 100vh;\n    width: 100vw;\n    opacity: 0;\n    left: 0;\n    top: 0;\n    &.loading {\n        pointer-events: all;\n        opacity: 1;\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    transition: all 0.15s ease-out;\n    position: relative;\n    height: 400px;\n    &::after {\n        box-shadow: 0 0 50px 0 black inset, 0 0 5px 0 black;\n        background-color: rgba(0, 0, 0, 0.5);\n        position: absolute;\n        height: 100%;\n        content: \"\";\n        width: 100%;\n        left: 0;\n        top: 0;\n    }\n    &:not(.active) {\n        background-color: rgba(0, 0, 0, 0.85);\n        img {\n            filter: grayscale(1);\n        }\n    }\n    &:hover {\n        transform: scale(1.05);\n        z-index: 100;\n        img {\n            filter: grayscale(0);\n        }\n        &::after {\n            box-shadow:\n                0 0 0 1px ", " inset,\n                0 0 50px 0 black inset,\n                0 0 5px 0 black;\n        }\n    }\n"]);
 
   _templateObject15 = function _templateObject15() {
     return data;
@@ -14320,7 +14368,7 @@ function _templateObject15() {
 }
 
 function _templateObject14() {
-  var data = _taggedTemplateLiteral(["\n    resize: ", ";\n    border: 1px solid rgb(100, 100, 100);\n    background-color: white;\n    transition: all 0.05s;\n    font-family: inherit;\n    border-radius: 2px;\n    font-size: 0.9rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
+  var data = _taggedTemplateLiteral(["\n    resize: ", ";\n    border: 1px solid rgb(100, 100, 100);\n    background-color: white;\n    transition: all 0.05s;\n    font-family: inherit;\n    font-size: 0.9rem;\n    padding: 6px;\n    outline: 0;\n    &:focus {\n        box-shadow: 0 0 3px 0 rgb(var(--expansion));\n        border-color: rgb(var(--expansion));\n    }\n"]);
 
   _templateObject14 = function _templateObject14() {
     return data;
@@ -14440,7 +14488,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05), 0 3px 5px 0 rgba(0, 0, 0, 0.15);\n    background-color: white;\n    flex-direction: column;\n    border-radius: 5px;\n    text-align: center;\n    padding: 30px;\n    display: flex;\n"]);
+  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05), 0 3px 5px 0 rgba(0, 0, 0, 0.15);\n    background-color: rgba(15, 15, 15);\n    color: rgb(225, 225, 225);\n    flex-direction: column;\n    border-radius: 5px;\n    text-align: center;\n    padding: 30px;\n    display: flex;\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -14572,17 +14620,57 @@ var StyledInput = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.input(_
   var resize = _ref20.resize;
   return resize !== null && resize !== void 0 ? resize : 'auto';
 });
+var StyledOrderHallBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject15(), function (_ref21) {
+  var _class = _ref21._class;
+  return _class ? "rgb(var(--".concat(_class.replace(' ', '-').toLowerCase(), "))") : 'black';
+});
+var StyledOrderHallImage = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject16());
+var StyledOrderHallContent = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject17());
 
-var Input = function Input(_ref21) {
-  var _ref21$containerClass = _ref21.containerClass,
-      containerClass = _ref21$containerClass === void 0 ? '' : _ref21$containerClass,
-      _ref21$obligatory = _ref21.obligatory,
-      obligatory = _ref21$obligatory === void 0 ? false : _ref21$obligatory,
-      _ref21$type = _ref21.type,
-      type = _ref21$type === void 0 ? 'text' : _ref21$type,
-      _ref21$label = _ref21.label,
-      label = _ref21$label === void 0 ? null : _ref21$label,
-      props = _objectWithoutProperties(_ref21, ["containerClass", "obligatory", "type", "label"]);
+var OrderHallBackground = function OrderHallBackground(_ref22) {
+  var _class = _ref22._class,
+      _ref22$active = _ref22.active,
+      active = _ref22$active === void 0 ? false : _ref22$active,
+      children = _ref22.children,
+      props = _objectWithoutProperties(_ref22, ["_class", "active", "children"]);
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(StyledOrderHallBackground, _objectSpread(_objectSpread({
+    className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+      active: active
+    }),
+    _class: _class
+  }, props), {}, {
+    children: [_class && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledOrderHallImage, {
+      src: "/storage/order-halls/".concat(_class.replace(' ', '-').toLowerCase(), ".jpg")
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledOrderHallContent, {
+      children: children
+    })]
+  }));
+};
+
+var StyledSpecIcon = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject18());
+
+var SpecIcon = function SpecIcon(_ref23) {
+  var spec = _ref23.spec,
+      props = _objectWithoutProperties(_ref23, ["spec"]);
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledSpecIcon, _objectSpread({
+    src: "/storage/specs/".concat(spec["class"].replace(' ', '_').toLowerCase(), "-").concat(spec.spec.replace(' ', '_').toLowerCase(), ".jpg"),
+    title: spec.spec,
+    alt: spec.spec
+  }, props));
+};
+
+var Input = function Input(_ref24) {
+  var _ref24$containerClass = _ref24.containerClass,
+      containerClass = _ref24$containerClass === void 0 ? '' : _ref24$containerClass,
+      _ref24$obligatory = _ref24.obligatory,
+      obligatory = _ref24$obligatory === void 0 ? false : _ref24$obligatory,
+      _ref24$type = _ref24.type,
+      type = _ref24$type === void 0 ? 'text' : _ref24$type,
+      _ref24$label = _ref24.label,
+      label = _ref24$label === void 0 ? null : _ref24$label,
+      props = _objectWithoutProperties(_ref24, ["containerClass", "obligatory", "type", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(containerClass),
@@ -14596,15 +14684,15 @@ var Input = function Input(_ref21) {
   });
 };
 
-var StyledLoadingBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject15());
-var StyledLoadingSpinnerBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject16());
-var StyledLoadingSpinner = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject17());
+var StyledLoadingBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject19());
+var StyledLoadingSpinnerBackground = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject20());
+var StyledLoadingSpinner = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.img(_templateObject21());
 
-var Loading = function Loading(_ref22) {
-  var _ref22$loading = _ref22.loading,
-      loading = _ref22$loading === void 0 ? false : _ref22$loading,
-      _ref22$faction = _ref22.faction,
-      faction = _ref22$faction === void 0 ? 'horde' : _ref22$faction;
+var Loading = function Loading(_ref25) {
+  var _ref25$loading = _ref25.loading,
+      loading = _ref25$loading === void 0 ? false : _ref25$loading,
+      _ref25$faction = _ref25.faction,
+      faction = _ref25$faction === void 0 ? 'horde' : _ref25$faction;
   document.querySelector('body').style.overflowY = loading ? 'hidden' : 'auto';
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledLoadingBackground, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
@@ -14627,11 +14715,11 @@ var Loading = function Loading(_ref22) {
   });
 };
 
-var StyledPageLoading = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject18());
+var StyledPageLoading = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject22());
 
-var PageLoading = function PageLoading(_ref23) {
-  var _ref23$loading = _ref23.loading,
-      loading = _ref23$loading === void 0 ? true : _ref23$loading;
+var PageLoading = function PageLoading(_ref26) {
+  var _ref26$loading = _ref26.loading,
+      loading = _ref26$loading === void 0 ? true : _ref26$loading;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledPageLoading, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
       loading: loading
@@ -14648,16 +14736,16 @@ var PageLoading = function PageLoading(_ref23) {
   });
 };
 
-var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.select(_templateObject19());
+var StyledSelect = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.select(_templateObject23());
 
-var Select = function Select(_ref24) {
-  var _ref24$containerClass = _ref24.containerClass,
-      containerClass = _ref24$containerClass === void 0 ? '' : _ref24$containerClass,
-      _ref24$obligatory = _ref24.obligatory,
-      obligatory = _ref24$obligatory === void 0 ? false : _ref24$obligatory,
-      _ref24$label = _ref24.label,
-      label = _ref24$label === void 0 ? null : _ref24$label,
-      props = _objectWithoutProperties(_ref24, ["containerClass", "obligatory", "label"]);
+var Select = function Select(_ref27) {
+  var _ref27$containerClass = _ref27.containerClass,
+      containerClass = _ref27$containerClass === void 0 ? '' : _ref27$containerClass,
+      _ref27$obligatory = _ref27.obligatory,
+      obligatory = _ref27$obligatory === void 0 ? false : _ref27$obligatory,
+      _ref27$label = _ref27.label,
+      label = _ref27$label === void 0 ? null : _ref27$label,
+      props = _objectWithoutProperties(_ref27, ["containerClass", "obligatory", "label"]);
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(Col, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(containerClass),
@@ -14670,19 +14758,19 @@ var Select = function Select(_ref24) {
   });
 };
 
-var StyledAccordionLabel = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject20());
-var StyledAccordionContent = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject21());
-var StyledAccordionHead = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject22());
+var StyledAccordionLabel = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.p(_templateObject24());
+var StyledAccordionContent = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject25());
+var StyledAccordionHead = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject26());
 
-var Accordion = function Accordion(_ref25) {
-  var _ref25$className = _ref25.className,
-      className = _ref25$className === void 0 ? '' : _ref25$className,
-      _ref25$label = _ref25.label,
-      label = _ref25$label === void 0 ? null : _ref25$label,
-      _ref25$open = _ref25.open,
-      open = _ref25$open === void 0 ? false : _ref25$open,
-      toggle = _ref25.toggle,
-      children = _ref25.children;
+var Accordion = function Accordion(_ref28) {
+  var _ref28$className = _ref28.className,
+      className = _ref28$className === void 0 ? '' : _ref28$className,
+      _ref28$label = _ref28.label,
+      label = _ref28$label === void 0 ? null : _ref28$label,
+      _ref28$open = _ref28.open,
+      open = _ref28$open === void 0 ? false : _ref28$open,
+      toggle = _ref28.toggle,
+      children = _ref28.children;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState2 = _slicedToArray(_useState, 2),
@@ -14728,13 +14816,13 @@ var Accordion = function Accordion(_ref25) {
   });
 };
 
-var FactionToggler = function FactionToggler(_ref26) {
-  var _ref26$label = _ref26.label,
-      label = _ref26$label === void 0 ? null : _ref26$label,
-      _ref26$active = _ref26.active,
-      active = _ref26$active === void 0 ? 'horde' : _ref26$active,
-      toggleActive = _ref26.toggleActive,
-      props = _objectWithoutProperties(_ref26, ["label", "active", "toggleActive"]);
+var FactionToggler = function FactionToggler(_ref29) {
+  var _ref29$label = _ref29.label,
+      label = _ref29$label === void 0 ? null : _ref29$label,
+      _ref29$active = _ref29.active,
+      active = _ref29$active === void 0 ? 'horde' : _ref29$active,
+      toggleActive = _ref29.toggleActive,
+      props = _objectWithoutProperties(_ref29, ["label", "active", "toggleActive"]);
 
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
     toggler: {
@@ -14811,7 +14899,7 @@ var FactionToggler = function FactionToggler(_ref26) {
   }));
 };
 
-var TabPanel = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject23());
+var TabPanel = styled_components__WEBPACK_IMPORTED_MODULE_5__.default.div(_templateObject27());
 
 
 /***/ }),
@@ -14844,6 +14932,8 @@ function Home(_ref) {
       guild = _ref$guild === void 0 ? {} : _ref$guild,
       _ref$usps = _ref.usps,
       usps = _ref$usps === void 0 ? [] : _ref$usps,
+      _ref$specs = _ref.specs,
+      specs = _ref$specs === void 0 ? [] : _ref$specs,
       _ref$loading = _ref.loading,
       loading = _ref$loading === void 0 ? true : _ref$loading;
   var styles = (0,react_jss__WEBPACK_IMPORTED_MODULE_2__.createUseStyles)({
@@ -14910,11 +15000,11 @@ function Home(_ref) {
       justifyContent: 'space-between'
     },
     usps: {
+      backgroundColor: 'rgb(20, 20, 20)',
+      padding: [0, 200],
       flexWrap: 'wrap',
-      margin: 'auto',
-      width: 1250,
       '@media (max-width: 1200px)': {
-        width: '100%',
+        padding: 0,
         margin: 0
       }
     },
@@ -14934,8 +15024,27 @@ function Home(_ref) {
       }
     },
     uspTitle: {
+      color: 'rgb(var(--expansion))',
       textTransform: 'uppercase',
       marginBottom: 20
+    },
+    recruitment: {
+      gridTemplateColumns: "repeat(".concat(Math.floor(specs.length / 2) || 6, ", 200px)"),
+      backgroundColor: 'rgb(15, 15, 15)',
+      justifyContent: 'center',
+      padding: [0, 200],
+      display: 'grid',
+      color: 'white',
+      '@media (max-width: 1200px)': {
+        padding: 0
+      }
+    },
+    recruitmentSpecs: {
+      marginTop: 10
+    },
+    specIcon: {
+      boxShadow: [0, 0, 15, 0, 'black'],
+      margin: 2
     }
   });
   var classes = styles();
@@ -14964,13 +15073,42 @@ function Home(_ref) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.H5, {
             className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.uspTitle),
             children: usp.title
-          }), usp.value.split('\n').map(function (row) {
+          }), usp.value.split('\n').map(function (row, i) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("p", {
               className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.uspRow),
               children: row
-            }, Math.random());
+            }, i);
           })]
         }, usp.id);
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+      className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.recruitment),
+      children: specs.map(function (_class, i) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Col, {
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.recruitmentClass),
+          align: "center",
+          title: _class[0]["class"],
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.OrderHallBackground, {
+            active: Boolean(_class.find(function (spec) {
+              return spec.recruiting === 1;
+            })),
+            _class: _class[0]["class"],
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+              style: {
+                width: 50
+              },
+              src: "/storage/classes/".concat(_class[0]["class"].replace(' ', '-').toLowerCase(), ".jpg")
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
+              className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.recruitmentSpecs),
+              children: _class.map(function (spec, i) {
+                return spec.recruiting ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.SpecIcon, {
+                  className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.specIcon),
+                  spec: spec
+                }, i) : null;
+              })
+            })]
+          })
+        }, i);
       })
     })]
   });

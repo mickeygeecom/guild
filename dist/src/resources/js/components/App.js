@@ -6,6 +6,7 @@ import Popup from './Popup';
 
 export default function App() {
     const [guild, setGuild] = useState({ faction: '', region: '', name: '', realm: '' });
+    const [recruiting, setRecruiting] = useState([]);
     const [questions, setQuestions] = useState([]);
     const [specs, setSpecs] = useState([]);
     const [usps, setUsps] = useState([]);
@@ -16,6 +17,7 @@ export default function App() {
     useEffect(() => {
         (async () => {
             setLoading(true);
+            const recruiting = await Http.get('recruiting');
             const questions = await Http.get('questions');
             const guild = await Http.get('guild');
             const specs = await Http.get('specs');
@@ -29,6 +31,7 @@ export default function App() {
             });
             setGuild(parsedGuild);
             
+            setRecruiting(Object.values(recruiting.data));
             setSpecs(Object.values(specs.data));
             setQuestions(questions.data);
             setUsps(usps.data);
@@ -53,11 +56,7 @@ export default function App() {
             <Popup popup={popup} setPopup={setPopup} />
             <Switch>
                 <Route path="/" exact>
-                    <Home
-                        handlePopup={handlePopup} loading={loading}
-                        guild={guild} setGuild={setGuild}
-                        usps={usps} specs={specs}
-                    />
+                    <Home handlePopup={handlePopup} loading={loading} usps={usps} specs={specs} guild={guild} />
                 </Route>
                 <Route path="/login" exact>
                     <Login />

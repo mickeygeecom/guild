@@ -11,6 +11,10 @@ class SpecsController extends Controller
         return response(Spec::all()->groupBy('class'));
     }
 
+    public function recruiting() {
+        return response(Spec::where('recruiting', 1)->get()->groupBy('class'));
+    }
+
     public function save(Request $request) {
         $classes = json_decode($request->specs);
         foreach ($classes as $class) {
