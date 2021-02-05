@@ -131,7 +131,11 @@ export default function Home({ guild = {}, usps = [], specs = [], loading = true
                     specs.map((_class, i) => (
                         <Col className={classnames(classes.recruitmentClass)} align="center" title={_class[0].class} key={i}>
                             <OrderHallBackground active={Boolean(_class.find(spec => spec.recruiting === 1))} _class={_class[0].class}>
-                                <img style={{ width: 50 }} src={`/storage/classes/${_class[0].class.replace(' ', '-').toLowerCase()}.jpg`} />
+                                <img
+                                    src={`/storage/classes/${_class[0].class.replace(' ', '-').toLowerCase()}.jpg`}
+                                    style={{ width: 50 }}
+                                    loading="lazy"
+                                />
                                 <Row className={classnames(classes.recruitmentSpecs)}>
                                     {
                                         _class.map((spec, i) => spec.recruiting

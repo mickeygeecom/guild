@@ -198,7 +198,7 @@ const StyledOrderHallContent = styled.div`
 const OrderHallBackground = ({ _class, active = false, children, ...props }) => {
     return (
         <StyledOrderHallBackground className={classnames({ active: active })} _class={_class} {...props}>
-            {_class && <StyledOrderHallImage src={`/storage/order-halls/${_class.replace(' ', '-').toLowerCase()}.jpg`} />}
+            {_class && <StyledOrderHallImage loading="lazy" src={`/storage/order-halls/${_class.replace(' ', '-').toLowerCase()}.jpg`} />}
             <StyledOrderHallContent>{children}</StyledOrderHallContent>
         </StyledOrderHallBackground>
     );

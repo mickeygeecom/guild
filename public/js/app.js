@@ -14641,6 +14641,7 @@ var OrderHallBackground = function OrderHallBackground(_ref22) {
     _class: _class
   }, props), {}, {
     children: [_class && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledOrderHallImage, {
+      loading: "lazy",
       src: "/storage/order-halls/".concat(_class.replace(' ', '-').toLowerCase(), ".jpg")
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(StyledOrderHallContent, {
       children: children
@@ -15094,10 +15095,11 @@ function Home(_ref) {
             })),
             _class: _class[0]["class"],
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("img", {
+              src: "/storage/classes/".concat(_class[0]["class"].replace(' ', '-').toLowerCase(), ".jpg"),
               style: {
                 width: 50
               },
-              src: "/storage/classes/".concat(_class[0]["class"].replace(' ', '-').toLowerCase(), ".jpg")
+              loading: "lazy"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)(_styled_components__WEBPACK_IMPORTED_MODULE_1__.Row, {
               className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(classes.recruitmentSpecs),
               children: _class.map(function (spec, i) {
