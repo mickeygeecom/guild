@@ -28,6 +28,10 @@ const Usp = styled.div`
     text-align: center;
     padding: 30px;
     display: flex;
+    width: 300px;
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 `;
 
 const StyledTextButton = styled.a`

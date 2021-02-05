@@ -66,14 +66,12 @@ export default function Home({ guild = {}, usps = [], specs = [], loading = true
         },
         usp: {
             animation: '$fadeInRight 0.5s forwards',
-            width: '25%',
             opacity: 0,
             margin: 50,
             '@media (max-width: 1200px)': {
                 margin: 30,
             },
             '@media (max-width: 768px)': {
-                width: '100%',
                 '&:not(:first-child)': {
                     marginTop: 0,
                 },

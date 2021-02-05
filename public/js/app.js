@@ -14488,7 +14488,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05), 0 3px 5px 0 rgba(0, 0, 0, 0.15);\n    background-color: rgba(15, 15, 15);\n    color: rgb(225, 225, 225);\n    flex-direction: column;\n    border-radius: 5px;\n    text-align: center;\n    padding: 30px;\n    display: flex;\n"]);
+  var data = _taggedTemplateLiteral(["\n    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05), 0 3px 5px 0 rgba(0, 0, 0, 0.15);\n    background-color: rgba(15, 15, 15);\n    color: rgb(225, 225, 225);\n    flex-direction: column;\n    border-radius: 5px;\n    text-align: center;\n    padding: 30px;\n    display: flex;\n    width: 300px;\n    @media (max-width: 768px) {\n        width: 100%;\n    }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -15011,14 +15011,12 @@ function Home(_ref) {
     },
     usp: {
       animation: '$fadeInRight 0.5s forwards',
-      width: '25%',
       opacity: 0,
       margin: 50,
       '@media (max-width: 1200px)': {
         margin: 30
       },
       '@media (max-width: 768px)': {
-        width: '100%',
         '&:not(:first-child)': {
           marginTop: 0
         }
